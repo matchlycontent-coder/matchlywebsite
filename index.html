@@ -2262,6 +2262,145 @@
     font-weight: 700;
   }
   .price-cta { margin-bottom: 0; margin-top: auto; }
+
+  /* ─── Wedstrijdpas ─── */
+  .matchpass {
+    max-width: 1100px;
+    margin: 32px auto 0;
+    background: linear-gradient(135deg, rgba(38,67,217,0.08), rgba(233,30,99,0.08));
+    border: 1px solid rgba(125,46,176,0.25);
+    border-radius: var(--radius-xl);
+    padding: 36px 40px;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 36px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .matchpass::before {
+    content: '';
+    position: absolute;
+    top: -40%; right: -5%;
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(125,46,176,0.18), transparent 60%);
+    filter: blur(50px);
+    pointer-events: none;
+  }
+  .matchpass-left { position: relative; }
+  .matchpass-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--pink-soft);
+    background: var(--brand-grad-soft);
+    border: 1px solid rgba(125,46,176,0.25);
+    border-radius: 100px;
+    padding: 5px 12px;
+    margin-bottom: 14px;
+  }
+  .matchpass-left h3 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.15;
+  }
+  .matchpass-left h3 .it {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .matchpass-left p {
+    font-size: 14.5px;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: 18px;
+    max-width: 520px;
+  }
+  .matchpass-feat {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 20px;
+  }
+  .matchpass-feat li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-2);
+  }
+  .matchpass-feat .ic {
+    color: var(--pink-soft);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .matchpass-right {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    padding: 24px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+  }
+  .matchpass-price { display: flex; flex-direction: column; align-items: center; }
+  .matchpass-amt {
+    font-size: 52px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .matchpass-per {
+    font-size: 13px;
+    color: var(--text-3);
+    margin-top: 4px;
+  }
+  .matchpass-cta {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: var(--brand-grad);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 13px 20px;
+    border-radius: 100px;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(125,46,176,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .matchpass-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(125,46,176,0.4);
+  }
+  .matchpass-note {
+    font-size: 12px;
+    color: var(--text-4);
+  }
+  @media (max-width: 760px) {
+    .matchpass {
+      grid-template-columns: 1fr;
+      padding: 28px 24px;
+      gap: 24px;
+    }
+    .matchpass-feat { grid-template-columns: 1fr; }
+    .matchpass-left h3 { font-size: 22px; }
+  }
   @media (max-width: 1100px) { .pricing { grid-template-columns: repeat(2, 1fr); max-width: 720px; } }
   @media (max-width: 560px) { .pricing { grid-template-columns: 1fr; max-width: 420px; } }
 
@@ -3850,6 +3989,28 @@
 
   </div>
 
+  <!-- ─────────── WEDSTRIJDPAS ─────────── -->
+  <div class="matchpass">
+    <div class="matchpass-left">
+      <span class="matchpass-badge">Geen abonnement nodig</span>
+      <h3>Liever per wedstrijd? Pak een <span class="it">Wedstrijdpas</span>.</h3>
+      <p>Eén keer een belangrijke wedstrijd of toernooi, zonder abonnement? Met de Wedstrijdpas maak je voor één wedstrijd het complete contentpakket — betaal alleen voor wat je gebruikt.</p>
+      <ul class="matchpass-feat">
+        <li><span class="ic">✓</span> Eén wedstrijd, één compleet contentpakket</li>
+        <li><span class="ic">✓</span> Alle 5 formats: posts, stories, MOTM &amp; verslag</li>
+        <li><span class="ic">✓</span> Sponsors gewoon meegenomen</li>
+        <li><span class="ic">✓</span> Geen abonnement, geen verplichting</li>
+      </ul>
+    </div>
+    <div class="matchpass-right">
+      <div class="matchpass-price">
+        <span class="matchpass-amt">€5</span>
+        <span class="matchpass-per">per wedstrijd</span>
+      </div>
+      <a href="aanmelden.html" class="matchpass-cta">Wedstrijdpas halen</a>
+      <span class="matchpass-note">Ideaal voor losse teams</span>
+    </div>
+  </div>
   <!-- ─────────── IN ELK PAKKET INBEGREPEN ─────────── -->
   <div class="included-wrap">
 
@@ -4103,6 +4264,18 @@
       <div class="faq-a">
         <div class="faq-a-inner">
           Ja! Elke club start met <strong>2 weken gratis proberen</strong> — geen betaling vooraf. Na de proefperiode gaat je abonnement automatisch over in het <strong>Single-pakket</strong>, tenzij je voor een groter pakket kiest. Zo ontdek je eerst rustig of Matchly bij je club past. Heb je vragen voor je begint? Stuur ons gerust een mail, we helpen je graag op weg.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-text">Moet ik een abonnement nemen, of kan het ook los?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <div class="faq-a-inner">
+          Beide kan. Speel je niet elke week, of wil je het één keer uitproberen bij een belangrijke wedstrijd of toernooi? Dan pak je een <strong>Wedstrijdpas van €5</strong> — daarmee maak je voor één wedstrijd het complete contentpakket, zonder abonnement of verplichting. Gebruik je het vaker, dan ben je met een abonnement (vanaf €15/maand) al snel voordeliger uit. Je kiest dus zelf wat bij je past.
         </div>
       </div>
     </div>
