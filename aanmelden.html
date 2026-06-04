@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Abonneer nu · Matchly</title>
+<meta name="description" content="Kies het Matchly-pakket dat bij jouw club past en maak een clubaccount aan." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #07090f;
+    --surface: rgba(255, 255, 255, 0.025);
+    --surface-2: rgba(255, 255, 255, 0.045);
+    --border: rgba(255, 255, 255, 0.06);
+    --border-2: rgba(255, 255, 255, 0.1);
+    --text: #f5f7fa;
+    --text-2: #b4bac4;
+    --text-3: #7c8290;
+    --text-4: #555a66;
+    --magenta: #e91e63;
+    --pink-soft: #ff6ba3;
+    --brand-grad: linear-gradient(135deg, #2643d9 0%, #7d2eb0 55%, #e91e63 100%);
+    --brand-grad-soft: linear-gradient(135deg, rgba(38, 67, 217, 0.18) 0%, rgba(233, 30, 99, 0.18) 100%);
+    --radius: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Geist', -apple-system, sans-serif; line-height: 1.55; -webkit-font-smoothing: antialiased; letter-spacing: -0.01em; }
+  body::before { content: ''; position: fixed; inset: 0; background: radial-gradient(ellipse 800px 600px at 20% -10%, rgba(38, 67, 217, 0.12), transparent 60%), radial-gradient(ellipse 800px 600px at 80% 20%, rgba(233, 30, 99, 0.08), transparent 60%); pointer-events: none; z-index: 0; }
+
+  .nav-wrap { position: fixed; top: 16px; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; padding: 0 20px; }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 8px 8px 8px 18px; background: rgba(11, 14, 21, 0.75); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border: 1px solid var(--border-2); border-radius: 100px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); width: 100%; max-width: 920px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
+  .logo-mark { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; overflow: hidden; background: #fff; box-shadow: 0 4px 16px rgba(125, 46, 176, 0.3); }
+  .logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .nav-links { display: flex; gap: 4px; align-items: center; }
+  .nav-links a { color: var(--text-2); font-size: 14px; font-weight: 500; text-decoration: none; padding: 8px 14px; border-radius: 100px; transition: all 0.2s; }
+  .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .nav-back { background: var(--surface-2) !important; border: 1px solid var(--border-2); color: var(--text) !important; }
+  @media (max-width: 760px) { .nav-links a:not(.nav-back) { display: none; } }
+
+  .page { max-width: 1100px; margin: 0 auto; padding: 140px 32px 80px; position: relative; z-index: 1; }
+  @media (max-width: 760px) { .page { padding: 120px 20px 60px; } }
+
+  .page-header { text-align: center; margin-bottom: 56px; }
+  .page-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 14px; background: var(--brand-grad-soft); border: 1px solid rgba(125, 46, 176, 0.25); border-radius: 100px; color: var(--pink-soft); margin-bottom: 24px; }
+  .page-eyebrow .dot { width: 6px; height: 6px; background: var(--magenta); border-radius: 50%; box-shadow: 0 0 8px var(--magenta); }
+  h1.page-title { font-size: clamp(36px, 5.5vw, 64px); font-weight: 600; line-height: 1.05; letter-spacing: -0.035em; margin-bottom: 16px; max-width: 720px; margin-left: auto; margin-right: auto; }
+  h1.page-title .it { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; background: var(--brand-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .page-sub { font-size: 17px; color: var(--text-2); max-width: 560px; margin: 0 auto; line-height: 1.5; }
+
+  /* Account banner (not logged in) */
+  .login-banner { background: rgba(255, 213, 110, 0.08); border: 1px solid rgba(255, 213, 110, 0.25); border-radius: 14px; padding: 18px 24px; margin-bottom: 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .login-banner-text { font-size: 14px; color: #ffd56e; flex: 1; min-width: 240px; }
+  .login-banner a { color: #ffd56e; font-weight: 600; text-decoration: underline; }
+
+  /* Pricing */
+  .pricing { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 80px; }
+  .price-card { background: var(--surface); backdrop-filter: blur(10px); border: 1px solid var(--border); border-radius: var(--radius-xl); padding: 32px 26px 28px; position: relative; transition: all 0.3s; display: flex; flex-direction: column; }
+  .price-card:hover { border-color: var(--border-2); transform: translateY(-4px); }
+  .price-card.featured { border-color: rgba(125, 46, 176, 0.4); background: linear-gradient(180deg, rgba(125, 46, 176, 0.06), var(--surface)); box-shadow: 0 0 60px rgba(125, 46, 176, 0.12); }
+  .price-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 14px; background: var(--brand-grad); color: #fff; border-radius: 100px; font-weight: 600; box-shadow: 0 4px 16px rgba(125, 46, 176, 0.4); }
+  .price-name { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; color: var(--text); margin-bottom: 6px; }
+  .price-card.featured .price-name { background: var(--brand-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .price-tag { display: flex; align-items: baseline; gap: 4px; margin: 18px 0 8px; }
+  .price-tag .amt { font-size: 38px; font-weight: 700; letter-spacing: -0.035em; color: var(--text); }
+  .price-tag .per { font-size: 13px; color: var(--text-3); }
+  .price-desc { font-size: 13px; color: var(--text-3); margin-bottom: 22px; min-height: 38px; }
+  .price-feat { list-style: none; margin-bottom: 24px; flex: 1; }
+  .price-feat li { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; color: var(--text-2); font-size: 13.5px; }
+  .price-feat li:first-child { color: var(--text); font-weight: 600; }
+  .price-feat .ic { background: var(--brand-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; font-size: 11px; margin-top: 3px; font-weight: 700; }
+  .price-cta { display: block; width: 100%; padding: 14px 20px; border-radius: 100px; text-align: center; text-decoration: none; font-size: 14.5px; font-weight: 600; background: var(--brand-grad); border: 1px solid transparent; color: #fff; box-shadow: 0 4px 16px rgba(125, 46, 176, 0.3); transition: all 0.2s; margin-top: auto; cursor: pointer; font-family: inherit; }
+  .price-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(125, 46, 176, 0.45); }
+  .price-cta:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  @media (max-width: 1100px) { .pricing { grid-template-columns: repeat(2, 1fr); max-width: 720px; margin-left: auto; margin-right: auto; } }
+  @media (max-width: 560px) { .pricing { grid-template-columns: 1fr; max-width: 420px; } }
+
+  .trust { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 900px; margin: 0 auto 80px; }
+  .trust-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px 20px; text-align: center; transition: all 0.3s; }
+  .trust-item:hover { border-color: var(--border-2); background: var(--surface-2); }
+  .trust-icon { width: 38px; height: 38px; margin: 0 auto 12px; border-radius: 10px; background: var(--brand-grad-soft); border: 1px solid rgba(125, 46, 176, 0.2); display: flex; align-items: center; justify-content: center; color: var(--pink-soft); font-size: 16px; }
+  .trust-item h4 { font-size: 14px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; margin-bottom: 4px; }
+  .trust-item p { font-size: 12px; color: var(--text-3); line-height: 1.45; }
+  @media (max-width: 760px) { .trust { grid-template-columns: repeat(2, 1fr); } }
+
+  .help-block { text-align: center; max-width: 580px; margin: 0 auto; padding: 40px 32px; border-top: 1px solid var(--border); }
+  .help-block h3 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 10px; }
+  .help-block p { font-size: 15px; color: var(--text-2); margin-bottom: 20px; line-height: 1.55; }
+  .help-link { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; background: var(--surface-2); border: 1px solid var(--border-2); border-radius: 100px; text-decoration: none; color: var(--text); font-size: 14px; font-weight: 500; transition: all 0.2s; }
+  .help-link:hover { background: rgba(255, 255, 255, 0.07); border-color: var(--border-2); }
+
+  footer { border-top: 1px solid var(--border); padding: 48px 32px 32px; margin-top: 80px; position: relative; z-index: 1; }
+  .footer-inner { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--text-4); text-transform: uppercase; }
+  .footer-inner a { color: var(--text-3); text-decoration: none; margin: 0 12px; transition: color 0.2s; }
+  .footer-inner a:hover { color: var(--pink-soft); }
+</style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><img src="assets/matchly-pwa.png" alt="Matchly" /></span>
+      Matchly
+    </a>
+    <div class="nav-links">
+      <a href="index.html#hoe">Hoe het werkt</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html" class="nav-back">← Terug</a>
+    </div>
+  </nav>
+</div>
+
+<div class="page">
+
+  <div class="page-header">
+    <span class="page-eyebrow"><span class="dot"></span> Abonneer nu</span>
+    <h1 class="page-title">Kies het pakket dat <span class="it">bij je club past</span>.</h1>
+    <p class="page-sub">Start met 2 weken gratis proberen. Daarna gaat je abonnement automatisch over in het gekozen pakket — maandelijks opzegbaar, altijd inclusief alle 5 contentformats.</p>
+  </div>
+
+  <!-- Info-banner -->
+  <div class="login-banner" id="login-banner">
+    <div class="login-banner-text">
+      📋 Je regelt je account en abonnement in de Club Admin app. Kies hieronder je pakket — je gaat dan automatisch door naar de juiste plek.
+    </div>
+  </div>
+
+  <div class="pricing">
+    <!-- Single -->
+    <div class="price-card">
+      <div class="price-name">Single</div>
+      <div class="price-tag"><span class="amt">€15</span><span class="per">/maand</span></div>
+      <div class="price-desc">Voor één team dat snel professioneel wil communiceren.</div>
+      <ul class="price-feat">
+        <li><span class="ic">✓</span> 1 team</li>
+        <li><span class="ic">✓</span> 5× content per team per wedstrijd</li>
+        <li><span class="ic">✓</span> Sponsors in 3 niveaus + MOTM</li>
+        <li><span class="ic">✓</span> WhatsApp-deelknop</li>
+        <li><span class="ic">✓</span> Wedstrijdverslag voor website</li>
+      </ul>
+      <button class="price-cta" data-tier="single">Kies dit pakket →</button>
+    </div>
+
+    <!-- Basic -->
+    <div class="price-card">
+      <div class="price-name">Basic</div>
+      <div class="price-tag"><span class="amt">€49</span><span class="per">/maand</span></div>
+      <div class="price-desc">Voor clubs die tot vier teams consistent willen laten communiceren.</div>
+      <ul class="price-feat">
+        <li><span class="ic">✓</span> Tot 4 teams</li>
+        <li><span class="ic">✓</span> 5× content per team per wedstrijd</li>
+        <li><span class="ic">✓</span> Sponsors in 3 niveaus + MOTM</li>
+        <li><span class="ic">✓</span> WhatsApp-deelknop</li>
+        <li><span class="ic">✓</span> Wedstrijdverslag voor website</li>
+      </ul>
+      <button class="price-cta" data-tier="basic">Kies dit pakket →</button>
+    </div>
+
+    <!-- Pro -->
+    <div class="price-card featured">
+      <div class="price-badge">Meest gekozen</div>
+      <div class="price-name">Pro</div>
+      <div class="price-tag"><span class="amt">€79</span><span class="per">/maand</span></div>
+      <div class="price-desc">De standaard voor clubs met meerdere actieve teams en een vaste communicatieflow.</div>
+      <ul class="price-feat">
+        <li><span class="ic">✓</span> Tot 8 teams</li>
+        <li><span class="ic">✓</span> 5× content per team per wedstrijd</li>
+        <li><span class="ic">✓</span> Sponsors in 3 niveaus + MOTM</li>
+        <li><span class="ic">✓</span> WhatsApp-deelknop</li>
+        <li><span class="ic">✓</span> Wedstrijdverslag voor website</li>
+      </ul>
+      <button class="price-cta" data-tier="pro">Kies dit pakket →</button>
+    </div>
+
+    <!-- Ultra -->
+    <div class="price-card">
+      <div class="price-name">Ultra</div>
+      <div class="price-tag"><span class="amt">€119</span><span class="per">/maand</span></div>
+      <div class="price-desc">Voor verenigingen die elk team in één centrale omgeving willen brengen.</div>
+      <ul class="price-feat">
+        <li><span class="ic">✓</span> Alle teams van de club</li>
+        <li><span class="ic">✓</span> 5× content per team per wedstrijd</li>
+        <li><span class="ic">✓</span> Sponsors in 3 niveaus + MOTM</li>
+        <li><span class="ic">✓</span> WhatsApp-deelknop</li>
+        <li><span class="ic">✓</span> Wedstrijdverslag voor website</li>
+      </ul>
+      <button class="price-cta" data-tier="ultra">Kies dit pakket →</button>
+    </div>
+  </div>
+
+  <div class="trust">
+    <div class="trust-item"><div class="trust-icon">⊕</div><h4>Veilig betalen</h4><p>Betaling via een betrouwbare provider</p></div>
+    <div class="trust-item"><div class="trust-icon">↻</div><h4>Maandelijks opzegbaar</h4><p>Geen jaarcontract, stop wanneer je wilt</p></div>
+    <div class="trust-item"><div class="trust-icon">◐</div><h4>Upgraden kan altijd</h4><p>Meer teams nodig? Stap moeiteloos over</p></div>
+    <div class="trust-item"><div class="trust-icon">⚡</div><h4>Direct toegang</h4><p>Klaar voor de eerstvolgende wedstrijd</p></div>
+  </div>
+
+  <div class="help-block">
+    <h3>Vragen voor je abonneert?</h3>
+    <p>Niet zeker welk pakket bij jouw club past? Wij helpen je graag — even mailen is genoeg.</p>
+    <a href="mailto:hallo@matchlycontent.nl" class="help-link">→ Mail ons</a>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 Matchly</div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="voorwaarden.html">Voorwaarden</a>
+      <a href="mailto:hallo@matchlycontent.nl">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ─────────── DOORVERWIJZING NAAR CLUB ADMIN APP ─────────── -->
+<script>
+  // De website is de etalage. Account aanmaken + abonneren gebeurt in de
+  // Club Admin app. Elke knop stuurt de bezoeker daarheen, met het gekozen
+  // pakket als parameter zodat de app weet welk plan is aangeklikt.
+  const CLUB_ADMIN_URL = 'https://matchly-club-admin.netlify.app';
+  const buttons = document.querySelectorAll('.price-cta');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const tier = btn.dataset.tier || '';
+      window.location.href = CLUB_ADMIN_URL + (tier ? ('?plan=' + encodeURIComponent(tier)) : '');
+    });
+  });
+</script>
+
+</body>
+</html>

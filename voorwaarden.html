@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Algemene voorwaarden · Matchly</title>
+<meta name="description" content="Algemene voorwaarden van Matchly — de regels rond gebruik, abonnement en opzegging." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #07090f;
+    --bg-2: #0b0e15;
+    --surface: rgba(255, 255, 255, 0.025);
+    --surface-2: rgba(255, 255, 255, 0.045);
+    --border: rgba(255, 255, 255, 0.06);
+    --border-2: rgba(255, 255, 255, 0.1);
+    --text: #f5f7fa;
+    --text-2: #b4bac4;
+    --text-3: #7c8290;
+    --text-4: #555a66;
+    --blue: #2643d9;
+    --magenta: #e91e63;
+    --pink-soft: #ff6ba3;
+    --brand-grad: linear-gradient(135deg, #2643d9 0%, #7d2eb0 55%, #e91e63 100%);
+    --brand-grad-soft: linear-gradient(135deg, rgba(38, 67, 217, 0.18) 0%, rgba(233, 30, 99, 0.18) 100%);
+    --radius: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Geist', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.005em;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 800px 600px at 20% -10%, rgba(38, 67, 217, 0.08), transparent 60%),
+      radial-gradient(ellipse 800px 600px at 80% 20%, rgba(233, 30, 99, 0.05), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .nav-wrap { position: fixed; top: 16px; left: 0; right: 0; z-index: 100; display: flex; justify-content: center; padding: 0 20px; }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 8px 8px 8px 18px; background: rgba(11, 14, 21, 0.75); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border: 1px solid var(--border-2); border-radius: 100px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); width: 100%; max-width: 920px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); text-decoration: none; }
+  .logo-mark { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; overflow: hidden; background: #fff; box-shadow: 0 4px 16px rgba(125, 46, 176, 0.3); }
+  .logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .nav-links { display: flex; gap: 4px; align-items: center; }
+  .nav-links a { color: var(--text-2); font-size: 14px; font-weight: 500; text-decoration: none; padding: 8px 14px; border-radius: 100px; transition: all 0.2s; }
+  .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .nav-cta { background: var(--brand-grad) !important; color: #fff !important; padding: 9px 18px !important; font-weight: 600 !important; box-shadow: 0 4px 16px rgba(125, 46, 176, 0.35); }
+  @media (max-width: 760px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+  .page { max-width: 800px; margin: 0 auto; padding: 140px 32px 80px; position: relative; z-index: 1; }
+  @media (max-width: 760px) { .page { padding: 120px 20px 60px; } }
+
+  .page-header { margin-bottom: 56px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+  .page-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 14px; background: var(--brand-grad-soft); border: 1px solid rgba(125, 46, 176, 0.25); border-radius: 100px; color: var(--pink-soft); margin-bottom: 24px; }
+  h1.page-title { font-size: clamp(36px, 5vw, 56px); font-weight: 600; line-height: 1.05; letter-spacing: -0.035em; margin-bottom: 12px; }
+  h1.page-title .it { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; background: var(--brand-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .page-updated { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.1em; color: var(--text-3); text-transform: uppercase; }
+
+  .content h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: var(--text); margin-top: 48px; margin-bottom: 12px; line-height: 1.2; }
+  .content h2:first-child { margin-top: 0; }
+  .content h3 { font-size: 16px; font-weight: 600; color: var(--text); margin-top: 28px; margin-bottom: 8px; }
+  .content p { font-size: 15.5px; color: var(--text-2); line-height: 1.7; margin-bottom: 16px; }
+  .content p strong { color: var(--text); font-weight: 600; }
+  .content ul { list-style: none; margin: 12px 0 24px; padding: 0; }
+  .content ul li { font-size: 15.5px; color: var(--text-2); line-height: 1.7; padding: 4px 0 4px 24px; position: relative; }
+  .content ul li::before { content: '·'; position: absolute; left: 8px; color: var(--pink-soft); font-weight: 700; }
+  .content a { color: var(--pink-soft); text-decoration: none; border-bottom: 1px solid rgba(255, 107, 163, 0.3); transition: all 0.2s; }
+  .content a:hover { border-bottom-color: var(--pink-soft); }
+
+  .callout { background: var(--surface); backdrop-filter: blur(10px); border: 1px solid var(--border-2); border-left: 3px solid var(--magenta); border-radius: var(--radius); padding: 20px 24px; margin: 24px 0; }
+  .callout p { margin-bottom: 0; font-size: 14.5px; }
+
+  .toc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px 28px; margin-bottom: 56px; }
+  .toc-title { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-3); margin-bottom: 14px; }
+  .toc ol { list-style: none; padding: 0; counter-reset: toc; }
+  .toc ol li { counter-increment: toc; padding: 4px 0; font-size: 14px; }
+  .toc ol li::before { content: counter(toc, decimal-leading-zero); color: var(--pink-soft); font-family: 'JetBrains Mono', monospace; font-size: 11px; margin-right: 12px; letter-spacing: 0.05em; }
+  .toc ol li a { color: var(--text-2); text-decoration: none; transition: color 0.2s; }
+  .toc ol li a:hover { color: var(--pink-soft); }
+
+  footer { border-top: 1px solid var(--border); padding: 48px 32px 32px; margin-top: 80px; position: relative; z-index: 1; }
+  .footer-inner { max-width: 1240px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: var(--text-4); text-transform: uppercase; }
+  .footer-inner a { color: var(--text-3); text-decoration: none; margin: 0 12px; transition: color 0.2s; }
+  .footer-inner a:hover { color: var(--pink-soft); }
+</style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><img src="assets/matchly-pwa.png" alt="Matchly" /></span>
+      Matchly
+    </a>
+    <div class="nav-links">
+      <a href="index.html#hoe">Hoe het werkt</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#pricing">Prijzen</a>
+      <a href="aanmelden.html" class="nav-cta">Abonneer nu</a>
+    </div>
+  </nav>
+</div>
+
+<div class="page">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Voorwaarden</span>
+    <h1 class="page-title">Algemene <span class="it">voorwaarden</span></h1>
+    <div class="page-updated">Laatst bijgewerkt · 23 mei 2026</div>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Inhoud</div>
+    <ol>
+      <li><a href="#partijen">Partijen</a></li>
+      <li><a href="#dienst">De dienst</a></li>
+      <li><a href="#account">Account en toegang</a></li>
+      <li><a href="#abonnement">Abonnement en betaling</a></li>
+      <li><a href="#opzegging">Opzegging en restitutie</a></li>
+      <li><a href="#gebruik">Gebruik van de dienst</a></li>
+      <li><a href="#content">Content en intellectueel eigendom</a></li>
+      <li><a href="#beschikbaarheid">Beschikbaarheid en onderhoud</a></li>
+      <li><a href="#aansprakelijkheid">Aansprakelijkheid</a></li>
+      <li><a href="#privacy">Privacy en gegevens</a></li>
+      <li><a href="#wijzigingen">Wijzigingen</a></li>
+      <li><a href="#geschillen">Toepasselijk recht</a></li>
+    </ol>
+  </div>
+
+  <div class="content">
+
+    <div class="callout">
+      <p><strong>Let op:</strong> dit zijn de algemene voorwaarden van Matchly. Door je aan te melden voor een abonnement ga je akkoord met deze voorwaarden. Lees ze rustig door — bij vragen kun je altijd contact opnemen via <a href="mailto:hallo@matchlycontent.nl">hallo@matchlycontent.nl</a>.</p>
+    </div>
+
+    <h2 id="partijen">1. Partijen</h2>
+    <p>Deze voorwaarden zijn van toepassing op alle overeenkomsten tussen:</p>
+    <ul>
+      <li><strong>Matchly</strong>, aangeboden door <strong>[Bedrijfsnaam invullen]</strong>, KvK-nummer <strong>[KvK]</strong>, gevestigd te <strong>[Adres]</strong> ("wij", "ons")</li>
+      <li><strong>De klant</strong> — de voetbalclub, vereniging of natuurlijke persoon die een abonnement afsluit ("jij", "de club")</li>
+    </ul>
+
+    <h2 id="dienst">2. De dienst</h2>
+    <p>Matchly is een online platform (PWA) waarmee amateurvoetbalclubs wedstrijdcontent kunnen vastleggen en verspreiden. De dienst omvat onder andere:</p>
+    <ul>
+      <li>Het registreren van wedstrijdgebeurtenissen</li>
+      <li>Het automatisch genereren van content (posts, stories, verslagen, WhatsApp-berichten)</li>
+      <li>Sponsorintegratie binnen de gegenereerde content</li>
+      <li>Een centraal clubdashboard</li>
+    </ul>
+    <p>De exacte functionaliteiten kunnen verschillen per abonnementspakket (Single, Basic, Pro of Ultra). De actuele beschrijving staat op <a href="index.html#pricing">de prijzenpagina</a>.</p>
+
+    <h2 id="account">3. Account en toegang</h2>
+    <p>Om Matchly te gebruiken maak je een account aan. Je bent zelf verantwoordelijk voor:</p>
+    <ul>
+      <li>Het correct aanleveren van je gegevens</li>
+      <li>De geheimhouding van je inloggegevens</li>
+      <li>Alle activiteiten die onder jouw account plaatsvinden</li>
+    </ul>
+    <p>Vermoed je dat iemand ongeoorloofd toegang heeft tot je account? Meld dit direct via <a href="mailto:support@matchlycontent.nl">support@matchlycontent.nl</a>.</p>
+
+    <h2 id="abonnement">4. Abonnement en betaling</h2>
+
+    <h3>Abonnementsvormen</h3>
+    <p>Matchly biedt vier abonnementspakketten aan, met de volgende maandprijzen (incl. btw):</p>
+    <ul>
+      <li><strong>Single</strong> — €15 per maand, voor 1 team</li>
+      <li><strong>Basic</strong> — €49 per maand, voor maximaal 4 teams</li>
+      <li><strong>Pro</strong> — €79 per maand, voor maximaal 8 teams</li>
+      <li><strong>Ultra</strong> — €119 per maand, voor alle teams van de club</li>
+    </ul>
+
+    <h3>Betaling</h3>
+    <p>Betaling vindt maandelijks vooraf plaats via <strong>Stripe</strong>. Je geeft toestemming voor een doorlopende incasso bij het afsluiten van het abonnement. De eerste maand wordt direct in rekening gebracht, daarna telkens op dezelfde dag van de maand.</p>
+
+    <h3>Niet-betaling</h3>
+    <p>Als een betaling mislukt, krijg je een herinnering per e-mail. Wordt het bedrag binnen 14 dagen niet alsnog voldaan, dan kan de toegang tot Matchly worden opgeschort tot de betaling is afgerond.</p>
+
+    <h2 id="opzegging">5. Opzegging en restitutie</h2>
+    <p>Je kunt op elk moment opzeggen via je accountinstellingen of door een e-mail te sturen naar <a href="mailto:support@matchlycontent.nl">support@matchlycontent.nl</a>.</p>
+    <ul>
+      <li>Opzegging gaat in aan het einde van de huidige betaalperiode</li>
+      <li>Reeds betaalde bedragen worden niet teruggestort</li>
+      <li>Je houdt toegang tot Matchly tot het einde van de lopende maand</li>
+    </ul>
+    <p>Heb je net afgesloten en wil je toch nog stoppen? Binnen <strong>14 dagen na de eerste afsluiting</strong> heb je wettelijk herroepingsrecht als consument. Bedrijven en verenigingen hebben dit recht niet.</p>
+
+    <h2 id="gebruik">6. Gebruik van de dienst</h2>
+    <p>Je gebruikt Matchly op een verantwoorde manier. Dat betekent onder andere:</p>
+    <ul>
+      <li>Geen content publiceren die discriminerend, beledigend, racistisch of strafbaar is</li>
+      <li>Geen auteursrechten van derden schenden (bijv. door logo's of foto's te gebruiken zonder toestemming)</li>
+      <li>Geen pogingen tot hacken, reverse engineering of overbelasting van de servers</li>
+      <li>Geen misbruik van het platform voor andere doeleinden dan amateurvoetbalcommunicatie</li>
+    </ul>
+    <p>Bij overtreding kunnen we je account opschorten of beëindigen, zonder restitutie van reeds betaalde bedragen.</p>
+
+    <h2 id="content">7. Content en intellectueel eigendom</h2>
+
+    <h3>Jouw content</h3>
+    <p>Alle wedstrijdgegevens, spelersnamen, sponsorlogo's en andere content die jij in Matchly invoert blijft eigendom van jou (of de oorspronkelijke rechthebbende). Door deze content in Matchly te plaatsen geef je ons een beperkte licentie om de content te verwerken en op jouw verzoek te genereren.</p>
+
+    <h3>Onze content</h3>
+    <p>De Matchly-app zelf, de templates, het ontwerp en de gegenereerde lay-outs zijn ons eigendom. Je krijgt het recht om de output te gebruiken voor je clubcommunicatie, maar niet om de templates of het platform na te bouwen.</p>
+
+    <div class="callout">
+      <p><strong>Belangrijk:</strong> jij bent als club verantwoordelijk voor het verkrijgen van toestemming voor het publiceren van namen, beeldmateriaal en gegevens van spelers — in het bijzonder van minderjarigen. Matchly verwerkt gegevens in jouw opdracht.</p>
+    </div>
+
+    <h2 id="beschikbaarheid">8. Beschikbaarheid en onderhoud</h2>
+    <p>We doen ons best om Matchly altijd beschikbaar te houden, maar we kunnen geen 100% uptime garanderen. Onderhoud, updates en storingen kunnen leiden tot tijdelijke onbeschikbaarheid. Bij gepland onderhoud informeren we vooraf.</p>
+
+    <h2 id="aansprakelijkheid">9. Aansprakelijkheid</h2>
+    <p>We zijn niet aansprakelijk voor:</p>
+    <ul>
+      <li>Schade door onjuist gebruik van de dienst</li>
+      <li>Verlies van gegevens (we raden aan zelf back-ups te maken van belangrijke content)</li>
+      <li>Indirecte of gevolgschade, zoals gemiste sponsorinkomsten of reputatieschade</li>
+      <li>Inhoud die door de gebruiker wordt gepubliceerd</li>
+    </ul>
+    <p>Onze aansprakelijkheid is in alle gevallen beperkt tot het bedrag dat je in de afgelopen 12 maanden aan abonnementskosten hebt betaald.</p>
+
+    <h2 id="privacy">10. Privacy en gegevens</h2>
+    <p>Hoe we omgaan met persoonsgegevens staat in onze <a href="privacy.html">privacyverklaring</a>. Door akkoord te gaan met deze voorwaarden ga je ook akkoord met die privacyverklaring.</p>
+
+    <h2 id="wijzigingen">11. Wijzigingen</h2>
+    <p>We kunnen deze voorwaarden van tijd tot tijd aanpassen. Bij belangrijke wijzigingen krijg je minimaal 30 dagen van tevoren bericht. Ben je het niet eens met de wijziging, dan kun je je abonnement opzeggen voor de ingangsdatum.</p>
+
+    <h2 id="geschillen">12. Toepasselijk recht en geschillen</h2>
+    <p>Op deze overeenkomst is Nederlands recht van toepassing. Geschillen worden voorgelegd aan de bevoegde rechter in <strong>[Plaats]</strong>. Voordat we naar de rechter stappen, proberen we altijd eerst samen tot een oplossing te komen — neem dus altijd eerst contact op via <a href="mailto:hallo@matchlycontent.nl">hallo@matchlycontent.nl</a>.</p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 Matchly</div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="voorwaarden.html">Voorwaarden</a>
+      <a href="mailto:hallo@matchlycontent.nl">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

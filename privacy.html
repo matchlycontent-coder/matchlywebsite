@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy · Matchly</title>
+<meta name="description" content="Privacyverklaring van Matchly — hoe we omgaan met persoonsgegevens van clubs, leiders en spelers." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #07090f;
+    --bg-2: #0b0e15;
+    --surface: rgba(255, 255, 255, 0.025);
+    --surface-2: rgba(255, 255, 255, 0.045);
+    --border: rgba(255, 255, 255, 0.06);
+    --border-2: rgba(255, 255, 255, 0.1);
+    --text: #f5f7fa;
+    --text-2: #b4bac4;
+    --text-3: #7c8290;
+    --text-4: #555a66;
+    --blue: #2643d9;
+    --magenta: #e91e63;
+    --pink-soft: #ff6ba3;
+    --brand-grad: linear-gradient(135deg, #2643d9 0%, #7d2eb0 55%, #e91e63 100%);
+    --brand-grad-soft: linear-gradient(135deg, rgba(38, 67, 217, 0.18) 0%, rgba(233, 30, 99, 0.18) 100%);
+    --radius: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Geist', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.005em;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 800px 600px at 20% -10%, rgba(38, 67, 217, 0.08), transparent 60%),
+      radial-gradient(ellipse 800px 600px at 80% 20%, rgba(233, 30, 99, 0.05), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─────────── Nav ─────────── */
+  .nav-wrap {
+    position: fixed;
+    top: 16px; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 8px 8px 18px;
+    background: rgba(11, 14, 21, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border-2);
+    border-radius: 100px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 920px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(125, 46, 176, 0.3);
+  }
+  .logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .nav-links { display: flex; gap: 4px; align-items: center; }
+  .nav-links a {
+    color: var(--text-2);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .nav-cta {
+    background: var(--brand-grad) !important;
+    color: #fff !important;
+    padding: 9px 18px !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 16px rgba(125, 46, 176, 0.35);
+  }
+  @media (max-width: 760px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+  /* ─────────── Page layout ─────────── */
+  .page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 140px 32px 80px;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 760px) { .page { padding: 120px 20px 60px; } }
+
+  .page-header {
+    margin-bottom: 56px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    background: var(--brand-grad-soft);
+    border: 1px solid rgba(125, 46, 176, 0.25);
+    border-radius: 100px;
+    color: var(--pink-soft);
+    margin-bottom: 24px;
+  }
+  h1.page-title {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    margin-bottom: 12px;
+  }
+  h1.page-title .it {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .page-updated {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    text-transform: uppercase;
+  }
+
+  /* Content blocks */
+  .content h2 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-top: 48px;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+  .content h2:first-child { margin-top: 0; }
+  .content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 28px;
+    margin-bottom: 8px;
+  }
+  .content p {
+    font-size: 15.5px;
+    color: var(--text-2);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  .content p strong { color: var(--text); font-weight: 600; }
+  .content ul {
+    list-style: none;
+    margin: 12px 0 24px;
+    padding: 0;
+  }
+  .content ul li {
+    font-size: 15.5px;
+    color: var(--text-2);
+    line-height: 1.7;
+    padding: 4px 0 4px 24px;
+    position: relative;
+  }
+  .content ul li::before {
+    content: '·';
+    position: absolute;
+    left: 8px;
+    color: var(--pink-soft);
+    font-weight: 700;
+  }
+  .content a {
+    color: var(--pink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 107, 163, 0.3);
+    transition: all 0.2s;
+  }
+  .content a:hover {
+    border-bottom-color: var(--pink-soft);
+  }
+
+  /* Callout */
+  .callout {
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-2);
+    border-left: 3px solid var(--magenta);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .callout p { margin-bottom: 0; font-size: 14.5px; }
+  .callout strong { color: var(--text); }
+
+  /* TOC */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px 28px;
+    margin-bottom: 56px;
+  }
+  .toc-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 14px;
+  }
+  .toc ol {
+    list-style: none;
+    padding: 0;
+    counter-reset: toc;
+  }
+  .toc ol li {
+    counter-increment: toc;
+    padding: 4px 0;
+    font-size: 14px;
+  }
+  .toc ol li::before {
+    content: counter(toc, decimal-leading-zero);
+    color: var(--pink-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    margin-right: 12px;
+    letter-spacing: 0.05em;
+  }
+  .toc ol li a {
+    color: var(--text-2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .toc ol li a:hover { color: var(--pink-soft); }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 32px 32px;
+    margin-top: 80px;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-4);
+    text-transform: uppercase;
+  }
+  .footer-inner a {
+    color: var(--text-3);
+    text-decoration: none;
+    margin: 0 12px;
+    transition: color 0.2s;
+  }
+  .footer-inner a:hover { color: var(--pink-soft); }
+</style>
+</head>
+<body>
+
+<!-- ─────────── NAV ─────────── -->
+<div class="nav-wrap">
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">
+        <img src="assets/matchly-pwa.png" alt="Matchly" />
+      </span>
+      Matchly
+    </a>
+    <div class="nav-links">
+      <a href="index.html#hoe">Hoe het werkt</a>
+      <a href="index.html#features">Features</a>
+      <a href="index.html#pricing">Prijzen</a>
+      <a href="aanmelden.html" class="nav-cta">Abonneer nu</a>
+    </div>
+  </nav>
+</div>
+
+<!-- ─────────── CONTENT ─────────── -->
+<div class="page">
+
+  <div class="page-header">
+    <span class="page-eyebrow">Privacy</span>
+    <h1 class="page-title">Privacy<span class="it">verklaring</span></h1>
+    <div class="page-updated">Laatst bijgewerkt · 23 mei 2026</div>
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">Inhoud</div>
+    <ol>
+      <li><a href="#wie">Wie is Matchly</a></li>
+      <li><a href="#welke">Welke gegevens verwerken we</a></li>
+      <li><a href="#waarom">Waarom verwerken we deze gegevens</a></li>
+      <li><a href="#delen">Met wie delen we gegevens</a></li>
+      <li><a href="#bewaar">Hoe lang bewaren we gegevens</a></li>
+      <li><a href="#rechten">Jouw rechten</a></li>
+      <li><a href="#beveiliging">Beveiliging</a></li>
+      <li><a href="#minderjarigen">Minderjarigen</a></li>
+      <li><a href="#cookies">Cookies</a></li>
+      <li><a href="#wijzigingen">Wijzigingen</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <div class="content">
+
+    <h2 id="wie">1. Wie is Matchly</h2>
+    <p>Matchly is een platform dat amateurvoetbalclubs helpt om wedstrijdcontent te maken en te verspreiden. Matchly wordt aangeboden door <strong>[Bedrijfsnaam invullen]</strong>, ingeschreven bij de Kamer van Koophandel onder nummer <strong>[KvK-nummer]</strong>, gevestigd te <strong>[Adres]</strong>.</p>
+    <p>In deze privacyverklaring leggen we uit welke gegevens we verwerken, waarom we dat doen en welke rechten je hebt. We houden ons aan de Algemene Verordening Gegevensbescherming (AVG).</p>
+
+    <h2 id="welke">2. Welke gegevens verwerken we</h2>
+    <p>Afhankelijk van hoe je Matchly gebruikt, verwerken we de volgende soorten gegevens:</p>
+
+    <h3>Contact- en accountgegevens</h3>
+    <ul>
+      <li>Naam en e-mailadres van de hoofdbeheerder of elftalleider</li>
+      <li>Telefoonnummer (optioneel)</li>
+      <li>Naam van de club</li>
+      <li>Inloggegevens (versleuteld wachtwoord)</li>
+    </ul>
+
+    <h3>Betaalgegevens</h3>
+    <ul>
+      <li>Factuuradres en bedrijfsgegevens</li>
+      <li>Betalingen worden verwerkt door <strong>Stripe</strong> — wij ontvangen alleen de bevestiging dat een betaling is gelukt, geen kaartgegevens</li>
+    </ul>
+
+    <h3>Wedstrijd- en spelersgegevens</h3>
+    <ul>
+      <li>Namen van spelers binnen de selectie</li>
+      <li>Wedstrijdgebeurtenissen (doelpunten, kaarten, wissels, eindstand)</li>
+      <li>Sponsoren en hun logo's (indien aangeleverd door de club)</li>
+    </ul>
+
+    <h3>Gebruiksgegevens</h3>
+    <ul>
+      <li>Loggegevens (IP-adres, browsertype, bezochte pagina's)</li>
+      <li>Foutmeldingen en crashrapporten</li>
+    </ul>
+
+    <h2 id="waarom">3. Waarom verwerken we deze gegevens</h2>
+    <p>We gebruiken jouw gegevens alleen voor de volgende doelen:</p>
+    <ul>
+      <li><strong>Uitvoering van de overeenkomst:</strong> om de Matchly-dienst aan jouw club te leveren</li>
+      <li><strong>Betalingsverwerking:</strong> om abonnementen te innen via Stripe</li>
+      <li><strong>Klantcontact:</strong> om je te kunnen ondersteunen en informeren</li>
+      <li><strong>Verbetering van de dienst:</strong> om bugs op te lossen en de app te verbeteren (geanonimiseerd waar mogelijk)</li>
+      <li><strong>Wettelijke verplichtingen:</strong> zoals het bewaren van facturatiegegevens voor de Belastingdienst</li>
+    </ul>
+
+    <h2 id="delen">4. Met wie delen we gegevens</h2>
+    <p>We delen jouw gegevens nooit met derden voor commerciële doeleinden. Wel werken we samen met de volgende partijen om Matchly te laten werken:</p>
+    <ul>
+      <li><strong>Stripe</strong> — voor het verwerken van betalingen</li>
+      <li><strong>Hosting provider</strong> — voor het draaien van de applicatie</li>
+      <li><strong>E-mail provider</strong> — voor het versturen van transactionele e-mails</li>
+    </ul>
+    <p>Met al deze partijen hebben we verwerkersovereenkomsten waarin staat dat zij jouw gegevens alleen voor onze opdracht mogen gebruiken.</p>
+
+    <h2 id="bewaar">5. Hoe lang bewaren we gegevens</h2>
+    <ul>
+      <li><strong>Accountgegevens:</strong> zolang je een actief abonnement hebt, en tot 1 jaar na opzegging</li>
+      <li><strong>Wedstrijdgegevens:</strong> zolang je account actief is, daarna nog 30 dagen voor herstel</li>
+      <li><strong>Factuurgegevens:</strong> 7 jaar (wettelijke verplichting)</li>
+      <li><strong>Loggegevens:</strong> maximaal 12 maanden</li>
+    </ul>
+
+    <h2 id="rechten">6. Jouw rechten</h2>
+    <p>Onder de AVG heb je de volgende rechten:</p>
+    <ul>
+      <li><strong>Inzage:</strong> opvragen welke gegevens we van je hebben</li>
+      <li><strong>Correctie:</strong> onjuiste gegevens laten aanpassen</li>
+      <li><strong>Verwijdering:</strong> je gegevens laten wissen (waar geen wettelijke bewaarplicht geldt)</li>
+      <li><strong>Beperking:</strong> de verwerking laten beperken</li>
+      <li><strong>Dataportabiliteit:</strong> je gegevens in een leesbaar formaat opvragen</li>
+      <li><strong>Bezwaar:</strong> bezwaar maken tegen verwerking</li>
+    </ul>
+    <p>Stuur een e-mail naar <a href="mailto:privacy@matchlycontent.nl">privacy@matchlycontent.nl</a> om gebruik te maken van je rechten. Je krijgt binnen 30 dagen antwoord. Niet tevreden met onze reactie? Je hebt het recht om een klacht in te dienen bij de <a href="https://autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener">Autoriteit Persoonsgegevens</a>.</p>
+
+    <h2 id="beveiliging">7. Beveiliging</h2>
+    <p>We doen er alles aan om jouw gegevens veilig te houden. Onder andere via:</p>
+    <ul>
+      <li>Versleutelde verbindingen (HTTPS / TLS)</li>
+      <li>Versleutelde opslag van wachtwoorden (bcrypt of vergelijkbaar)</li>
+      <li>Toegangscontrole op basis van rechten</li>
+      <li>Regelmatige back-ups</li>
+    </ul>
+    <p>Bij een datalek met risico voor betrokkenen melden we dit binnen 72 uur bij de Autoriteit Persoonsgegevens en informeren we de betrokkenen.</p>
+
+    <h2 id="minderjarigen">8. Minderjarigen</h2>
+    <div class="callout">
+      <p><strong>Belangrijk voor amateurvoetbalclubs:</strong> Matchly verwerkt namen van spelers, waaronder mogelijk minderjarigen. De club is verantwoordelijk voor het verkrijgen van toestemming van ouders/voogden voor het verwerken én publiceren van gegevens en beeldmateriaal van minderjarige spelers. Matchly verwerkt deze gegevens in opdracht van de club.</p>
+    </div>
+    <p>We adviseren clubs om in hun lidmaatschapsovereenkomst toestemming op te nemen voor het delen van wedstrijdgebeurtenissen, namen en eventueel beeldmateriaal van minderjarige leden via Matchly.</p>
+
+    <h2 id="cookies">9. Cookies</h2>
+    <p>Matchly gebruikt alleen functionele en analytische cookies die nodig zijn voor de werking van de app. We gebruiken geen tracking cookies voor advertenties.</p>
+    <ul>
+      <li><strong>Functionele cookies:</strong> voor inloggen en sessiebeheer</li>
+      <li><strong>Analytische cookies:</strong> om te begrijpen hoe de app wordt gebruikt (geanonimiseerd)</li>
+    </ul>
+
+    <h2 id="wijzigingen">10. Wijzigingen</h2>
+    <p>We kunnen deze privacyverklaring van tijd tot tijd aanpassen. Bij belangrijke wijzigingen sturen we een e-mail naar geregistreerde gebruikers. De meest recente versie staat altijd op deze pagina.</p>
+
+    <h2 id="contact">11. Contact</h2>
+    <p>Vragen over deze privacyverklaring of over hoe wij omgaan met jouw gegevens?</p>
+    <p>
+      <strong>E-mail:</strong> <a href="mailto:privacy@matchlycontent.nl">privacy@matchlycontent.nl</a><br/>
+      <strong>Algemeen:</strong> <a href="mailto:hallo@matchlycontent.nl">hallo@matchlycontent.nl</a>
+    </p>
+
+  </div>
+</div>
+
+<!-- ─────────── FOOTER ─────────── -->
+<footer>
+  <div class="footer-inner">
+    <div>© 2026 Matchly</div>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="voorwaarden.html">Voorwaarden</a>
+      <a href="mailto:hallo@matchlycontent.nl">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

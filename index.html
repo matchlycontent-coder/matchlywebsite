@@ -1,0 +1,4374 @@
+<!DOCTYPE html>
+<!-- MATCHLY LANDINGSPAGE v5 — 23 mei 2026 — Prijzen: Single €15 / Basic €49 / Pro €79 / Ultra €119 -->
+<html lang="nl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Matchly — Van wedstrijd. Naar content.</title>
+<meta name="description" content="Na elke wedstrijd direct professionele clubcontent klaar voor socials, sponsors en clubcommunicatie. Het platform voor amateurvoetbalclubs." />
+<link rel="canonical" href="https://matchlycontent.nl/" />
+<meta name="theme-color" content="#7d2eb0" />
+<meta name="robots" content="index, follow" />
+<meta name="author" content="Matchly" />
+<meta name="keywords" content="amateurvoetbal, voetbalclub content, wedstrijdverslag, social media voetbal, sponsorintegratie, clubcommunicatie, voetbal app, matchly" />
+
+<!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Matchly" />
+<meta property="og:title" content="Matchly — Van wedstrijd. Naar content." />
+<meta property="og:description" content="Na elke wedstrijd direct professionele clubcontent voor socials, sponsors en clubcommunicatie. Het platform voor amateurvoetbalclubs." />
+<meta property="og:url" content="https://matchlycontent.nl/" />
+<meta property="og:image" content="https://matchlycontent.nl/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="nl_NL" />
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Matchly — Van wedstrijd. Naar content." />
+<meta name="twitter:description" content="Na elke wedstrijd direct professionele clubcontent voor socials, sponsors en clubcommunicatie." />
+<meta name="twitter:image" content="https://matchlycontent.nl/assets/og-image.png" />
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="assets/matchly-logo.jpg" />
+<link rel="apple-touch-icon" href="assets/matchly-logo.jpg" />
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Matchly",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web, iOS, Android",
+  "description": "Na elke wedstrijd direct professionele clubcontent voor socials, sponsors en clubcommunicatie. Het platform voor amateurvoetbalclubs.",
+  "url": "https://matchlycontent.nl/",
+  "offers": {
+    "@type": "Offer",
+    "price": "15.00",
+    "priceCurrency": "EUR",
+    "description": "Vanaf €15 per maand voor 1 team"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Matchly",
+    "url": "https://matchlycontent.nl/"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* Backgrounds — slightly cooler, premium dark */
+    --bg: #07090f;
+    --bg-2: #0b0e15;
+    --bg-3: #11141c;
+    --surface: rgba(255, 255, 255, 0.025);
+    --surface-2: rgba(255, 255, 255, 0.045);
+    --border: rgba(255, 255, 255, 0.06);
+    --border-2: rgba(255, 255, 255, 0.1);
+    --border-3: rgba(255, 255, 255, 0.15);
+
+    /* Text */
+    --text: #f5f7fa;
+    --text-2: #b4bac4;
+    --text-3: #7c8290;
+    --text-4: #555a66;
+    --text-dark: #1a1f2e;
+
+    /* Brand — from logo */
+    --blue: #2643d9;
+    --blue-2: #3a5bf0;
+    --blue-soft: #6b85ff;
+    --magenta: #e91e63;
+    --magenta-2: #ff3380;
+    --pink-soft: #ff6ba3;
+
+    --brand-grad: linear-gradient(135deg, var(--blue) 0%, #7d2eb0 55%, var(--magenta) 100%);
+    --brand-grad-soft: linear-gradient(135deg, rgba(38, 67, 217, 0.18) 0%, rgba(233, 30, 99, 0.18) 100%);
+    --brand-glow: 0 0 40px rgba(125, 46, 176, 0.4);
+
+    --radius: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  /* ─────────── LIVE TICKER ─────────── */
+  .ticker-wrap {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    height: 32px;
+    background: var(--brand-grad);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  .ticker-track {
+    display: flex;
+    gap: 0;
+    animation: ticker 32s linear infinite;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .ticker-track:hover { animation-play-state: paused; }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 32px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+  }
+  .ticker-item .sep {
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0 4px;
+  }
+  .ticker-item .live-dot {
+    width: 6px; height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255,255,255,0.8);
+    animation: pulse 1.5s infinite;
+    flex-shrink: 0;
+  }
+
+  /* ─────────── PARTICLES CANVAS ─────────── */
+  #particles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  /* ─────────── ANIMATED MESH ─────────── */
+  .mesh-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .mesh-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.18;
+    animation: mesh-float 12s ease-in-out infinite;
+  }
+  .mesh-blob.b1 {
+    width: 700px; height: 700px;
+    background: var(--blue);
+    top: -200px; left: -150px;
+    animation-duration: 14s;
+  }
+  .mesh-blob.b2 {
+    width: 600px; height: 600px;
+    background: var(--magenta);
+    bottom: -200px; right: -100px;
+    animation-duration: 16s;
+    animation-delay: -5s;
+  }
+  .mesh-blob.b3 {
+    width: 400px; height: 400px;
+    background: #7d2eb0;
+    top: 40%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation-duration: 18s;
+    animation-delay: -8s;
+    opacity: 0.12;
+  }
+  @keyframes mesh-float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -30px) scale(1.05); }
+    66% { transform: translate(-30px, 40px) scale(0.95); }
+  }
+
+  /* ─────────── CARD GLOW UPGRADE ─────────── */
+  .bento-card:hover {
+    border-color: rgba(125, 46, 176, 0.3) !important;
+    box-shadow: 0 8px 40px rgba(125, 46, 176, 0.15), inset 0 1px 0 rgba(255,255,255,0.05) !important;
+  }
+  .step:hover {
+    border-color: rgba(125, 46, 176, 0.25) !important;
+    box-shadow: 0 8px 32px rgba(125, 46, 176, 0.12) !important;
+  }
+  .price-card:hover {
+    box-shadow: 0 20px 60px rgba(125, 46, 176, 0.18) !important;
+  }
+
+  /* ─────────── ECHTE VOORBEELDEN ─────────── */
+  .real-examples {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 64px;
+  }
+  .real-example-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .real-example-card:hover {
+    border-color: rgba(125,46,176,0.35);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(125,46,176,0.15);
+  }
+  .real-example-tag {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .real-example-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: #0a0c10;
+  }
+  .real-example-img.portrait {
+    aspect-ratio: 9 / 16;
+  }
+  .real-example-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .real-example-card:hover .real-example-img img {
+    transform: scale(1.03);
+  }
+  .real-example-foot {
+    padding: 14px 18px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .real-example-club {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-2);
+  }
+  .real-example-spons-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 3px 10px;
+    background: var(--brand-grad-soft);
+    border: 1px solid rgba(125,46,176,0.2);
+    border-radius: 100px;
+    color: var(--pink-soft);
+    white-space: nowrap;
+  }
+  @media (max-width: 900px) { .real-examples { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; } }
+
+  /* Sponsor voorbeeld block */
+  .spons-example-block {
+    background: linear-gradient(180deg, rgba(125,46,176,0.04), transparent);
+    border: 1px solid rgba(125,46,176,0.15);
+    border-radius: var(--radius-xl);
+    padding: 40px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .spons-example-block::before {
+    content: '';
+    position: absolute;
+    top: -30%; right: -10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(125,46,176,0.2), transparent 60%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .spons-example-label {
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .spons-example-label .eyebrow { margin-bottom: 12px; }
+  .spons-example-label p {
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.55;
+    max-width: 600px;
+  }
+  /* Sponsor tier-kaarten */
+  .spons-tiers {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .spons-tier-card {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--border-2);
+    border-radius: var(--radius-lg);
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+  }
+  .spons-tier-card.goud {
+    border-color: rgba(255,210,74,0.3);
+    background: linear-gradient(180deg, rgba(255,210,74,0.06), rgba(255,255,255,0.02));
+  }
+  .spons-tier-card.zilver {
+    border-color: rgba(200,208,220,0.25);
+    background: linear-gradient(180deg, rgba(200,208,220,0.05), rgba(255,255,255,0.02));
+  }
+  .spons-tier-card.brons {
+    border-color: rgba(224,147,90,0.25);
+    background: linear-gradient(180deg, rgba(224,147,90,0.05), rgba(255,255,255,0.02));
+  }
+  .spons-tier-card.motm {
+    border-color: rgba(125,46,176,0.35);
+    background: linear-gradient(180deg, rgba(125,46,176,0.08), rgba(255,255,255,0.02));
+    box-shadow: 0 0 40px rgba(125,46,176,0.1);
+  }
+  .spons-tier-card:hover { transform: translateY(-4px); }
+  .spons-tier-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .spons-tier-medal { font-size: 28px; line-height: 1; }
+  .spons-tier-name {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .spons-tier-card.goud .spons-tier-name { color: #ffd24a; }
+  .spons-tier-card.zilver .spons-tier-name { color: #c8d0dc; }
+  .spons-tier-card.brons .spons-tier-name { color: #e0935a; }
+  .spons-tier-card.motm .spons-tier-name { color: var(--pink-soft); }
+  .spons-tier-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--text-3);
+    margin-top: 3px;
+  }
+  .spons-tier-desc {
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .spons-tier-desc strong { color: var(--text); font-weight: 600; }
+  .spons-tier-tiles {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: auto;
+  }
+  .spons-tier-tile {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 7px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-2);
+    text-align: center;
+  }
+  .spons-tier-card.goud .spons-tier-tile { border-color: rgba(255,210,74,0.2); }
+  .spons-tier-card.zilver .spons-tier-tile { border-color: rgba(200,208,220,0.18); }
+  .spons-tier-card.brons .spons-tier-tile { border-color: rgba(224,147,90,0.2); }
+  .spons-tier-card.motm .spons-tier-tile {
+    border-color: rgba(125,46,176,0.3);
+    color: var(--pink-soft);
+    background: var(--brand-grad-soft);
+  }
+  .spons-example-note {
+    font-size: 13px;
+    color: var(--text-3);
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+    position: relative;
+    line-height: 1.6;
+  }
+  @media (max-width: 900px) {
+    .spons-tiers { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 760px) {
+    .spons-example-block { padding: 28px 24px; }
+  }
+  @media (max-width: 480px) {
+    .spons-tiers { grid-template-columns: 1fr; }
+  }
+
+  /* ─────────── APP SCREENSHOT GALERIJ ─────────── */
+  .app-gallery {
+    display: flex;
+    gap: 28px;
+    overflow-x: auto;
+    padding: 8px 4px 28px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(125,46,176,0.4) transparent;
+  }
+  .app-gallery::-webkit-scrollbar { height: 8px; }
+  .app-gallery::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); border-radius: 100px; }
+  .app-gallery::-webkit-scrollbar-thumb { background: rgba(125,46,176,0.4); border-radius: 100px; }
+  .app-gallery::-webkit-scrollbar-thumb:hover { background: rgba(125,46,176,0.6); }
+
+  .app-shot {
+    flex: 0 0 auto;
+    width: 248px;
+    scroll-snap-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .app-shot-frame {
+    background: linear-gradient(180deg, #0f1018, #07090f);
+    border-radius: 36px;
+    padding: 8px;
+    box-shadow:
+      0 0 0 1.5px rgba(255,255,255,0.08),
+      0 0 0 7px rgba(0,0,0,0.55),
+      0 30px 70px rgba(0,0,0,0.5),
+      0 0 50px rgba(125,46,176,0.12);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .app-shot-frame:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 0 0 1.5px rgba(125,46,176,0.3),
+      0 0 0 7px rgba(0,0,0,0.55),
+      0 40px 90px rgba(0,0,0,0.6),
+      0 0 70px rgba(125,46,176,0.25);
+  }
+  .app-shot-frame img {
+    width: 100%;
+    display: block;
+    border-radius: 28px;
+  }
+  .app-shot-cap {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 0 4px;
+  }
+  .app-shot-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--pink-soft);
+    background: var(--brand-grad-soft);
+    border: 1px solid rgba(125,46,176,0.2);
+    border-radius: 100px;
+    padding: 3px 10px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .app-shot-title {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .app-shot-sub {
+    font-size: 12px;
+    color: var(--text-3);
+    line-height: 1.4;
+  }
+  .app-gallery-hint {
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--text-4);
+    margin-top: 8px;
+  }
+  @media (min-width: 1100px) {
+    .app-gallery-hint { display: none; }
+  }
+
+
+  /* ─────────── FAQ SECTIE ─────────── */
+  .faq-list {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .faq-item {
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .faq-item.open {
+    border-color: rgba(125, 46, 176, 0.3);
+    box-shadow: 0 8px 32px rgba(125, 46, 176, 0.1);
+  }
+  .faq-q {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 26px;
+    cursor: pointer;
+    transition: background 0.2s;
+    user-select: none;
+  }
+  .faq-q:hover { background: var(--surface-2); }
+  .faq-q-text {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .faq-icon {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--brand-grad-soft);
+    border: 1px solid rgba(125, 46, 176, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pink-soft);
+    font-size: 18px;
+    font-weight: 300;
+    flex-shrink: 0;
+    transition: transform 0.3s, background 0.3s;
+    line-height: 1;
+  }
+  .faq-item.open .faq-icon {
+    background: var(--brand-grad);
+    color: #fff;
+    transform: rotate(45deg);
+    border-color: transparent;
+  }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .faq-item.open .faq-a { max-height: 400px; }
+  .faq-a-inner {
+    padding: 0 26px 24px;
+    font-size: 15px;
+    color: var(--text-2);
+    line-height: 1.65;
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+  }
+  .faq-a-inner strong { color: var(--text); font-weight: 600; }
+  .faq-a-inner a { color: var(--pink-soft); text-decoration: none; }
+  .faq-a-inner a:hover { text-decoration: underline; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Geist', -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+  }
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 800px 600px at 20% -10%, rgba(38, 67, 217, 0.12), transparent 60%),
+      radial-gradient(ellipse 800px 600px at 80% 20%, rgba(233, 30, 99, 0.08), transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  ::selection { background: rgba(233, 30, 99, 0.3); color: #fff; }
+
+  /* ─────────── Utilities ─────────── */
+  .serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+  .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.85em; letter-spacing: 0.02em; }
+  .grad-text {
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    background: var(--brand-grad-soft);
+    border: 1px solid rgba(125, 46, 176, 0.25);
+    border-radius: 100px;
+    color: #d4a8ff;
+  }
+  .eyebrow .dot {
+    width: 6px; height: 6px;
+    background: var(--magenta);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--magenta);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  /* ─────────── Container ─────────── */
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+  @media (max-width: 760px) { .container { padding: 0 20px; } }
+  section { position: relative; padding: 120px 0; }
+  @media (max-width: 760px) { section { padding: 80px 0; } }
+
+  /* ─────────── Nav ─────────── */
+  .nav-wrap {
+    position: fixed;
+    top: 48px; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 8px 8px 18px;
+    background: rgba(11, 14, 21, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border-2);
+    border-radius: 100px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 920px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  /* Logo mark — uses real PWA icon */
+  .logo-mark {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 16px rgba(125, 46, 176, 0.3);
+  }
+  .logo-mark img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .nav-links a {
+    color: var(--text-2);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--surface-2); }
+  .nav-cta {
+    background: var(--brand-grad) !important;
+    color: #fff !important;
+    padding: 9px 18px !important;
+    font-weight: 600 !important;
+    border-radius: 100px !important;
+    box-shadow: 0 4px 16px rgba(125, 46, 176, 0.35);
+  }
+  .nav-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(125, 46, 176, 0.5);
+  }
+  @media (max-width: 760px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+  }
+
+  /* ─────────── HERO ─────────── */
+  .hero {
+    padding-top: 196px;
+    padding-bottom: 60px;
+    text-align: center;
+    position: relative;
+  }
+  .hero-pill { margin-bottom: 32px; }
+
+  /* Brand block bovenaan hero */
+  .brand-block {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .brand-name {
+    font-size: clamp(56px, 10vw, 120px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .brand-tagline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.2vw, 26px);
+    color: var(--text-2);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .brand-tagline .dot-sep {
+    color: var(--magenta);
+    margin: 0 4px;
+  }
+  h1.hero-title {
+    font-size: clamp(40px, 6.5vw, 80px);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    max-width: 940px;
+    margin: 0 auto 24px;
+    color: var(--text);
+  }
+  h1.hero-title .grad { background: var(--brand-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  h1.hero-title .it {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--text-2);
+  }
+  .hero-sub {
+    font-size: clamp(17px, 1.8vw, 20px);
+    color: var(--text-2);
+    max-width: 640px;
+    margin: 0 auto 40px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 24px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 600;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-family: inherit;
+    letter-spacing: -0.01em;
+  }
+  .btn-primary {
+    background: var(--brand-grad);
+    color: #fff;
+    box-shadow: 0 0 0 1px rgba(125, 46, 176, 0.5), 0 8px 24px rgba(125, 46, 176, 0.35);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.18));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 0 1px rgba(125, 46, 176, 0.7), 0 12px 32px rgba(125, 46, 176, 0.5);
+  }
+  .btn-primary:hover::after { opacity: 1; }
+  .btn-secondary {
+    background: var(--surface-2);
+    color: var(--text);
+    border-color: var(--border-2);
+    backdrop-filter: blur(10px);
+  }
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: var(--border-3);
+  }
+  .btn .arr { transition: transform 0.2s; }
+  .btn:hover .arr { transform: translateX(3px); }
+  .hero-meta {
+    color: var(--text-4);
+    font-size: 13px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .hero-meta .check {
+    color: var(--magenta);
+    font-size: 11px;
+  }
+
+  /* ─────────── HERO VISUAL ─────────── */
+  .hero-visual {
+    position: relative;
+    margin-top: 72px;
+    height: 540px;
+    perspective: 2000px;
+  }
+  .glow-blob {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 500px;
+    background: radial-gradient(ellipse, rgba(125, 46, 176, 0.35) 0%, transparent 70%);
+    filter: blur(80px);
+    z-index: 0;
+  }
+  .mockup {
+    position: absolute;
+    background: linear-gradient(180deg, rgba(20, 24, 32, 0.95), rgba(11, 13, 17, 0.95));
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-2);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+  }
+
+  /* CENTER: PWA install card (the star) */
+  .pwa-card {
+    width: 360px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    border-radius: 24px;
+    background: linear-gradient(180deg, #fff 0%, #f8f9fc 100%);
+    color: var(--text-dark);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.15),
+      0 30px 80px rgba(0, 0, 0, 0.5),
+      0 0 100px rgba(125, 46, 176, 0.25);
+    padding: 28px 28px 24px;
+    animation: float-c 6s ease-in-out infinite;
+  }
+  @keyframes float-c {
+    0%, 100% { transform: translate(-50%, -50%); }
+    50% { transform: translate(-50%, -54%); }
+  }
+  .pwa-icon-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .pwa-icon {
+    width: 64px; height: 64px;
+    border-radius: 16px;
+    background: var(--brand-grad);
+    padding: 3px;
+    flex-shrink: 0;
+    box-shadow: 0 8px 24px rgba(125, 46, 176, 0.35);
+  }
+  .pwa-icon-inner {
+    width: 100%; height: 100%;
+    background: #fff;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .pwa-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .pwa-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+    letter-spacing: -0.02em;
+  }
+  .pwa-desc {
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 2px;
+  }
+  .pwa-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--brand-grad);
+    color: #fff;
+    padding: 13px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    box-shadow: 0 4px 16px rgba(125, 46, 176, 0.3);
+  }
+  .pwa-cta .ic { font-size: 16px; }
+  .pwa-bot {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 11px;
+    color: #9ca3af;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.08em;
+  }
+  .pwa-bot strong { color: var(--text-dark); font-weight: 600; }
+
+  /* LEFT: IG post mockup */
+  .mock-ig-post {
+    width: 240px;
+    top: 50%; left: 8%;
+    transform: translateY(-50%) rotate(-7deg);
+    z-index: 3;
+    border-radius: 18px;
+    animation: float-l 7s ease-in-out infinite;
+  }
+  @keyframes float-l {
+    0%, 100% { transform: translateY(-50%) rotate(-7deg); }
+    50% { transform: translateY(-54%) rotate(-6deg); }
+  }
+  .mock-ig-head {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mock-ig-av {
+    width: 24px; height: 24px;
+    background: var(--brand-grad);
+    border-radius: 50%;
+  }
+  .mock-ig-handle {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .mock-ig-handle .sub {
+    display: block;
+    font-weight: 400;
+    color: var(--text-3);
+    font-size: 9px;
+    margin-top: 1px;
+  }
+  .mock-ig-img {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #0c0f17 0%, #1a0f1f 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-ig-img::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(38, 67, 217, 0.3), transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(233, 30, 99, 0.25), transparent 50%);
+  }
+  .mock-ig-content {
+    position: absolute;
+    inset: 0;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .mock-ig-top {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    color: var(--pink-soft);
+    text-transform: uppercase;
+  }
+  .mock-ig-mid {
+    text-align: center;
+  }
+  .mock-ig-teams {
+    font-size: 9px;
+    color: var(--text-3);
+    margin-bottom: 4px;
+    letter-spacing: 0.05em;
+  }
+  .mock-ig-score {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: #fff;
+  }
+  .mock-ig-score .sep { background: var(--brand-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin: 0 4px; }
+  .mock-ig-result {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 11px;
+    color: var(--pink-soft);
+    margin-top: 4px;
+  }
+  .mock-ig-bot {
+    display: flex;
+    gap: 4px;
+  }
+  .mock-ig-spons {
+    flex: 1;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6px;
+    letter-spacing: 0.1em;
+    color: var(--text-2);
+  }
+
+  /* RIGHT: WhatsApp share */
+  .mock-wa {
+    width: 240px;
+    top: 50%; right: 8%;
+    transform: translateY(-50%) rotate(7deg);
+    z-index: 3;
+    border-radius: 18px;
+    animation: float-r 8s ease-in-out infinite;
+  }
+  @keyframes float-r {
+    0%, 100% { transform: translateY(-50%) rotate(7deg); }
+    50% { transform: translateY(-46%) rotate(6deg); }
+  }
+  .mock-wa-head {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(37, 211, 102, 0.05);
+  }
+  .mock-wa-av {
+    width: 24px; height: 24px;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 11px;
+  }
+  .mock-wa-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .mock-wa-name .sub {
+    display: block;
+    font-weight: 400;
+    color: var(--text-3);
+    font-size: 9px;
+    margin-top: 1px;
+  }
+  .mock-wa-body {
+    padding: 14px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mock-wa-bubble {
+    background: rgba(37, 211, 102, 0.12);
+    border: 1px solid rgba(37, 211, 102, 0.18);
+    border-radius: 12px 12px 4px 12px;
+    padding: 10px 12px;
+    font-size: 11px;
+    color: var(--text);
+    line-height: 1.5;
+    align-self: flex-end;
+    max-width: 90%;
+  }
+  .mock-wa-bubble strong { font-weight: 600; }
+  .mock-wa-link {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 2px solid var(--magenta);
+    padding: 6px 10px;
+    margin-top: 6px;
+    border-radius: 4px;
+  }
+  .mock-wa-link .ttl {
+    font-size: 10px;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .mock-wa-link .url {
+    font-size: 9px;
+    color: var(--pink-soft);
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 2px;
+  }
+  .mock-wa-time {
+    font-size: 9px;
+    color: var(--text-3);
+    margin-top: 4px;
+    text-align: right;
+  }
+  .mock-wa-reply {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 12px 12px 12px 4px;
+    padding: 8px 12px;
+    font-size: 11px;
+    color: var(--text-2);
+  }
+
+  @media (max-width: 980px) {
+    .hero-visual { height: 480px; }
+    .mock-ig-post { left: -5%; transform: translateY(-50%) rotate(-10deg) scale(0.85); }
+    .mock-wa { right: -5%; transform: translateY(-50%) rotate(10deg) scale(0.85); }
+  }
+  @media (max-width: 640px) {
+    .hero-visual { height: 420px; }
+    .pwa-card { width: 300px; padding: 24px 22px; }
+    .mock-ig-post, .mock-wa { display: none; }
+  }
+
+  /* ─────────── SECTION HEADER ─────────── */
+  .sect-head {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 72px;
+  }
+  .sect-head .eyebrow { margin-bottom: 24px; }
+  h2.sect-title {
+    font-size: clamp(34px, 4.8vw, 56px);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+  h2.sect-title .it {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .sect-sub {
+    font-size: 17px;
+    color: var(--text-2);
+    line-height: 1.5;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  /* ─────────── COMPARE ─────────── */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 32px;
+    align-items: stretch;
+  }
+  .compare-card {
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 40px 36px;
+    position: relative;
+  }
+  .compare-card.before {
+    background: linear-gradient(180deg, rgba(255, 80, 80, 0.04), transparent);
+    border-color: rgba(255, 100, 100, 0.1);
+  }
+  .compare-card.after {
+    background: linear-gradient(180deg, rgba(125, 46, 176, 0.06), transparent);
+    border-color: rgba(125, 46, 176, 0.25);
+    box-shadow: 0 0 60px rgba(125, 46, 176, 0.1);
+  }
+  .compare-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 16px;
+  }
+  .compare-card.after .compare-label { color: var(--pink-soft); }
+  .compare-time {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    margin-bottom: 24px;
+  }
+  .compare-card.before .compare-time {
+    color: #ff8a8a;
+    text-decoration: line-through;
+    text-decoration-color: rgba(255, 138, 138, 0.4);
+  }
+  .compare-card.after .compare-time {
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .compare-list { list-style: none; }
+  .compare-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    color: var(--text-2);
+    font-size: 14.5px;
+    border-bottom: 1px solid var(--border);
+  }
+  .compare-list li:last-child { border-bottom: none; }
+  .compare-list li .ic {
+    flex-shrink: 0;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    margin-top: 1px;
+  }
+  .compare-card.before .ic {
+    background: rgba(255, 100, 100, 0.1);
+    color: #ff8a8a;
+  }
+  .compare-card.after .ic {
+    background: var(--brand-grad);
+    color: #fff;
+  }
+  .compare-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  @media (max-width: 880px) {
+    .compare { grid-template-columns: 1fr; gap: 16px; }
+    .compare-arrow { transform: rotate(90deg); padding: 8px 0; }
+  }
+
+  /* ─────────── STEPS ─────────── */
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .step {
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 32px 28px 36px;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .step:hover {
+    border-color: var(--border-2);
+    transform: translateY(-3px);
+    background: var(--surface-2);
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    background: var(--brand-grad);
+    border-radius: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #fff;
+    margin-bottom: 24px;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(125, 46, 176, 0.25);
+  }
+  .step h3 {
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .step p {
+    font-size: 14.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+  .step-illust {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+  }
+  .pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 6px 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-2);
+  }
+  .pill.active {
+    background: var(--brand-grad-soft);
+    border-color: rgba(125, 46, 176, 0.3);
+    color: var(--pink-soft);
+  }
+  .pill.tap {
+    background: var(--brand-grad);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 0 16px rgba(125, 46, 176, 0.5);
+  }
+  .motm-mini {
+    background: linear-gradient(180deg, #0c0f17, #07090f);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+  }
+  .motm-mini .av {
+    width: 36px; height: 36px;
+    background: var(--brand-grad);
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(125, 46, 176, 0.4);
+  }
+  .motm-mini .info { flex: 1; }
+  .motm-mini .info .name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .motm-mini .info .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .motm-mini .check {
+    width: 26px; height: 26px;
+    background: var(--brand-grad);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(125, 46, 176, 0.4);
+  }
+  .send-mini {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: auto;
+  }
+  .send-mini .ch {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 6px;
+    text-align: center;
+    font-size: 10px;
+    color: var(--text-2);
+  }
+  .send-mini .ch .ic { font-size: 16px; margin-bottom: 4px; display: block; }
+  .send-mini .ch.sent {
+    background: var(--brand-grad-soft);
+    border-color: rgba(125, 46, 176, 0.3);
+    color: var(--pink-soft);
+  }
+  @media (max-width: 880px) { .steps { grid-template-columns: 1fr; } }
+
+  /* ─────────── FEATURES BENTO ─────────── */
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+  }
+  .bento-card {
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .bento-card:hover {
+    border-color: var(--border-2);
+    background: var(--surface-2);
+  }
+  .bento-title {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .bento-desc {
+    font-size: 13.5px;
+    color: var(--text-3);
+    line-height: 1.55;
+  }
+  .bento-icon {
+    width: 36px; height: 36px;
+    background: var(--brand-grad);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin-bottom: 18px;
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(125, 46, 176, 0.25);
+  }
+  .b-wide { grid-column: span 4; }
+  .b-mid { grid-column: span 2; }
+  .b-half { grid-column: span 3; }
+  .auto-flow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .auto-step {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    flex: 0 0 auto;
+    width: fit-content;
+    max-width: 100%;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-2);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-family: 'JetBrains Mono', monospace;
+    white-space: nowrap;
+  }
+  .auto-step.final {
+    background: var(--brand-grad);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(125, 46, 176, 0.3);
+  }
+  .auto-arrow { color: var(--text-4); font-size: 14px; }
+  .spons-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .spons-tile {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+  }
+  .brand-prev {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 16px;
+  }
+  .brand-prev .sq {
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #0c0f17, #1a0f1f);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .brand-prev .sq::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(125, 46, 176, 0.4), transparent 60%);
+  }
+  .brand-prev .sq::after {
+    content: '';
+    position: absolute;
+    bottom: 6px; left: 6px; right: 6px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+  }
+  .mob-prev {
+    margin-top: 18px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-2);
+    line-height: 1.8;
+  }
+  .mob-prev .line { display: flex; gap: 8px; }
+  .mob-prev .ts { color: var(--pink-soft); }
+  .mob-prev .ok { color: var(--pink-soft); margin-left: auto; }
+  .team-prev {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 18px;
+  }
+  .team-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--text-2);
+  }
+  .team-row .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    padding: 2px 8px;
+    background: var(--brand-grad);
+    color: #fff;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+  }
+  @media (max-width: 980px) {
+    .b-wide, .b-mid, .b-half { grid-column: span 6; }
+  }
+  @media (max-width: 600px) {
+    .bento { grid-template-columns: 1fr; }
+    .b-wide, .b-mid, .b-half { grid-column: span 1; }
+    .auto-flow { flex-direction: column; align-items: flex-start; }
+    .auto-arrow { transform: rotate(90deg); }
+  }
+
+  /* ─────────── SPONSOR SPOTLIGHT ─────────── */
+  .spotlight {
+    background: linear-gradient(180deg, rgba(125, 46, 176, 0.05), transparent);
+    border: 1px solid rgba(125, 46, 176, 0.2);
+    border-radius: var(--radius-xl);
+    padding: 64px 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .spotlight::before {
+    content: '';
+    position: absolute;
+    top: -20%; right: -10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(125, 46, 176, 0.4), transparent 60%);
+    filter: blur(80px);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .spotlight-text { position: relative; }
+  .spotlight h3 {
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 18px;
+    color: var(--text);
+  }
+  .spotlight h3 .it {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .spotlight p {
+    font-size: 15.5px;
+    color: var(--text-2);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+  .spot-list { list-style: none; }
+  .spot-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    color: var(--text-2);
+    font-size: 14.5px;
+  }
+  .spot-list .ic {
+    width: 20px; height: 20px;
+    background: var(--brand-grad);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(125, 46, 176, 0.3);
+  }
+  .spot-visual {
+    position: relative;
+    aspect-ratio: 4/5;
+    background: linear-gradient(180deg, #0c0f17, #1a0f1f);
+    border: 1px solid var(--border-2);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+  }
+  .spot-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at top right, rgba(233, 30, 99, 0.25), transparent 50%),
+      radial-gradient(ellipse at bottom left, rgba(38, 67, 217, 0.2), transparent 50%);
+    pointer-events: none;
+  }
+  .spot-eye {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    position: relative;
+    margin-bottom: 12px;
+  }
+  .spot-tier-list {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+  }
+  .spot-tier-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    transition: transform 0.2s;
+  }
+  .spot-tier-line:hover { transform: translateX(4px); }
+  .spot-tier-line.goud { border-color: rgba(255,210,74,0.3); background: linear-gradient(90deg, rgba(255,210,74,0.08), rgba(255,255,255,0.02)); }
+  .spot-tier-line.zilver { border-color: rgba(200,208,220,0.25); background: linear-gradient(90deg, rgba(200,208,220,0.06), rgba(255,255,255,0.02)); }
+  .spot-tier-line.brons { border-color: rgba(224,147,90,0.25); background: linear-gradient(90deg, rgba(224,147,90,0.06), rgba(255,255,255,0.02)); }
+  .spot-tier-line.motm { border-color: rgba(125,46,176,0.35); background: linear-gradient(90deg, rgba(125,46,176,0.1), rgba(255,255,255,0.02)); }
+  .spot-tier-medal { font-size: 22px; line-height: 1; flex-shrink: 0; }
+  .spot-tier-txt {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .spot-tier-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.06);
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+  .spot-tier-line.goud .spot-tier-tag { color: #ffd24a; }
+  .spot-tier-line.zilver .spot-tier-tag { color: #c8d0dc; }
+  .spot-tier-line.brons .spot-tier-tag { color: #e0935a; }
+  .spot-tier-line.motm .spot-tier-tag { color: var(--pink-soft); }
+  @media (max-width: 880px) {
+    .spotlight { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
+  }
+
+  /* ─────────── PREVIEWS ─────────── */
+  .previews {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+  }
+  .prev-card {
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .prev-card:hover {
+    border-color: var(--border-2);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+  .prev-tag {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .prev-tag-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+  .prev-tag-format {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    background: var(--brand-grad);
+    color: #fff;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+  }
+  .prev-body {
+    background: linear-gradient(180deg, #0c0f17, #1a0f1f);
+    aspect-ratio: 4/5;
+    position: relative;
+    overflow: hidden;
+  }
+  .prev-body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(38, 67, 217, 0.25), transparent 50%),
+      radial-gradient(circle at 70% 70%, rgba(233, 30, 99, 0.2), transparent 50%);
+  }
+  .prev-content {
+    position: absolute;
+    inset: 0;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+  }
+  .prev-eye {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .prev-big {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .prev-big .teams {
+    font-size: 10px;
+    color: var(--text-3);
+    margin-bottom: 6px;
+    letter-spacing: 0.05em;
+  }
+  .prev-big .score {
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: #fff;
+  }
+  .prev-big .score .sep { background: var(--brand-grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin: 0 4px; }
+  .prev-big .result {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: var(--pink-soft);
+    margin-top: 4px;
+  }
+  .prev-body.story { aspect-ratio: 9/16; }
+  .prev-body.story .prev-big .score { font-size: 40px; }
+  .prev-motm-av {
+    width: 70px; height: 70px;
+    background: var(--brand-grad);
+    border-radius: 50%;
+    margin: 0 auto 14px;
+    box-shadow: 0 0 24px rgba(125, 46, 176, 0.5);
+  }
+  .prev-motm-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .prev-motm-name {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .prev-motm-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-3);
+    margin-top: 4px;
+  }
+  .prev-spons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    margin-top: auto;
+  }
+  .prev-spons .lo {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 3px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6px;
+    color: var(--text-2);
+    letter-spacing: 0.1em;
+  }
+  .prev-body.report { background: linear-gradient(180deg, #0c0f17, #07090f); }
+  .prev-rep-title {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .prev-rep-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .prev-rep-body { font-size: 11px; color: var(--text-2); line-height: 1.55; }
+  .prev-rep-body .l {
+    display: block;
+    background: rgba(180, 186, 196, 0.15);
+    height: 6px;
+    border-radius: 3px;
+    margin-bottom: 4px;
+  }
+  .prev-rep-body .l.w1 { width: 100%; }
+  .prev-rep-body .l.w2 { width: 92%; }
+  .prev-rep-body .l.w3 { width: 88%; }
+  .prev-rep-body .l.w4 { width: 75%; }
+  .prev-rep-body .l.w5 { width: 95%; }
+  .prev-rep-body .l.w6 { width: 60%; }
+
+  /* WhatsApp preview variant */
+  .prev-body.wa {
+    background: linear-gradient(180deg, #0a1410 0%, #061008 100%);
+  }
+  .prev-body.wa::before {
+    background: radial-gradient(circle at 50% 0%, rgba(37, 211, 102, 0.18), transparent 60%);
+  }
+  .prev-wa-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(37, 211, 102, 0.15);
+    margin-bottom: 12px;
+  }
+  .prev-wa-av {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    flex-shrink: 0;
+  }
+  .prev-wa-name {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .prev-wa-name .sub {
+    display: block;
+    font-weight: 400;
+    color: var(--text-3);
+    font-size: 8px;
+    margin-top: 2px;
+  }
+  .prev-wa-bubble {
+    background: rgba(37, 211, 102, 0.12);
+    border: 1px solid rgba(37, 211, 102, 0.2);
+    border-radius: 10px 10px 4px 10px;
+    padding: 10px 11px;
+    margin-bottom: 8px;
+    align-self: flex-end;
+    max-width: 92%;
+    margin-left: auto;
+  }
+  .prev-wa-bubble .ttl {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .prev-wa-bubble .txt {
+    font-size: 9.5px;
+    color: var(--text-2);
+    line-height: 1.4;
+  }
+  .prev-wa-link {
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 2px solid var(--magenta);
+    padding: 6px 8px;
+    margin-top: 6px;
+    border-radius: 3px;
+  }
+  .prev-wa-link .lnk-ttl {
+    font-size: 8px;
+    color: var(--text-2);
+    font-weight: 600;
+  }
+  .prev-wa-link .lnk-url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7.5px;
+    color: var(--pink-soft);
+    margin-top: 2px;
+  }
+  .prev-wa-time {
+    font-size: 7.5px;
+    color: var(--text-3);
+    text-align: right;
+    margin-top: 4px;
+  }
+  .prev-wa-reply {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 10px 10px 10px 4px;
+    padding: 7px 10px;
+    font-size: 9px;
+    color: var(--text-2);
+    max-width: 70%;
+  }
+
+  @media (max-width: 1100px) { .previews { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 760px) { .previews { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .previews { grid-template-columns: 1fr; } }
+
+  /* ─────────── PRICING ─────────── */
+
+  /* Billing toggle */
+  .billing-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 32px;
+  }
+  .billing-toggle-inner {
+    display: inline-flex;
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-2);
+    border-radius: 100px;
+    padding: 4px;
+    position: relative;
+  }
+  .billing-btn {
+    position: relative;
+    z-index: 2;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-3);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .billing-btn.active { color: #fff; }
+  .billing-pill {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    height: calc(100% - 8px);
+    background: var(--brand-grad);
+    border-radius: 100px;
+    box-shadow: 0 4px 16px rgba(125, 46, 176, 0.35);
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1), width 0.3s cubic-bezier(.4,0,.2,1);
+    z-index: 1;
+  }
+  .billing-save {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    padding: 2px 7px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+  }
+  .billing-btn:not(.active) .billing-save {
+    background: var(--brand-grad-soft);
+    color: var(--pink-soft);
+  }
+
+  /* Per seizoen meta-tekst onder prijs */
+  .price-yearly-meta {
+    font-size: 12px;
+    color: var(--text-3);
+    margin-top: -4px;
+    margin-bottom: 8px;
+    min-height: 16px;
+  }
+  .price-yearly-meta .save {
+    color: var(--pink-soft);
+    font-weight: 600;
+  }
+
+  .pricing {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .price-card {
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 32px 26px 28px;
+    position: relative;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .price-card:hover {
+    border-color: var(--border-2);
+    transform: translateY(-4px);
+  }
+  .price-card.featured {
+    border-color: rgba(125, 46, 176, 0.4);
+    background: linear-gradient(180deg, rgba(125, 46, 176, 0.06), var(--surface));
+    box-shadow: 0 0 60px rgba(125, 46, 176, 0.12);
+  }
+  .price-badge {
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    background: var(--brand-grad);
+    color: #fff;
+    border-radius: 100px;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(125, 46, 176, 0.4);
+  }
+  .price-name {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .price-card.featured .price-name {
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .price-tag {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin: 18px 0 8px;
+  }
+  .price-tag .amt {
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    color: var(--text);
+  }
+  .price-tag .per {
+    font-size: 13px;
+    color: var(--text-3);
+  }
+  .price-desc {
+    font-size: 13px;
+    color: var(--text-3);
+    margin-bottom: 22px;
+    min-height: 38px;
+  }
+  .price-cta {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 100px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    background: var(--brand-grad);
+    border: 1px solid transparent;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(125, 46, 176, 0.3);
+    transition: all 0.2s;
+  }
+  .price-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(125, 46, 176, 0.45);
+  }
+  .price-card.featured .price-cta {
+    box-shadow: 0 4px 16px rgba(125, 46, 176, 0.45);
+  }
+  .price-card.featured .price-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 28px rgba(125, 46, 176, 0.55);
+  }
+  .price-feat {
+    list-style: none;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+  .price-feat li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    color: var(--text-2);
+    font-size: 13.5px;
+  }
+  .price-feat li:first-child {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .price-feat .ic {
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 11px;
+    margin-top: 3px;
+    font-weight: 700;
+  }
+  .price-cta { margin-bottom: 0; margin-top: auto; }
+  @media (max-width: 1100px) { .pricing { grid-template-columns: repeat(2, 1fr); max-width: 720px; } }
+  @media (max-width: 560px) { .pricing { grid-template-columns: 1fr; max-width: 420px; } }
+
+  /* ─────────── INCLUDED IN EVERY PLAN ─────────── */
+  .included-wrap {
+    margin-top: 96px;
+    padding-top: 80px;
+    border-top: 1px solid var(--border);
+    position: relative;
+  }
+  .included-wrap::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 50%;
+    transform: translateX(-50%);
+    width: 200px; height: 1px;
+    background: var(--brand-grad);
+    opacity: 0.6;
+  }
+  .included-head {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 56px;
+  }
+  .included-head .eyebrow { margin-bottom: 20px; }
+  .included-head h3 {
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+  .included-head h3 .it {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .included-head p {
+    font-size: 15.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+  }
+
+  /* Content-per-match: 5 tiles */
+  .per-match-label {
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+  .per-match-label::before,
+  .per-match-label::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: var(--border-2);
+  }
+  .per-match-label .big {
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .content-tiles {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    margin-bottom: 80px;
+  }
+  .ctile {
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px 20px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+  }
+  .ctile:hover {
+    border-color: rgba(125, 46, 176, 0.3);
+    background: var(--surface-2);
+    transform: translateY(-3px);
+  }
+  .ctile::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--brand-grad);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .ctile:hover::before { opacity: 1; }
+  .ctile-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .ctile-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--brand-grad-soft);
+    border: 1px solid rgba(125, 46, 176, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pink-soft);
+    margin-bottom: 14px;
+    font-size: 16px;
+  }
+  .ctile h4 {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+  .ctile p {
+    font-size: 12.5px;
+    color: var(--text-3);
+    line-height: 1.5;
+    margin-top: auto;
+  }
+  .ctile-fmt {
+    margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    color: var(--text-3);
+    align-self: flex-start;
+  }
+  @media (max-width: 1100px) {
+    .content-tiles { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .content-tiles { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 420px) {
+    .content-tiles { grid-template-columns: 1fr; }
+  }
+
+  /* Extras row: design + sponsorslots + dashboard */
+  .extras-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 16px;
+  }
+  .extra-card {
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 32px 30px;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+  .extra-card:hover {
+    border-color: var(--border-2);
+    background: var(--surface-2);
+  }
+  .extra-card .eyebrow {
+    align-self: flex-start;
+    margin-bottom: 18px;
+  }
+  .extra-card h4 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .extra-card > p {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.55;
+    margin-bottom: 22px;
+  }
+
+  /* Sponsorslots visual */
+  .sponsorslots-visual {
+    margin-top: auto;
+    background: linear-gradient(180deg, #0c0f17, #1a0f1f);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .sponsorslots-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 100%, rgba(125, 46, 176, 0.2), transparent 60%);
+    pointer-events: none;
+  }
+  .slot-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .slot-row-club {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .slot-row-club .slot {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    color: var(--text-2);
+    position: relative;
+    overflow: hidden;
+  }
+  .slot-row-club .slot.rotating::after {
+    content: '↻';
+    position: absolute;
+    top: 2px; right: 4px;
+    font-size: 8px;
+    color: var(--pink-soft);
+    animation: spin 4s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  /* Tier-gekleurde sponsorslots */
+  .slot-row-club .slot.tier-goud-slot {
+    background: linear-gradient(135deg, rgba(255,210,74,0.18), rgba(255,210,74,0.06));
+    border-color: rgba(255,210,74,0.35);
+    color: #ffd24a;
+  }
+  .slot-row-club .slot.tier-zilver-slot {
+    background: linear-gradient(135deg, rgba(200,208,220,0.15), rgba(200,208,220,0.05));
+    border-color: rgba(200,208,220,0.3);
+    color: #c8d0dc;
+  }
+  .slot-row-club .slot.tier-brons-slot {
+    background: linear-gradient(135deg, rgba(224,147,90,0.15), rgba(224,147,90,0.05));
+    border-color: rgba(224,147,90,0.3);
+    color: #e0935a;
+  }
+  .slot-row-special {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5px;
+    position: relative;
+  }
+  .slot-row-special .slot {
+    background: var(--brand-grad);
+    color: #fff;
+    border-radius: 5px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    box-shadow: 0 2px 8px rgba(125, 46, 176, 0.3);
+  }
+  .slot-row-special .slot.team {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(125, 46, 176, 0.3);
+    color: var(--pink-soft);
+    box-shadow: none;
+    position: relative;
+  }
+  .slot-row-special .slot.team::after {
+    content: '↻';
+    position: absolute;
+    top: 2px; right: 4px;
+    font-size: 8px;
+    animation: spin 4s linear infinite;
+  }
+
+  /* Design choices visual */
+  .design-themes {
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .theme-tile {
+    aspect-ratio: 4/5;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .theme-tile:hover {
+    border-color: rgba(125, 46, 176, 0.5);
+    transform: translateY(-2px);
+  }
+  .theme-tile.t1 {
+    background:
+      radial-gradient(circle at 30% 30%, rgba(38, 67, 217, 0.5), transparent 60%),
+      radial-gradient(circle at 70% 70%, rgba(233, 30, 99, 0.4), transparent 60%),
+      #0a0a0a;
+  }
+  .theme-tile.t2 {
+    background:
+      radial-gradient(circle at 50% 30%, rgba(212, 168, 67, 0.4), transparent 60%),
+      #0f0a05;
+  }
+  .theme-tile.t3 {
+    background:
+      radial-gradient(circle at 50% 50%, rgba(45, 200, 120, 0.3), transparent 60%),
+      #051210;
+  }
+  .theme-tile::after {
+    content: '';
+    position: absolute;
+    bottom: 8px; left: 8px; right: 8px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+  }
+  .theme-tile.active {
+    border: 1.5px solid var(--magenta);
+    box-shadow: 0 0 16px rgba(233, 30, 99, 0.3);
+  }
+  .theme-tile.active::before {
+    content: '✓';
+    position: absolute;
+    top: 8px; right: 8px;
+    width: 18px; height: 18px;
+    background: var(--brand-grad);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    z-index: 2;
+  }
+
+  /* Dashboard card (full width) */
+  .dashboard-card {
+    grid-column: 1 / -1;
+    background: linear-gradient(180deg, rgba(125, 46, 176, 0.04), var(--surface));
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(125, 46, 176, 0.18);
+    border-radius: var(--radius-xl);
+    padding: 36px 40px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+    align-items: center;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Club Admin telefoon-screenshot */
+  .dash-phone {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .dash-phone-frame {
+    width: 240px;
+    background: linear-gradient(180deg, #0f1018, #07090f);
+    border-radius: 36px;
+    padding: 8px;
+    box-shadow:
+      0 0 0 1.5px rgba(255,255,255,0.08),
+      0 0 0 7px rgba(0,0,0,0.55),
+      0 30px 70px rgba(0,0,0,0.5),
+      0 0 60px rgba(125,46,176,0.18);
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .dash-phone-frame:hover { transform: translateY(-5px); }
+  .dash-phone-frame img {
+    width: 100%;
+    display: block;
+    border-radius: 28px;
+  }
+  .dashboard-card::before {
+    content: '';
+    position: absolute;
+    top: -30%; right: -10%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(125, 46, 176, 0.25), transparent 60%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+  .dash-text { position: relative; }
+  .dash-text .eyebrow { margin-bottom: 18px; }
+  .dash-text h4 {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .dash-text h4 .it {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .dash-text p {
+    font-size: 14.5px;
+    color: var(--text-2);
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+  /* Dashboard feature list */
+  .dash-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .dash-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .dash-list-ic {
+    width: 32px; height: 32px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: var(--brand-grad-soft);
+    border: 1px solid rgba(125, 46, 176, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pink-soft);
+    font-size: 14px;
+    margin-top: 1px;
+  }
+  .dash-list li div { display: flex; flex-direction: column; gap: 2px; }
+  .dash-list li strong {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .dash-list li span {
+    font-size: 13px;
+    color: var(--text-3);
+    line-height: 1.5;
+  }
+  /* Dashboard mockup visual */
+  .dash-visual {
+    background: linear-gradient(180deg, #0a0c12, #050709);
+    border: 1px solid var(--border-2);
+    border-radius: var(--radius);
+    padding: 18px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+  .dash-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .dash-bar .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--text-4);
+  }
+  .dash-bar .dot.live {
+    background: var(--magenta);
+    box-shadow: 0 0 6px var(--magenta);
+    animation: pulse 2s infinite;
+  }
+  .dash-bar .lbl {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+  }
+  /* Dashboard sectie blokken */
+  .dash-section {
+    margin-bottom: 14px;
+  }
+  .dash-section:last-child { margin-bottom: 0; }
+  .dash-section-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .dash-section-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .dash-section-add {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    padding: 3px 8px;
+    background: var(--brand-grad-soft);
+    border: 1px solid rgba(125, 46, 176, 0.2);
+    color: var(--pink-soft);
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+  }
+  .dash-section-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--text-3);
+    letter-spacing: 0.05em;
+  }
+
+  /* Team rijen met leider */
+  .dash-teams {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .dash-team-row {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr auto;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .dash-team-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .dash-team-leader {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--text-2);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .dash-leader-av {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--magenta));
+    flex-shrink: 0;
+  }
+  .dash-leader-av.av2 { background: linear-gradient(135deg, var(--magenta), #ff9970); }
+  .dash-leader-av.av3 { background: linear-gradient(135deg, var(--blue-soft), var(--blue)); }
+  .dash-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    padding: 2px 7px;
+    background: var(--brand-grad);
+    color: #fff;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Sponsor grid in dashboard */
+  .dash-spons-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+  }
+  .dash-spons {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 7px;
+    color: var(--text-2);
+    letter-spacing: 0.08em;
+  }
+  .dash-spons.motm {
+    background: var(--brand-grad);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 2px 6px rgba(125, 46, 176, 0.3);
+  }
+
+  @media (max-width: 880px) {
+    .extras-grid { grid-template-columns: 1fr; }
+    .dashboard-card { grid-template-columns: 1fr; padding: 30px 24px; gap: 28px; }
+    .dash-team-row { grid-template-columns: 1fr auto; }
+    .dash-team-leader { display: none; }
+    .dash-spons-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ─────────── ROADMAP TEASER ─────────── */
+  .roadmap {
+    margin-top: 24px;
+    background: linear-gradient(135deg, rgba(38, 67, 217, 0.06) 0%, rgba(233, 30, 99, 0.06) 100%);
+    border: 1px solid rgba(125, 46, 176, 0.18);
+    border-radius: var(--radius-xl);
+    padding: 40px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .roadmap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 0% 50%, rgba(38, 67, 217, 0.15), transparent 50%),
+      radial-gradient(circle at 100% 50%, rgba(233, 30, 99, 0.15), transparent 50%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+  .roadmap-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    position: relative;
+    flex-wrap: wrap;
+  }
+  .roadmap-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    background: var(--brand-grad);
+    color: #fff;
+    border-radius: 100px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(125, 46, 176, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .roadmap-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+    animation: pulse 2s infinite;
+  }
+  .roadmap h4 {
+    font-size: clamp(22px, 2.6vw, 28px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    line-height: 1.2;
+    flex: 1;
+  }
+  .roadmap h4 .it {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .roadmap-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    position: relative;
+  }
+  .roadmap-item {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 18px 16px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .roadmap-item:hover {
+    border-color: rgba(125, 46, 176, 0.3);
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateY(-2px);
+  }
+  .roadmap-item-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .roadmap-item-status::before {
+    content: '';
+    width: 5px; height: 5px;
+    background: var(--pink-soft);
+    border-radius: 50%;
+  }
+  .roadmap-item h5 {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin-bottom: 4px;
+    line-height: 1.25;
+  }
+  .roadmap-item p {
+    font-size: 12px;
+    color: var(--text-3);
+    line-height: 1.45;
+  }
+  .roadmap-foot {
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 13.5px;
+    color: var(--text-2);
+    position: relative;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .roadmap-foot strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  @media (max-width: 880px) {
+    .roadmap { padding: 32px 24px; }
+    .roadmap-items { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 440px) {
+    .roadmap-items { grid-template-columns: 1fr; }
+  }
+
+  /* ─────────── QUOTES ─────────── */
+  .quotes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .quote {
+    background: var(--surface);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 32px 28px;
+    transition: all 0.3s;
+  }
+  .quote:hover { border-color: var(--border-2); }
+  .quote-mark {
+    font-family: 'Instrument Serif', serif;
+    font-size: 56px;
+    line-height: 0.5;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.6;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .quote-text {
+    font-size: 16px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+  .quote-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .quote-author .av {
+    width: 36px; height: 36px;
+    background: var(--brand-grad);
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(125, 46, 176, 0.3);
+  }
+  .quote-author .name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .quote-author .role {
+    font-size: 11px;
+    color: var(--text-3);
+    margin-top: 2px;
+  }
+  @media (max-width: 980px) { .quotes { grid-template-columns: 1fr; } }
+
+  /* ─────────── FINAL CTA ─────────── */
+  .final {
+    position: relative;
+    text-align: center;
+    padding: 140px 32px;
+    overflow: hidden;
+  }
+  .final::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px; height: 700px;
+    background: radial-gradient(ellipse, rgba(125, 46, 176, 0.35), transparent 60%);
+    filter: blur(80px);
+    pointer-events: none;
+  }
+  .final-inner { position: relative; max-width: 760px; margin: 0 auto; }
+  .final-logo {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px 32px;
+    margin: 0 auto 36px;
+    display: inline-block;
+    box-shadow: 0 0 0 1px rgba(125, 46, 176, 0.25), 0 12px 40px rgba(125, 46, 176, 0.35);
+  }
+  .final-logo img {
+    max-width: 220px;
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .final h2 {
+    font-size: clamp(40px, 5.5vw, 64px);
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+  .final h2 .it {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-weight: 400;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .final p {
+    font-size: 18px;
+    color: var(--text-2);
+    margin-bottom: 36px;
+    line-height: 1.5;
+  }
+
+  /* ─────────── FOOTER ─────────── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 60px 32px 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr repeat(3, 1fr);
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .foot-brand .logo { margin-bottom: 16px; }
+  .foot-brand .tagline {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 16px;
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+  .foot-brand p {
+    font-size: 14px;
+    color: var(--text-3);
+    max-width: 280px;
+    line-height: 1.55;
+  }
+  .foot-col h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .foot-col ul { list-style: none; }
+  .foot-col li { margin-bottom: 8px; }
+  .foot-col a {
+    color: var(--text-2);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  .foot-col a:hover {
+    background: var(--brand-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .foot-bot {
+    max-width: 1240px;
+    margin: 24px auto 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--text-4);
+    text-transform: uppercase;
+  }
+  @media (max-width: 760px) {
+    .footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .foot-brand { grid-column: 1 / -1; }
+  }
+
+  /* Reveal — alleen actief als JS geladen heeft */
+  html.js-ready .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  html.js-ready .reveal.in { opacity: 1; transform: translateY(0); }
+  /* Fallback: zonder JS-flag is alles direct zichtbaar */
+  .reveal { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ─────────── ANIMATED MESH ─────────── -->
+<div class="mesh-bg">
+  <div class="mesh-blob b1"></div>
+  <div class="mesh-blob b2"></div>
+  <div class="mesh-blob b3"></div>
+</div>
+
+<!-- ─────────── PARTICLES ─────────── -->
+<canvas id="particles"></canvas>
+
+<!-- ─────────── LIVE TICKER ─────────── -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <!-- Set 1 -->
+    <span class="ticker-item"><span class="live-dot"></span> Matchly is live <span class="sep">·</span></span>
+    <span class="ticker-item">⚽ VV De Velden — Stormvogels 3–1 <span class="sep">·</span></span>
+    <span class="ticker-item">Van wedstrijd. Naar content. <span class="sep">·</span></span>
+    <span class="ticker-item">⭐ Man of the Match: R. Tahiri <span class="sep">·</span></span>
+    <span class="ticker-item">5× content per wedstrijd, klaar in 1 minuut <span class="sep">·</span></span>
+    <span class="ticker-item">⚽ Heren 2 — Excelsior B 2–0 <span class="sep">·</span></span>
+    <span class="ticker-item">Sponsoren automatisch in beeld <span class="sep">·</span></span>
+    <span class="ticker-item">⭐ Man of the Match: K. de Jong <span class="sep">·</span></span>
+    <span class="ticker-item">Geen typwerk. Alleen aantikken. <span class="sep">·</span></span>
+    <span class="ticker-item">⚽ JO17-1 — Fortuna 1–1 <span class="sep">·</span></span>
+    <span class="ticker-item">matchlycontent.nl <span class="sep">·</span></span>
+    <!-- Set 2 (herhaling voor naadloze loop) -->
+    <span class="ticker-item"><span class="live-dot"></span> Matchly is live <span class="sep">·</span></span>
+    <span class="ticker-item">⚽ VV De Velden — Stormvogels 3–1 <span class="sep">·</span></span>
+    <span class="ticker-item">Van wedstrijd. Naar content. <span class="sep">·</span></span>
+    <span class="ticker-item">⭐ Man of the Match: R. Tahiri <span class="sep">·</span></span>
+    <span class="ticker-item">5× content per wedstrijd, klaar in 1 minuut <span class="sep">·</span></span>
+    <span class="ticker-item">⚽ Heren 2 — Excelsior B 2–0 <span class="sep">·</span></span>
+    <span class="ticker-item">Sponsoren automatisch in beeld <span class="sep">·</span></span>
+    <span class="ticker-item">⭐ Man of the Match: K. de Jong <span class="sep">·</span></span>
+    <span class="ticker-item">Geen typwerk. Alleen aantikken. <span class="sep">·</span></span>
+    <span class="ticker-item">⚽ JO17-1 — Fortuna 1–1 <span class="sep">·</span></span>
+    <span class="ticker-item">matchlycontent.nl <span class="sep">·</span></span>
+  </div>
+</div>
+
+<!-- ─────────── NAV ─────────── -->
+<div class="nav-wrap">
+  <nav class="nav">
+    <a href="#" class="logo">
+      <span class="logo-mark">
+        <img src="assets/matchly-pwa.png" alt="Matchly" />
+      </span>
+      Matchly
+    </a>
+    <div class="nav-links">
+      <a href="#hoe">Hoe het werkt</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Prijzen</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://matchly-club-admin.netlify.app" target="_blank" rel="noopener">Inloggen</a>
+      <a href="aanmelden.html" class="nav-cta">Abonneer nu</a>
+    </div>
+  </nav>
+</div>
+
+<!-- ─────────── HERO ─────────── -->
+<section class="hero container">
+
+  <!-- Brand bovenaan -->
+  <div class="brand-block">
+    <div class="brand-name">Matchly</div>
+    <div class="brand-tagline">Van wedstrijd<span class="dot-sep">.</span> Naar content<span class="dot-sep">.</span></div>
+  </div>
+
+  <div class="hero-pill">
+    <span class="eyebrow"><span class="dot"></span> Voor amateurvoetbalclubs</span>
+  </div>
+  <h1 class="hero-title">
+    Na elke wedstrijd direct<br/>
+    <span class="it">professionele</span> <span class="grad">clubcontent</span> klaar.
+  </h1>
+  <p class="hero-sub">
+    Social posts, sponsorvermeldingen en wedstrijdverslagen in één keer klaar.
+    Geen Canva, geen losse apps, geen zondagavond meer kwijt.
+  </p>
+  <div class="cta-row">
+    <a href="aanmelden.html" class="btn btn-primary">Abonneer nu <span class="arr">→</span></a>
+    <a href="#previews" class="btn btn-secondary">Bekijk demo</a>
+  </div>
+
+  <div class="hero-visual">
+    <div class="glow-blob"></div>
+
+    <!-- Left: IG post mockup -->
+    <div class="mockup mock-ig-post">
+      <div class="mock-ig-head">
+        <div class="mock-ig-av"></div>
+        <div class="mock-ig-handle">
+          vv.develden
+          <span class="sub">Net geplaatst</span>
+        </div>
+      </div>
+      <div class="mock-ig-img">
+        <div class="mock-ig-content">
+          <div class="mock-ig-top">— Eindstand —</div>
+          <div class="mock-ig-mid">
+            <div class="mock-ig-teams">De Velden · Stormvogels</div>
+            <div class="mock-ig-score"><span>3</span><span class="sep">—</span><span>1</span></div>
+            <div class="mock-ig-result">winst op karakter.</div>
+          </div>
+          <div class="mock-ig-bot">
+            <div class="mock-ig-spons">SPONSOR</div>
+            <div class="mock-ig-spons">SPONSOR</div>
+            <div class="mock-ig-spons">SPONSOR</div>
+            <div class="mock-ig-spons">SPONSOR</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CENTER: PWA install card (THE star) -->
+    <div class="mockup pwa-card">
+      <div class="pwa-icon-wrap">
+        <div class="pwa-icon">
+          <div class="pwa-icon-inner">
+            <img src="assets/matchly-pwa.png" alt="Matchly PWA" style="width:100%;height:100%;object-fit:cover;border-radius:13px;display:block;" />
+          </div>
+        </div>
+        <div class="pwa-info">
+          <div class="pwa-name">Matchly</div>
+          <div class="pwa-desc">Van wedstrijd. Naar content.</div>
+        </div>
+      </div>
+      <div class="pwa-cta">
+        <span class="ic">⊕</span> Voeg toe aan beginscherm
+      </div>
+      <div class="pwa-bot">
+        <strong>PWA</strong> · Geen app store · Direct in browser
+      </div>
+    </div>
+
+    <!-- Right: WhatsApp mockup -->
+    <div class="mockup mock-wa">
+      <div class="mock-wa-head">
+        <div class="mock-wa-av">▶</div>
+        <div class="mock-wa-name">
+          Heren 1 — Team
+          <span class="sub">Selectie · 24 leden</span>
+        </div>
+      </div>
+      <div class="mock-wa-body">
+        <div class="mock-wa-bubble">
+          <strong>⚽ De Velden — Stormvogels · 3-1</strong><br/>
+          Winst! Doelpunten van De Jong, Tahiri en Janssen.
+          <div class="mock-wa-link">
+            <div class="ttl">Volledig wedstrijdverslag</div>
+            <div class="url">vvdevelden.nl/wedstrijd</div>
+          </div>
+          <div class="mock-wa-time">17:24 ✓✓</div>
+        </div>
+        <div class="mock-wa-reply">
+          Mooi gespeeld! 💪
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────── PROBLEM → SOLUTION ─────────── -->
+<section class="container reveal">
+  <div class="sect-head">
+    <span class="eyebrow">Probleem → Oplossing</span>
+    <h2 class="sect-title">Van <span class="it">45 minuten</span> uitwerken naar binnen <span class="it">één</span> minuut klaar.</h2>
+    <p class="sect-sub">Eindelijk een oplossing die past bij de praktijk: snel, op je telefoon, langs de lijn.</p>
+  </div>
+  <div class="compare">
+    <div class="compare-card before">
+      <div class="compare-label">Voorheen</div>
+      <div class="compare-time">45 min</div>
+      <ul class="compare-list">
+        <li><span class="ic">✕</span> Kost elke week veel tijd</li>
+        <li><span class="ic">✕</span> Canva openen, sjabloon aanpassen</li>
+        <li><span class="ic">✕</span> Verslag typen: hoe zat het ook alweer?</li>
+        <li><span class="ic">✕</span> Sponsoren misten op de content</li>
+        <li><span class="ic">✕</span> Geen consistente uitstraling</li>
+        <li><span class="ic">✕</span> Sterk afhankelijk van één persoon</li>
+      </ul>
+    </div>
+    <div class="compare-arrow">→</div>
+    <div class="compare-card after">
+      <div class="compare-label">Met Matchly</div>
+      <div class="compare-time">1 min</div>
+      <ul class="compare-list">
+        <li><span class="ic">✓</span> Tik mee tijdens de wedstrijd</li>
+        <li><span class="ic">✓</span> Verslag automatisch geschreven</li>
+        <li><span class="ic">✓</span> Sponsoren standaard meegenomen</li>
+        <li><span class="ic">✓</span> Eén knop: alles naar de social media-beheerder</li>
+        <li><span class="ic">✓</span> Eigen design uit een ruim aanbod</li>
+        <li><span class="ic">✓</span> Elke week dezelfde strakke uitstraling</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── HOE HET WERKT ─────────── -->
+<section class="container reveal" id="hoe">
+  <div class="sect-head">
+    <span class="eyebrow">Hoe het werkt</span>
+    <h2 class="sect-title">In drie stappen. <span class="it">Geen typwerk.</span></h2>
+    <p class="sect-sub">Langs de lijn moet alles snel. Daarom is alles aantikken in plaats van typen.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h3>Vul wedstrijdinfo in</h3>
+      <p>Eén tap voor doelpunt, kaart of wissel. Speler en minuut worden automatisch gekoppeld. Niets typen.</p>
+      <div class="step-illust">
+        <span class="pill">Doelpunt</span>
+        <span class="pill active">⚽ K. de Jong · 12'</span>
+        <span class="pill">Kaart</span>
+        <span class="pill">Wissel</span>
+        <span class="pill tap">Rust</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h3>Kies Man of the Match</h3>
+      <p>Tik na het fluitsignaal de uitblinker aan. Eventueel een korte reden. Klaar voor de spotlight.</p>
+      <div class="motm-mini">
+        <div class="av"></div>
+        <div class="info">
+          <div class="name">R. Tahiri</div>
+          <div class="role">MAN OF THE MATCH</div>
+        </div>
+        <div class="check">✓</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h3>Eén knop, alles verstuurd</h3>
+      <p>Met één druk op de knop gaat het complete pakket naar de social media-beheerder van de club — posts, stories en verslag in één keer klaar om te plaatsen.</p>
+      <div class="send-mini">
+        <div class="ch sent"><span class="ic">📷</span>Post</div>
+        <div class="ch sent"><span class="ic">📱</span>Story</div>
+        <div class="ch sent"><span class="ic">📄</span>Verslag</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FEATURES BENTO ─────────── -->
+<section class="container reveal" id="features">
+  <div class="sect-head">
+    <span class="eyebrow">Features</span>
+    <h2 class="sect-title">Een compleet platform, <span class="it">niet</span> een losse tool.</h2>
+    <p class="sect-sub">Alles wat jouw club nodig heeft om communicatie professioneel op de rails te krijgen.</p>
+  </div>
+  <div class="bento">
+    <div class="bento-card b-wide">
+      <div class="bento-icon">⚡</div>
+      <div class="bento-title">Automatische wedstrijdposts</div>
+      <div class="bento-desc">Eindstandposts, stories, en MOTM-cards verschijnen direct na de wedstrijd — al gevuld met de juiste teams, scores en sponsoren.</div>
+      <div class="auto-flow">
+        <span class="auto-step">Eindsignaal</span>
+        <span class="auto-arrow">→</span>
+        <span class="auto-step">Content render</span>
+        <span class="auto-arrow">→</span>
+        <span class="auto-step final">Klaar in 60s</span>
+      </div>
+    </div>
+    <div class="bento-card b-mid">
+      <div class="bento-icon">⬡</div>
+      <div class="bento-title">Sponsorintegratie</div>
+      <div class="bento-desc">Goud, zilver en brons sponsors krijgen elk hun eigen plek in de content.</div>
+      <div class="spons-grid">
+        <div class="spons-tile">SPONSOR</div>
+        <div class="spons-tile">SPONSOR</div>
+        <div class="spons-tile">SPONSOR</div>
+        <div class="spons-tile">SPONSOR</div>
+      </div>
+    </div>
+    <div class="bento-card b-mid">
+      <div class="bento-icon">◐</div>
+      <div class="bento-title">Consistente clubbranding</div>
+      <div class="bento-desc">Eén huisstijl over post, story, verslag en website.</div>
+      <div class="brand-prev">
+        <div class="sq"></div>
+        <div class="sq"></div>
+        <div class="sq"></div>
+      </div>
+    </div>
+    <div class="bento-card b-mid">
+      <div class="bento-icon">▣</div>
+      <div class="bento-title">Story formats</div>
+      <div class="bento-desc">9:16 stories, eindstand, MOTM en momenten van de wedstrijd.</div>
+    </div>
+    <div class="bento-card b-half">
+      <div class="bento-icon">◫</div>
+      <div class="bento-title">Mobiele workflow</div>
+      <div class="bento-desc">Werkt op de telefoon, langs de lijn. PWA — geen app store nodig.</div>
+      <div class="mob-prev">
+        <div class="line"><span class="ts">14:32</span> Aftrap geregistreerd <span class="ok">✓</span></div>
+        <div class="line"><span class="ts">14:47</span> Doelpunt · K. de Jong <span class="ok">✓</span></div>
+        <div class="line"><span class="ts">15:24</span> Rust <span class="ok">✓</span></div>
+        <div class="line"><span class="ts">16:18</span> Einde · Pakket klaar <span class="ok">✓</span></div>
+      </div>
+    </div>
+    <div class="bento-card b-half">
+      <div class="bento-icon">⚐</div>
+      <div class="bento-title">Clubbeheer</div>
+      <div class="bento-desc">Meerdere teams, één centraal archief. Elke leider in zijn eigen omgeving.</div>
+      <div class="team-prev">
+        <div class="team-row">Heren 1 <span class="badge">Actief</span></div>
+        <div class="team-row">Heren 2 <span class="badge">Actief</span></div>
+        <div class="team-row">JO19-1 <span class="badge">Actief</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── SPONSOR SPOTLIGHT ─────────── -->
+<section class="container reveal">
+  <div class="sect-head">
+    <span class="eyebrow">Sponsorwaarde</span>
+    <h2 class="sect-title">Bouw aan je <span class="it">sponsorinkomsten</span>.</h2>
+    <p class="sect-sub">Matchly geeft je club een verkoopbaar pakket in handen. Goud, zilver, brons en MOTM — elk niveau is een aanbod dat je aan sponsoren kunt verkopen.</p>
+  </div>
+  <div class="spotlight">
+    <div class="spotlight-text">
+      <h3>Een sponsormodel dat <span class="it">geld oplevert</span>.</h3>
+      <p>De ingebouwde niveaus zijn niet zomaar een lay-out — ze zijn een concreet verkoopinstrument. Je biedt sponsoren een duidelijke, professionele plek aan en laat elke week zien wat ze ervoor terugkrijgen: structurele exposure op je socials. Wat een sponsor betaalt, bepaal je als club zelf.</p>
+      <ul class="spot-list">
+        <li><span class="ic">✓</span> Bied drie duidelijke sponsorniveaus aan</li>
+        <li><span class="ic">✓</span> Laat sponsoren wekelijks hun waarde zien</li>
+        <li><span class="ic">✓</span> Maak sponsorwerving meetbaar en professioneel</li>
+        <li><span class="ic">✓</span> Organiseer je sponsoring goed en Matchly kost je niks</li>
+      </ul>
+    </div>
+    <div class="spot-visual">
+      <div class="spot-eye">— Sponsorpakket · per seizoen —</div>
+      <div class="spot-tier-list">
+        <div class="spot-tier-line goud">
+          <span class="spot-tier-medal">🥇</span>
+          <span class="spot-tier-txt">Goud · álle content</span>
+          <span class="spot-tier-tag">5 plekken</span>
+        </div>
+        <div class="spot-tier-line zilver">
+          <span class="spot-tier-medal">🥈</span>
+          <span class="spot-tier-txt">Zilver · stories</span>
+          <span class="spot-tier-tag">4 plekken</span>
+        </div>
+        <div class="spot-tier-line brons">
+          <span class="spot-tier-medal">🥉</span>
+          <span class="spot-tier-txt">Brons · teamsponsor</span>
+          <span class="spot-tier-tag">1 plek</span>
+        </div>
+        <div class="spot-tier-line motm">
+          <span class="spot-tier-medal">⭐</span>
+          <span class="spot-tier-txt">MOTM · exclusief</span>
+          <span class="spot-tier-tag">1 plek</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── LIVE PREVIEWS ─────────── -->
+<section class="container reveal" id="previews">
+  <div class="sect-head">
+    <span class="eyebrow">Echte voorbeelden</span>
+    <h2 class="sect-title">Dit is wat Matchly <span class="it">genereert</span>.</h2>
+    <p class="sect-sub">Directe output van Kethel Spaland — geen mockup, gewoon de echte app.</p>
+  </div>
+
+  <!-- Echte screenshots boven -->
+  <div class="real-examples">
+
+    <div class="real-example-card">
+      <div class="real-example-tag">
+        <span class="prev-tag-label">Match-post</span>
+        <span class="prev-tag-format">1:1 · Instagram</span>
+      </div>
+      <div class="real-example-img">
+        <img src="assets/voorbeeld-match1.png" alt="Match-post Kethel Spaland 1-0 Oegstgeest" loading="lazy" />
+      </div>
+      <div class="real-example-foot">
+        <span class="real-example-club">Kethel Spaland · 1-0 Oegstgeest</span>
+        <span class="real-example-spons-count">Goud-sponsoren zichtbaar</span>
+      </div>
+    </div>
+
+    <div class="real-example-card">
+      <div class="real-example-tag">
+        <span class="prev-tag-label">Match-post</span>
+        <span class="prev-tag-format">1:1 · met tijdlijn</span>
+      </div>
+      <div class="real-example-img">
+        <img src="assets/voorbeeld-match2.png" alt="Match-post Kethel Spaland 1-0 Hbss" loading="lazy" />
+      </div>
+      <div class="real-example-foot">
+        <span class="real-example-club">Kethel Spaland · 1-0 Hbss</span>
+        <span class="real-example-spons-count">Goud + zilver zichtbaar</span>
+      </div>
+    </div>
+
+    <div class="real-example-card">
+      <div class="real-example-tag">
+        <span class="prev-tag-label">Man of the Match-story</span>
+        <span class="prev-tag-format">9:16 · Story</span>
+      </div>
+      <div class="real-example-img portrait">
+        <img src="assets/voorbeeld-motm.png" alt="Man of the Match-story Ramon Hoppe" loading="lazy" />
+      </div>
+      <div class="real-example-foot">
+        <span class="real-example-club">Ramon Hoppe · Kethel Spaland</span>
+        <span class="real-example-spons-count">MOTM-sponsor: Wijnhuis Bourgondië</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Sponsor strip uitleg -->
+  <div class="spons-example-block">
+    <div class="spons-example-label">
+      <span class="eyebrow">Het sponsormodel</span>
+      <p>Drie niveaus die je als club aanbiedt aan je sponsoren. Elk niveau bepaalt wáár het logo verschijnt. Een kant-en-klaar, professioneel aanbod waarmee je het gesprek met bedrijven aangaat — de prijs bepaal je samen met de sponsor.</p>
+    </div>
+
+    <div class="spons-tiers">
+
+      <div class="spons-tier-card goud">
+        <div class="spons-tier-head">
+          <div class="spons-tier-medal">🥇</div>
+          <div>
+            <div class="spons-tier-name">Goud</div>
+            <div class="spons-tier-role">Hoofdsponsor · 5 plekken</div>
+          </div>
+        </div>
+        <div class="spons-tier-desc">Zichtbaar op <strong>álle</strong> social media content: match-post, match-story én MOTM-story. Maximale, gegarandeerde zichtbaarheid bij elke wedstrijd.</div>
+        <div class="spons-tier-tiles">
+          <div class="spons-tier-tile">Van Dijk Vastgoed</div>
+          <div class="spons-tier-tile">Transport Nova</div>
+          <div class="spons-tier-tile">Keuken Plaza</div>
+          <div class="spons-tier-tile">SportXL</div>
+          <div class="spons-tier-tile">BouwMaat Pro</div>
+        </div>
+      </div>
+
+      <div class="spons-tier-card zilver">
+        <div class="spons-tier-head">
+          <div class="spons-tier-medal">🥈</div>
+          <div>
+            <div class="spons-tier-name">Zilver</div>
+            <div class="spons-tier-role">Story-sponsor · 4 plekken</div>
+          </div>
+        </div>
+        <div class="spons-tier-desc">Zichtbaar op de match-story én MOTM-story. Altijd in beeld — de story verschijnt na élke wedstrijd, ook bij verlies. Ideaal voor instappers.</div>
+        <div class="spons-tier-tiles">
+          <div class="spons-tier-tile">Café De Hoek</div>
+          <div class="spons-tier-tile">Meubel Markt</div>
+          <div class="spons-tier-tile">Bloemen Roos</div>
+          <div class="spons-tier-tile">Slagerij Jansen</div>
+        </div>
+      </div>
+
+      <div class="spons-tier-card brons">
+        <div class="spons-tier-head">
+          <div class="spons-tier-medal">🥉</div>
+          <div>
+            <div class="spons-tier-name">Brons</div>
+            <div class="spons-tier-role">Teamsponsor · 1 plek</div>
+          </div>
+        </div>
+        <div class="spons-tier-desc">Zichtbaar op de match-story én MOTM-story. Direct verbonden aan jóuw team — voor de trouwe sponsor van één specifiek elftal, bijvoorbeeld de tenuesponsor.</div>
+        <div class="spons-tier-tiles">
+          <div class="spons-tier-tile">Garage Hellevoort</div>
+        </div>
+      </div>
+
+      <div class="spons-tier-card motm">
+        <div class="spons-tier-head">
+          <div class="spons-tier-medal">⭐</div>
+          <div>
+            <div class="spons-tier-name">MOTM</div>
+            <div class="spons-tier-role">Exclusief · los van pakketten</div>
+          </div>
+        </div>
+        <div class="spons-tier-desc">Eén exclusieve, opvallende positie bovenaan de Man of the Match-story. Extra groot in beeld, maximale associatie met de uitblinker van de week.</div>
+        <div class="spons-tier-tiles">
+          <div class="spons-tier-tile">Wijnhuis Bourgondië</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="spons-example-note">
+      <strong>Zo werk je slim aan sponsoring:</strong> je geeft elke sponsor een duidelijke, herkenbare plek en laat wekelijks zien wat het oplevert. De afspraken en bedragen maak je zelf met de bedrijven — Matchly zorgt dat hun logo daarna automatisch op de juiste plek verschijnt. Organiseer je je sponsoring goed, dan kost Matchly je uiteindelijk niks.
+    </div>
+  </div>
+
+</section>
+
+<!-- ─────────── PRICING ─────────── -->
+<section class="container reveal" id="pricing">
+  <div class="sect-head">
+    <span class="eyebrow">Prijzen</span>
+    <h2 class="sect-title">Past bij elke club. <span class="it">Groot</span> of <span class="it">klein</span>.</h2>
+    <p class="sect-sub">Elke club start met <strong style="color: var(--pink-soft);">2 weken gratis</strong>. Daarna automatisch over in het gekozen pakket. Alle pakketten met dezelfde premium uitstraling — het verschil zit in het aantal teams.</p>
+  </div>
+
+  <!-- Billing toggle -->
+  <div class="billing-toggle">
+    <div class="billing-toggle-inner">
+      <div class="billing-pill" id="billing-pill"></div>
+      <button class="billing-btn active" data-billing="monthly">Per maand</button>
+      <button class="billing-btn" data-billing="seasonal">Per seizoen <span class="billing-save">2 mnd gratis</span></button>
+    </div>
+  </div>
+
+  <div class="pricing">
+
+    <!-- 1. Single -->
+    <div class="price-card">
+      <div class="price-name">Single</div>
+      <div class="price-tag">
+        <span class="amt" data-monthly="€15" data-seasonal="€150">€15</span><span class="per" data-monthly="/maand" data-seasonal="/seizoen">/maand</span>
+      </div>
+      <div class="price-yearly-meta" data-monthly="of €150/seizoen" data-seasonal="<span class='save'>€30 voordeel</span> · 10× maandbedrag">of €150/seizoen</div>
+      <div class="price-desc">Voor één team dat snel professioneel wil communiceren.</div>
+      <ul class="price-feat">
+        <li><span class="ic">✓</span> 1 team</li>
+        <li><span class="ic">✓</span> 5× content per team per wedstrijd</li>
+        <li><span class="ic">✓</span> Sponsors in 3 niveaus + MOTM</li>
+        <li><span class="ic">✓</span> WhatsApp-deelknop</li>
+        <li><span class="ic">✓</span> Wedstrijdverslag voor website</li>
+      </ul>
+      <a href="aanmelden.html" class="price-cta">Abonneer nu</a>
+    </div>
+
+    <!-- 2. Basic -->
+    <div class="price-card">
+      <div class="price-name">Basic</div>
+      <div class="price-tag">
+        <span class="amt" data-monthly="€49" data-seasonal="€490">€49</span><span class="per" data-monthly="/maand" data-seasonal="/seizoen">/maand</span>
+      </div>
+      <div class="price-yearly-meta" data-monthly="of €490/seizoen" data-seasonal="<span class='save'>€98 voordeel</span> · 10× maandbedrag">of €490/seizoen</div>
+      <div class="price-desc">Voor clubs die tot vier teams consistent willen laten communiceren.</div>
+      <ul class="price-feat">
+        <li><span class="ic">✓</span> Tot 4 teams</li>
+        <li><span class="ic">✓</span> 5× content per team per wedstrijd</li>
+        <li><span class="ic">✓</span> Sponsors in 3 niveaus + MOTM</li>
+        <li><span class="ic">✓</span> WhatsApp-deelknop</li>
+        <li><span class="ic">✓</span> Wedstrijdverslag voor website</li>
+      </ul>
+      <a href="aanmelden.html" class="price-cta">Abonneer nu</a>
+    </div>
+
+    <!-- 3. Pro (featured) -->
+    <div class="price-card featured">
+      <div class="price-badge">Meest gekozen</div>
+      <div class="price-name">Pro</div>
+      <div class="price-tag">
+        <span class="amt" data-monthly="€79" data-seasonal="€790">€79</span><span class="per" data-monthly="/maand" data-seasonal="/seizoen">/maand</span>
+      </div>
+      <div class="price-yearly-meta" data-monthly="of €790/seizoen" data-seasonal="<span class='save'>€158 voordeel</span> · 10× maandbedrag">of €790/seizoen</div>
+      <div class="price-desc">De standaard voor clubs met meerdere actieve teams en een vaste communicatieflow.</div>
+      <ul class="price-feat">
+        <li><span class="ic">✓</span> Tot 8 teams</li>
+        <li><span class="ic">✓</span> 5× content per team per wedstrijd</li>
+        <li><span class="ic">✓</span> Sponsors in 3 niveaus + MOTM</li>
+        <li><span class="ic">✓</span> WhatsApp-deelknop</li>
+        <li><span class="ic">✓</span> Wedstrijdverslag voor website</li>
+      </ul>
+      <a href="aanmelden.html" class="price-cta">Abonneer nu</a>
+    </div>
+
+    <!-- 4. Ultra -->
+    <div class="price-card">
+      <div class="price-name">Ultra</div>
+      <div class="price-tag">
+        <span class="amt" data-monthly="€119" data-seasonal="€1.190">€119</span><span class="per" data-monthly="/maand" data-seasonal="/seizoen">/maand</span>
+      </div>
+      <div class="price-yearly-meta" data-monthly="of €1.190/seizoen" data-seasonal="<span class='save'>€238 voordeel</span> · 10× maandbedrag">of €1.190/seizoen</div>
+      <div class="price-desc">Voor verenigingen die elk team in één centrale omgeving willen brengen.</div>
+      <ul class="price-feat">
+        <li><span class="ic">✓</span> Alle teams van de club</li>
+        <li><span class="ic">✓</span> 5× content per team per wedstrijd</li>
+        <li><span class="ic">✓</span> Sponsors in 3 niveaus + MOTM</li>
+        <li><span class="ic">✓</span> WhatsApp-deelknop</li>
+        <li><span class="ic">✓</span> Wedstrijdverslag voor website</li>
+      </ul>
+      <a href="aanmelden.html" class="price-cta">Abonneer nu</a>
+    </div>
+
+  </div>
+
+  <!-- ─────────── IN ELK PAKKET INBEGREPEN ─────────── -->
+  <div class="included-wrap">
+
+    <div class="included-head">
+      <span class="eyebrow"><span class="dot"></span> In elk pakket inbegrepen</span>
+      <h3>Dezelfde kracht voor <span class="it">elk team</span>, ongeacht het pakket.</h3>
+      <p>Alle pakketten leveren vandaag hetzelfde complete contentpakket per wedstrijd. Het verschil zit nu in het aantal teams — <span class="grad-text">in de toekomst kunnen clubs abonneren op nieuwe functionaliteiten</span>.</p>
+    </div>
+
+    <!-- 5x content per match -->
+    <div class="per-match-label">
+      <span><span class="big">5×</span> content per wedstrijd</span>
+    </div>
+    <div class="content-tiles">
+      <div class="ctile">
+        <div class="ctile-num">01</div>
+        <div class="ctile-icon">▢</div>
+        <h4>Match post</h4>
+        <p>Eindstand-visual voor de feed, met sponsorbalk en clubbranding.</p>
+        <span class="ctile-fmt">1:1 · Instagram</span>
+      </div>
+      <div class="ctile">
+        <div class="ctile-num">02</div>
+        <div class="ctile-icon">▯</div>
+        <h4>Match story</h4>
+        <p>Verticale versie voor stories, geoptimaliseerd voor mobiel beeld.</p>
+        <span class="ctile-fmt">9:16 · Story</span>
+      </div>
+      <div class="ctile">
+        <div class="ctile-num">03</div>
+        <div class="ctile-icon">★</div>
+        <h4>MOTM story</h4>
+        <p>Spotlight op de uitblinker, met eigen MOTM-sponsor.</p>
+        <span class="ctile-fmt">9:16 · Story</span>
+      </div>
+      <div class="ctile">
+        <div class="ctile-num">04</div>
+        <div class="ctile-icon">⌬</div>
+        <h4>WhatsApp bericht</h4>
+        <p>Klaar voor team-, familie- en supportersgroepen, met link.</p>
+        <span class="ctile-fmt">Tekst + link</span>
+      </div>
+      <div class="ctile">
+        <div class="ctile-num">05</div>
+        <div class="ctile-icon">⌘</div>
+        <h4>Wedstrijdverslag</h4>
+        <p>Compleet verslag, klaar voor de clubwebsite of nieuwsbrief.</p>
+        <span class="ctile-fmt">HTML · Website</span>
+      </div>
+    </div>
+
+    <!-- Extras row -->
+    <div class="extras-grid">
+
+      <div class="extra-card">
+        <span class="eyebrow">Sponsorintegratie</span>
+        <h4>Goud, zilver, brons & MOTM.</h4>
+        <p>Deel je sponsoren in op niveau. Goud krijgt de grootste positie, daarna zilver en brons. Plus een eigen MOTM-sponsor bij elke uitblinker.</p>
+        <div class="sponsorslots-visual">
+          <div class="slot-label">— Goud —</div>
+          <div class="slot-row-club">
+            <div class="slot rotating tier-goud-slot">GOUD</div>
+            <div class="slot rotating tier-goud-slot">GOUD</div>
+          </div>
+          <div class="slot-label">— Zilver &amp; brons —</div>
+          <div class="slot-row-club">
+            <div class="slot rotating tier-zilver-slot">ZILVER</div>
+            <div class="slot rotating tier-zilver-slot">ZILVER</div>
+            <div class="slot rotating tier-brons-slot">BRONS</div>
+          </div>
+          <div class="slot-label">— MOTM-sponsor —</div>
+          <div class="slot-row-special">
+            <div class="slot">MOTM</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="extra-card">
+        <span class="eyebrow">Design</span>
+        <h4>Kies je eigen design uit het <span class="it">ruime aanbod</span>.</h4>
+        <p>Een breed aanbod aan thema's om uit te kiezen. Eenmaal gekozen, blijft de uitstraling consistent over elke wedstrijd, elk team en elk format.</p>
+        <div class="design-themes">
+          <div class="theme-tile t1 active"></div>
+          <div class="theme-tile t2"></div>
+          <div class="theme-tile t3"></div>
+        </div>
+      </div>
+
+      <!-- Full width dashboard card -->
+      <div class="dashboard-card">
+        <div class="dash-text">
+          <span class="eyebrow"><span class="dot"></span> Matchly Club Admin</span>
+          <h4>Eén app om je hele <span class="it">club</span> te beheren.</h4>
+          <p>Naast de team-app is er de Club Admin app — de centrale plek waar het bestuur of de hoofdbeheerder alles voor de vereniging regelt.</p>
+          <ul class="dash-list">
+            <li>
+              <span class="dash-list-ic">▦</span>
+              <div>
+                <strong>Club &amp; teams</strong>
+                <span>Clubgegevens, website, voetbal.nl-clubcode en alle teams op één plek.</span>
+              </div>
+            </li>
+            <li>
+              <span class="dash-list-ic">▣</span>
+              <div>
+                <strong>Centraal sponsorbeheer</strong>
+                <span>Beheer je goud-, zilver- en bronssponsoren en de MOTM-sponsor vanuit één plek.</span>
+              </div>
+            </li>
+            <li>
+              <span class="dash-list-ic">◇</span>
+              <div>
+                <strong>Abonnement &amp; clubinfo</strong>
+                <span>Je Instagram- en Facebook-naam komen automatisch terug in de content. Plus beheer van het clubabonnement.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="dash-phone">
+          <div class="dash-phone-frame">
+            <img src="assets/app-club-admin.jpg" alt="Matchly Club Admin app — clubbeheer" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────── APP IN ACTIE ─────────── -->
+<section class="container reveal" id="app">
+  <div class="sect-head">
+    <span class="eyebrow">Zie de app</span>
+    <h2 class="sect-title">Zo ziet <span class="it">Matchly</span> eruit.</h2>
+    <p class="sect-sub">Gebouwd voor langs de lijn — snel, overzichtelijk en zonder gedoe.</p>
+  </div>
+
+  <div class="app-gallery">
+
+    <div class="app-shot">
+      <div class="app-shot-frame">
+        <img src="assets/app-01-aankomend.jpg" alt="Startscherm — aankomende wedstrijd" loading="lazy" />
+      </div>
+      <div class="app-shot-cap">
+        <span class="app-shot-num">01</span>
+        <div>
+          <div class="app-shot-title">Startscherm</div>
+          <div class="app-shot-sub">Laad automatisch de tegenstander en opstelling</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-shot">
+      <div class="app-shot-frame">
+        <img src="assets/app-02-starten.jpg" alt="Startscherm — weer kiezen en starten" loading="lazy" />
+      </div>
+      <div class="app-shot-cap">
+        <span class="app-shot-num">02</span>
+        <div>
+          <div class="app-shot-title">Klaar voor de aftrap</div>
+          <div class="app-shot-sub">Kies het weer en start de wedstrijd</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-shot">
+      <div class="app-shot-frame">
+        <img src="assets/app-03-live.jpg" alt="Live menu — goals, kaarten, wissels, spelbeeld" loading="lazy" />
+      </div>
+      <div class="app-shot-cap">
+        <span class="app-shot-num">03</span>
+        <div>
+          <div class="app-shot-title">Live registreren</div>
+          <div class="app-shot-sub">Goals, kaarten, wissels en spelbeeld</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-shot">
+      <div class="app-shot-frame">
+        <img src="assets/app-04-doelpunt.jpg" alt="Doelpunt registreren" loading="lazy" />
+      </div>
+      <div class="app-shot-cap">
+        <span class="app-shot-num">04</span>
+        <div>
+          <div class="app-shot-title">Doelpunt vastleggen</div>
+          <div class="app-shot-sub">Scorer, assist en type — in een paar tikken</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-shot">
+      <div class="app-shot-frame">
+        <img src="assets/app-05-momenten.jpg" alt="Wedstrijdmomenten" loading="lazy" />
+      </div>
+      <div class="app-shot-cap">
+        <span class="app-shot-num">05</span>
+        <div>
+          <div class="app-shot-title">Wedstrijdmomenten</div>
+          <div class="app-shot-sub">Grote kansen, blessures en bijzondere info</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-shot">
+      <div class="app-shot-frame">
+        <img src="assets/app-06-afsluiten.jpg" alt="Man of the Match en afsluiten" loading="lazy" />
+      </div>
+      <div class="app-shot-cap">
+        <span class="app-shot-num">06</span>
+        <div>
+          <div class="app-shot-title">Afsluiten &amp; MOTM</div>
+          <div class="app-shot-sub">Kies de uitblinker en genereer de content</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="app-gallery-hint">← Scroll voor meer schermen →</div>
+</section>
+
+<!-- ─────────── FAQ ─────────── -->
+<section class="container reveal" id="faq">
+  <div class="sect-head">
+    <span class="eyebrow">Veelgestelde vragen</span>
+    <h2 class="sect-title">Alles wat je wil <span class="it">weten</span>.</h2>
+    <p class="sect-sub">Staat jouw vraag er niet bij? Stuur ons een mail op <a href="mailto:hallo@matchlycontent.nl" style="color: var(--pink-soft);">hallo@matchlycontent.nl</a></p>
+  </div>
+
+  <div class="faq-list">
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-text">Werkt Matchly op iPhone én Android?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <div class="faq-a-inner">
+          Ja, Matchly werkt op beide. De app is een <strong>Progressive Web App (PWA)</strong> — dat betekent dat je 'm niet uit een app store hoeft te downloaden. Open de app gewoon in je browser en voeg hem toe aan je beginscherm. Dat werkt op iPhone (Safari) én Android (Chrome). Geen installatie, geen updates bijhouden.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-text">Kan ik Matchly proberen voor ik betaal?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <div class="faq-a-inner">
+          Ja! Elke club start met <strong>2 weken gratis proberen</strong> — geen betaling vooraf. Na de proefperiode gaat je abonnement automatisch over in het <strong>Single-pakket</strong>, tenzij je voor een groter pakket kiest. Zo ontdek je eerst rustig of Matchly bij je club past. Heb je vragen voor je begint? Stuur ons gerust een mail, we helpen je graag op weg.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-text">Hoe lang duurt het om te starten?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <div class="faq-a-inner">
+          Vanaf het moment dat je abonneert ben je binnen <strong>15 minuten klaar</strong> voor de eerste wedstrijd. Je vult je clubnaam en teamgegevens in, voegt je spelers toe, laadt je sponsorlogo's in — en de eerste keer dat je een wedstrijd registreert rolt de content er direct uit. Er is geen technische kennis voor nodig.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-text">Hoe werkt de sponsorintegratie precies?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <div class="faq-a-inner">
+          Je laadt de logo's van je sponsoren één keer in via het clubdashboard en deelt ze in op niveau. Matchly verwerkt ze daarna <strong>automatisch in elke gegenereerde post</strong>. Je hebt drie niveaus — <strong>goud, zilver en brons</strong> — waarbij goud-sponsoren de meest prominente positie krijgen. Daarnaast is er een apart MOTM-sponsor-slot dat bij de Man of the Match-post hoort. Je sponsoren verschijnen zo zonder extra werk in elke wedstrijdpost.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-text">Kan ik meerdere teams beheren vanuit één account?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <div class="faq-a-inner">
+          Ja, afhankelijk van je pakket. Met <strong>Basic</strong> beheer je tot 4 teams, met <strong>Pro</strong> tot 8 teams, en met <strong>Ultra</strong> alle teams van de club. Elke elftalleider heeft zijn eigen omgeving en kan zelfstandig wedstrijden registreren. Vanuit het centrale clubdashboard zie je alles overzichtelijk bij elkaar — teams, leiders, sponsoren en wedstrijden.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-text">Werkt Matchly ook voor jeugdteams?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <div class="faq-a-inner">
+          Absoluut. Matchly werkt voor elk soort team — senioren, dames, veteranen én jeugd. De app maakt geen onderscheid. <strong>Belangrijk voor jeugdteams:</strong> zorg dat je als club toestemming hebt van ouders/verzorgers voor het publiceren van namen en beeldmateriaal van minderjarige spelers. Dit is een wettelijke verplichting die bij de club ligt, niet bij Matchly. Onze privacyverklaring beschrijft dit verder.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">
+        <span class="faq-q-text">Hoe werkt het seizoensabonnement?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-a">
+        <div class="faq-a-inner">
+          Bij een seizoensabonnement betaal je <strong>10× het maandbedrag</strong> voor een vol jaar toegang — je betaalt dus effectief 2 maanden niet. Dat is handig voor clubs die weten dat ze het hele seizoen actief zijn. Je betaalt eenmalig vooraf en hebt daarna 12 maanden toegang. Opzeggen hoeft niet — het abonnement loopt gewoon af na het seizoen. Je kunt dan kiezen of je verlengt.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────── FINAL CTA ─────────── -->
+<section class="final" id="start">
+  <div class="final-inner">
+    <div class="final-logo">
+      <img src="assets/matchly-logo.jpg" alt="Matchly — Van wedstrijd. Naar content." />
+    </div>
+    <h2>Laat je club communiceren als een <span class="it">professionele</span> organisatie.</h2>
+    <p>Probeer Matchly 2 weken gratis. Daarna gaat je abonnement automatisch over in het Single-pakket, of een groter pakket als je dat kiest. Geen installatie — open de app, voeg toe aan je beginscherm, en je bent klaar voor de volgende wedstrijd.</p>
+    <div class="cta-row" style="justify-content: center;">
+      <a href="aanmelden.html" class="btn btn-primary">Abonneer nu <span class="arr">→</span></a>
+      <a href="https://app.matchlycontent.nl" class="btn btn-secondary">Open de app</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────── FOOTER ─────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="foot-brand">
+      <a href="#" class="logo">
+        <span class="logo-mark">
+          <img src="assets/matchly-pwa.png" alt="Matchly" />
+        </span>
+        Matchly
+      </a>
+      <div class="tagline">Van wedstrijd. Naar content.</div>
+      <p>Het content-platform voor amateurvoetbalclubs. Gemaakt langs de lijn, voor langs de lijn.</p>
+    </div>
+    <div class="foot-col">
+      <h4>Product</h4>
+      <ul>
+        <li><a href="#hoe">Hoe het werkt</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#previews">Previews</a></li>
+        <li><a href="#pricing">Prijzen</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Club</h4>
+      <ul>
+        <li><a href="aanmelden.html">Abonneer nu</a></li>
+        <li><a href="mailto:hallo@matchlycontent.nl">Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4>Juridisch</h4>
+      <ul>
+        <li><a href="mailto:hallo@matchlycontent.nl">hallo@matchlycontent.nl</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="voorwaarden.html">Voorwaarden</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <div>© 2026 Matchly</div>
+    <div>v1.0 · Built for clubs</div>
+  </div>
+</footer>
+
+<script>
+  // Activeer reveal-animatie alleen als JS draait
+  document.documentElement.classList.add('js-ready');
+
+  // IntersectionObserver met support-check
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  } else {
+    // Oude browser: maak alles direct zichtbaar
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+  }
+
+  // Safety: alles dat na 3 seconden nog niet zichtbaar is, alsnog tonen
+  setTimeout(() => {
+    document.querySelectorAll('.reveal:not(.in)').forEach((el) => el.classList.add('in'));
+  }, 3000);
+
+  // ─────────── BILLING TOGGLE ───────────
+  (function() {
+    const buttons = document.querySelectorAll('.billing-btn');
+    const pill = document.getElementById('billing-pill');
+    if (!buttons.length || !pill) return;
+
+    // Position pill onder de actieve knop
+    function positionPill(activeBtn) {
+      const parent = activeBtn.parentElement;
+      const parentRect = parent.getBoundingClientRect();
+      const btnRect = activeBtn.getBoundingClientRect();
+      pill.style.width = (btnRect.width) + 'px';
+      pill.style.transform = `translateX(${btnRect.left - parentRect.left - 4}px)`;
+    }
+
+    // Initiale positie
+    const initial = document.querySelector('.billing-btn.active');
+    if (initial) {
+      // Korte delay want font moet geladen zijn voor goede breedte
+      setTimeout(() => positionPill(initial), 50);
+      window.addEventListener('load', () => positionPill(initial));
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        positionPill(btn);
+
+        // Switch all data-{monthly|seasonal} content
+        const mode = btn.dataset.billing; // 'monthly' or 'seasonal'
+        document.querySelectorAll('[data-monthly][data-seasonal]').forEach(el => {
+          const value = el.dataset[mode];
+          // .price-yearly-meta gebruikt HTML (vanwege <span class='save'>), anders innerText
+          if (el.classList.contains('price-yearly-meta')) {
+            el.innerHTML = value;
+          } else {
+            el.textContent = value;
+          }
+        });
+      });
+    });
+
+    // Repositioneer pill bij resize
+    window.addEventListener('resize', () => {
+      const active = document.querySelector('.billing-btn.active');
+      if (active) positionPill(active);
+    });
+  })();
+
+  // ─────────── PARTICLES ───────────
+  (function() {
+    const canvas = document.getElementById('particles');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animId;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+
+    // Create particles
+    const COLORS = ['rgba(38,67,217,', 'rgba(233,30,99,', 'rgba(125,46,176,'];
+    for (let i = 0; i < 55; i++) {
+      particles.push({
+        x: rand(0, window.innerWidth),
+        y: rand(0, window.innerHeight),
+        r: rand(1, 3),
+        color: COLORS[Math.floor(rand(0, COLORS.length))],
+        alpha: rand(0.15, 0.5),
+        vx: rand(-0.2, 0.2),
+        vy: rand(-0.3, -0.08),
+        life: rand(0, 1)
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + p.alpha + ')';
+        ctx.fill();
+
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life += 0.003;
+        p.alpha = Math.sin(p.life * Math.PI) * 0.5;
+
+        if (p.y < -10 || p.life >= 1) {
+          p.y = canvas.height + 10;
+          p.x = rand(0, canvas.width);
+          p.life = 0;
+        }
+      });
+      animId = requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  // ─────────── FAQ ACCORDION ───────────
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      // Sluit alle andere
+      document.querySelectorAll('.faq-item.open').forEach(other => {
+        if (other !== item) other.classList.remove('open');
+      });
+      item.classList.toggle('open', !isOpen);
+    });
+  });
+
+</script>
+
+</body>
+</html>
