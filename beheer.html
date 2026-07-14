@@ -8,9 +8,11 @@
   :root { --primary: #1a6fd4; --bg: #f4f5f7; --card: #ffffff; --text: #1a1a1a; --muted: #6b7280; --danger: #d92626; }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); padding-bottom: 48px; }
-  header { background: var(--primary); color: #fff; padding: 18px 16px 14px; }
+  header { background: var(--primary); color: #fff; padding: 18px 16px 14px; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
   header h1 { margin: 0; font-size: 18px; font-weight: 700; }
   header p { margin: 2px 0 0; font-size: 13px; opacity: .85; }
+  .wa-back { flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.18); color: #fff; text-decoration: none; font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 999px; white-space: nowrap; }
+  .wa-back:active { background: rgba(255,255,255,.3); }
   nav.tabs { display: flex; position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e5e7eb; z-index: 10; }
   nav.tabs a.tab { flex: 1; text-align: center; padding: 12px 4px; text-decoration: none; color: var(--muted); font-size: 13px; font-weight: 600; border-bottom: 3px solid transparent; }
   nav.tabs a.tab-active { color: var(--primary); border-bottom-color: var(--primary); }
@@ -22,6 +24,9 @@
   .meta { font-size: 13px; color: var(--muted); margin-top: 2px; }
   .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #eef2ff; color: #3730a3; }
   .badge-hoofd { background: #fef3c7; color: #92400e; }
+  .badge-type { background: #f1f5f9; color: #475569; margin-left: 6px; }
+  .badge-type-beker { background: #fef3c7; color: #92400e; }
+  .badge-type-oefen { background: #ecfdf5; color: #065f46; }
   button, .btn { font-size: 14px; font-weight: 600; padding: 9px 14px; border-radius: 8px; border: none; cursor: pointer; }
   .btn-primary { background: var(--primary); color: #fff; }
   .btn-outline { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
@@ -52,6 +57,10 @@
   // NIEUW: de API draait op Supabase (kan zelf geen HTML serveren, zie beheer-functie), dus deze
   // statische pagina op Netlify haalt alles op via fetch() en rendert client-side.
   var API_URL = 'https://qoemlqlhnrzvyujyehnc.supabase.co/functions/v1/beheer';
+  // NIEUW: rechtstreekse terugkeer naar het WhatsApp-menu. 'text=menu' staat al klaar in het
+  // invoerveld -- de gebruiker hoeft alleen op verzenden te tikken om meteen het menu te zien,
+  // i.p.v. zelf te moeten bedenken wat te typen na het verlaten van deze pagina.
+  var WHATSAPP_MENU_LINK = 'https://wa.me/31620767042?text=menu';
 
   function getTokenFromPath() {
     // Pad ziet er zo uit: /beheer/<token> -- pak het segment na 'beheer'.
@@ -84,20 +93,22 @@
     document.title = club.name + ' -- Matchly beheer';
     document.documentElement.style.setProperty('--primary', club.color_prim || '#1a6fd4');
     app.innerHTML =
-      '<header><h1>' + escapeHtml(club.name) + '</h1><p>Matchly beheerpagina</p></header>' +
+      '<header><div><h1>' + escapeHtml(club.name) + '</h1><p>Matchly beheerpagina</p></div>' +
+      '<a class="wa-back" href="' + WHATSAPP_MENU_LINK + '">\u2b05\ufe0f WhatsApp</a></header>' +
       '<nav class="tabs">' + tabLink('programma', '\u26bd Programma') + tabLink('sponsors', '\ud83d\udcbc Sponsors') + tabLink('fotos', '\ud83d\udcf8 Foto\'s') + '</nav>' +
       '<main>' + (flashHtml || '') + bodyHtml + '</main>' +
       '<footer>Wijzigingen zijn direct zichtbaar. Vragen? Stuur gewoon een appje naar Matt op WhatsApp.</footer>';
   }
 
   function renderNotValid(message) {
-    app.innerHTML = '<div class="not-valid"><div><h2>Deze link is niet (meer) geldig \u26a0\ufe0f</h2><p>' + escapeHtml(message || 'Vraag in WhatsApp aan Matt om een nieuwe beheerlink door \'menu\' te typen.') + '</p></div></div>';
+    app.innerHTML = '<div class="not-valid"><div><h2>Deze link is niet (meer) geldig \u26a0\ufe0f</h2><p>' + escapeHtml(message || 'Vraag in WhatsApp aan Matt om een nieuwe beheerlink door \'menu\' te typen.') + '</p><p style="margin-top:16px;"><a class="btn btn-primary" href="' + WHATSAPP_MENU_LINK + '" style="text-decoration:none;display:inline-block;">\u2b05\ufe0f Terug naar WhatsApp</a></p></div></div>';
   }
 
   function renderProgramma(fixtures) {
     var rows = (fixtures || []).map(function (f) {
+      var typeClass = f.matchType === 'beker' ? ' badge-type-beker' : f.matchType === 'oefen' ? ' badge-type-oefen' : '';
       return '<div class="row"><div>' +
-        '<div class="name">' + (f.isHome ? 'Thuis' : 'Uit') + ' tegen ' + escapeHtml(f.opponent) + '</div>' +
+        '<div class="name">' + (f.isHome ? 'Thuis' : 'Uit') + ' tegen ' + escapeHtml(f.opponent) + '<span class="badge badge-type' + typeClass + '">' + escapeHtml(f.matchTypeLabel || 'Competitie') + '</span></div>' +
         '<div class="meta">' + escapeHtml(f.dateLabel) + '</div>' +
         '</div><button class="btn-danger btn-sm" data-action="delete_fixture" data-fixture-id="' + f.id + '">Verwijder</button></div>';
     }).join('');
@@ -106,6 +117,12 @@
       '<div class="card add-form">' +
       '<strong>Wedstrijd toevoegen</strong>' +
       '<form id="addFixtureForm">' +
+      '<label>Type wedstrijd</label>' +
+      '<div class="radio-group">' +
+      '<label><input type="radio" name="match_type" value="competitie" checked> Competitie</label>' +
+      '<label><input type="radio" name="match_type" value="beker"> Beker</label>' +
+      '<label><input type="radio" name="match_type" value="oefen"> Oefen</label>' +
+      '</div>' +
       '<label>Tegenstander</label><input type="text" name="opponent" placeholder="bv. Excelsior Maassluis" required>' +
       '<label>Datum</label><input type="date" name="date" required>' +
       '<label>Tijd</label><input type="time" name="time" value="14:30" required>' +
@@ -182,7 +199,7 @@
     if (fixtureForm) fixtureForm.addEventListener('submit', async function (e) {
       e.preventDefault();
       var fd = new FormData(fixtureForm);
-      var result = await postAction({ action: 'add_fixture', opponent: fd.get('opponent'), date: fd.get('date'), time: fd.get('time'), thuis_of_uit: fd.get('thuis_of_uit') });
+      var result = await postAction({ action: 'add_fixture', opponent: fd.get('opponent'), date: fd.get('date'), time: fd.get('time'), thuis_of_uit: fd.get('thuis_of_uit'), match_type: fd.get('match_type') });
       if (result.ok) load(result.flash); else alert(result.message || 'Er ging iets mis.');
     });
 
