@@ -27,6 +27,7 @@
   .badge-type { background: #f1f5f9; color: #475569; margin-left: 6px; }
   .badge-type-beker { background: #fef3c7; color: #92400e; }
   .badge-type-oefen { background: #ecfdf5; color: #065f46; }
+  .badge-type-promotie { background: #ede9fe; color: #5b21b6; }
   button, .btn { font-size: 14px; font-weight: 600; padding: 9px 14px; border-radius: 8px; border: none; cursor: pointer; }
   .btn-primary { background: var(--primary); color: #fff; }
   .btn-outline { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
@@ -106,7 +107,7 @@
 
   function renderProgramma(fixtures) {
     var rows = (fixtures || []).map(function (f) {
-      var typeClass = f.matchType === 'beker' ? ' badge-type-beker' : f.matchType === 'oefen' ? ' badge-type-oefen' : '';
+      var typeClass = f.matchType === 'beker' ? ' badge-type-beker' : f.matchType === 'oefen' ? ' badge-type-oefen' : f.matchType === 'promotie' ? ' badge-type-promotie' : '';
       return '<div class="row"><div>' +
         '<div class="name">' + (f.isHome ? 'Thuis' : 'Uit') + ' tegen ' + escapeHtml(f.opponent) + '<span class="badge badge-type' + typeClass + '">' + escapeHtml(f.matchTypeLabel || 'Competitie') + '</span></div>' +
         '<div class="meta">' + escapeHtml(f.dateLabel) + '</div>' +
@@ -118,10 +119,11 @@
       '<strong>Wedstrijd toevoegen</strong>' +
       '<form id="addFixtureForm">' +
       '<label>Type wedstrijd</label>' +
-      '<div class="radio-group">' +
+      '<div class="radio-group" style="flex-wrap:wrap;">' +
       '<label><input type="radio" name="match_type" value="competitie" checked> Competitie</label>' +
       '<label><input type="radio" name="match_type" value="beker"> Beker</label>' +
       '<label><input type="radio" name="match_type" value="oefen"> Oefen</label>' +
+      '<label><input type="radio" name="match_type" value="promotie"> Promotie/degradatie</label>' +
       '</div>' +
       '<label>Tegenstander</label><input type="text" name="opponent" placeholder="bv. Excelsior Maassluis" required>' +
       '<label>Datum</label><input type="date" name="date" required>' +
