@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Matchly beheer</title>
+<style>
+  :root { --primary: #1a6fd4; --bg: #f4f5f7; --card: #ffffff; --text: #1a1a1a; --muted: #6b7280; --danger: #d92626; }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); padding-bottom: 48px; }
+  header { background: var(--primary); color: #fff; padding: 18px 16px 14px; }
+  header h1 { margin: 0; font-size: 18px; font-weight: 700; }
+  header p { margin: 2px 0 0; font-size: 13px; opacity: .85; }
+  nav.tabs { display: flex; position: sticky; top: 0; background: #fff; border-bottom: 1px solid #e5e7eb; z-index: 10; }
+  nav.tabs a.tab { flex: 1; text-align: center; padding: 12px 4px; text-decoration: none; color: var(--muted); font-size: 13px; font-weight: 600; border-bottom: 3px solid transparent; }
+  nav.tabs a.tab-active { color: var(--primary); border-bottom-color: var(--primary); }
+  main { padding: 14px; max-width: 520px; margin: 0 auto; }
+  .card { background: var(--card); border-radius: 12px; padding: 14px; margin-bottom: 12px; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .row + .row { margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0; }
+  .name { font-weight: 600; font-size: 15px; }
+  .meta { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #eef2ff; color: #3730a3; }
+  .badge-hoofd { background: #fef3c7; color: #92400e; }
+  button, .btn { font-size: 14px; font-weight: 600; padding: 9px 14px; border-radius: 8px; border: none; cursor: pointer; }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-outline { background: #fff; color: var(--primary); border: 1.5px solid var(--primary); }
+  .btn-danger { background: #fff; color: var(--danger); border: 1.5px solid var(--danger); }
+  .btn-sm { padding: 6px 10px; font-size: 12px; }
+  input[type=text], input[type=date], input[type=time], input[type=file] { width: 100%; padding: 10px; border: 1.5px solid #dcdfe4; border-radius: 8px; font-size: 15px; margin-top: 4px; }
+  label { font-size: 13px; font-weight: 600; color: var(--muted); display: block; margin-top: 10px; }
+  .add-form button { margin-top: 14px; width: 100%; }
+  .flash { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; padding: 10px 12px; border-radius: 8px; font-size: 14px; margin-bottom: 12px; }
+  .error-box { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; padding: 10px 12px; border-radius: 8px; font-size: 14px; margin-bottom: 12px; }
+  .empty { color: var(--muted); font-size: 14px; text-align: center; padding: 20px 0; }
+  .thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .thumb { position: relative; aspect-ratio: 1; border-radius: 8px; overflow: hidden; background: #eee; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .thumb .del { position: absolute; top: 4px; right: 4px; padding: 4px 8px; font-size: 11px; }
+  .radio-group { display: flex; gap: 10px; margin-top: 6px; }
+  .radio-group label { font-weight: 500; color: var(--text); display: flex; align-items: center; gap: 4px; margin-top: 0; }
+  footer { text-align: center; color: var(--muted); font-size: 12px; padding: 20px 14px 0; }
+  .loading { text-align: center; color: var(--muted); padding: 60px 14px; font-size: 14px; }
+  .not-valid { font-family: -apple-system, sans-serif; background: #f4f5f7; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; text-align: center; color: #1a1a1a; }
+</style>
+</head>
+<body>
+<div id="app"><div class="loading">Bezig met laden&hellip;</div></div>
+
+<script>
+(function () {
+  // NIEUW: de API draait op Supabase (kan zelf geen HTML serveren, zie beheer-functie), dus deze
+  // statische pagina op Netlify haalt alles op via fetch() en rendert client-side.
+  var API_URL = 'https://qoemlqlhnrzvyujyehnc.supabase.co/functions/v1/beheer';
+
+  function getTokenFromPath() {
+    // Pad ziet er zo uit: /beheer/<token> -- pak het segment na 'beheer'.
+    var parts = location.pathname.split('/').filter(Boolean);
+    var idx = parts.indexOf('beheer');
+    return idx >= 0 && parts[idx + 1] ? decodeURIComponent(parts[idx + 1]) : '';
+  }
+
+  function getTab() {
+    var params = new URLSearchParams(location.search);
+    var t = (params.get('tab') || 'programma').toLowerCase();
+    return ['programma', 'sponsors', 'fotos'].indexOf(t) >= 0 ? t : 'programma';
+  }
+
+  function escapeHtml(s) {
+    return (s || '').toString()
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  var token = getTokenFromPath();
+  var tab = getTab();
+  var app = document.getElementById('app');
+
+  function tabLink(id, label) {
+    var active = id === tab ? ' tab-active' : '';
+    return '<a class="tab' + active + '" href="/beheer/' + encodeURIComponent(token) + '?tab=' + id + '">' + label + '</a>';
+  }
+
+  function renderShell(club, bodyHtml, flashHtml) {
+    document.title = club.name + ' -- Matchly beheer';
+    document.documentElement.style.setProperty('--primary', club.color_prim || '#1a6fd4');
+    app.innerHTML =
+      '<header><h1>' + escapeHtml(club.name) + '</h1><p>Matchly beheerpagina</p></header>' +
+      '<nav class="tabs">' + tabLink('programma', '\u26bd Programma') + tabLink('sponsors', '\ud83d\udcbc Sponsors') + tabLink('fotos', '\ud83d\udcf8 Foto\'s') + '</nav>' +
+      '<main>' + (flashHtml || '') + bodyHtml + '</main>' +
+      '<footer>Wijzigingen zijn direct zichtbaar. Vragen? Stuur gewoon een appje naar Matt op WhatsApp.</footer>';
+  }
+
+  function renderNotValid(message) {
+    app.innerHTML = '<div class="not-valid"><div><h2>Deze link is niet (meer) geldig \u26a0\ufe0f</h2><p>' + escapeHtml(message || 'Vraag in WhatsApp aan Matt om een nieuwe beheerlink door \'menu\' te typen.') + '</p></div></div>';
+  }
+
+  function renderProgramma(fixtures) {
+    var rows = (fixtures || []).map(function (f) {
+      return '<div class="row"><div>' +
+        '<div class="name">' + (f.isHome ? 'Thuis' : 'Uit') + ' tegen ' + escapeHtml(f.opponent) + '</div>' +
+        '<div class="meta">' + escapeHtml(f.dateLabel) + '</div>' +
+        '</div><button class="btn-danger btn-sm" data-action="delete_fixture" data-fixture-id="' + f.id + '">Verwijder</button></div>';
+    }).join('');
+
+    return '<div class="card">' + (rows || '<div class="empty">Nog geen wedstrijden gepland.</div>') + '</div>' +
+      '<div class="card add-form">' +
+      '<strong>Wedstrijd toevoegen</strong>' +
+      '<form id="addFixtureForm">' +
+      '<label>Tegenstander</label><input type="text" name="opponent" placeholder="bv. Excelsior Maassluis" required>' +
+      '<label>Datum</label><input type="date" name="date" required>' +
+      '<label>Tijd</label><input type="time" name="time" value="14:30" required>' +
+      '<div class="radio-group">' +
+      '<label><input type="radio" name="thuis_of_uit" value="thuis" checked> Thuis</label>' +
+      '<label><input type="radio" name="thuis_of_uit" value="uit"> Uit</label>' +
+      '</div>' +
+      '<button type="submit" class="btn-primary">Toevoegen</button>' +
+      '</form></div>';
+  }
+
+  function renderSponsors(sponsors) {
+    var rows = (sponsors || []).map(function (s) {
+      return '<div class="row"><div>' +
+        '<div class="name">' + escapeHtml(s.name) + '</div>' +
+        '<div class="meta"><span class="badge' + (s.tier === '1' ? ' badge-hoofd' : '') + '">' + (s.tier === '1' ? 'Hoofdsponsor' : 'Roulerend') + '</span></div>' +
+        '</div><div style="display:flex;gap:6px;">' +
+        '<button class="btn-outline btn-sm" data-action="toggle_tier" data-sponsor-id="' + s.id + '" data-current-tier="' + s.tier + '">' + (s.tier === '1' ? 'Maak roulerend' : 'Maak hoofdsponsor') + '</button>' +
+        '<button class="btn-danger btn-sm" data-action="delete_sponsor" data-sponsor-id="' + s.id + '">Verwijder</button>' +
+        '</div></div>';
+    }).join('');
+
+    return '<div class="card">' + (rows || '<div class="empty">Nog geen sponsors.</div>') + '</div>' +
+      '<div class="card add-form">' +
+      '<strong>Sponsor toevoegen</strong>' +
+      '<form id="addSponsorForm">' +
+      '<label>Naam</label><input type="text" name="name" placeholder="bv. De Bakker" required>' +
+      '<button type="submit" class="btn-primary">Toevoegen</button>' +
+      '</form></div>';
+  }
+
+  function renderFotos(photos, cloudName) {
+    var thumbs = (photos || []).map(function (p) {
+      return '<div class="thumb"><img src="' + escapeHtml(p.image_url) + '" loading="lazy">' +
+        '<button class="btn-danger del" data-action="delete_photo" data-photo-id="' + p.id + '">\u2715</button></div>';
+    }).join('');
+
+    return '<div class="card">' + (thumbs ? '<div class="thumbs">' + thumbs + '</div>' : '<div class="empty">Nog geen foto\'s aangeleverd.</div>') + '</div>' +
+      '<div class="card add-form">' +
+      '<strong>Foto uploaden</strong>' +
+      '<form id="uploadForm">' +
+      '<input type="file" id="photoInput" accept="image/*" required>' +
+      '<button type="submit" class="btn-primary" id="uploadBtn">Uploaden</button>' +
+      '</form></div>' +
+      '<input type="hidden" id="cloudName" value="' + escapeHtml(cloudName) + '">';
+  }
+
+  async function postAction(payload) {
+    var res = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(Object.assign({ token: token, tab: tab }, payload)),
+    });
+    return res.json();
+  }
+
+  function attachHandlers(flashCallback) {
+    document.querySelectorAll('button[data-action]').forEach(function (btn) {
+      btn.addEventListener('click', async function () {
+        btn.disabled = true;
+        var action = btn.getAttribute('data-action');
+        var payload = { action: action };
+        if (btn.dataset.fixtureId) payload.fixture_id = btn.dataset.fixtureId;
+        if (btn.dataset.sponsorId) payload.sponsor_id = btn.dataset.sponsorId;
+        if (btn.dataset.currentTier) payload.current_tier = btn.dataset.currentTier;
+        if (btn.dataset.photoId) payload.photo_id = btn.dataset.photoId;
+        var result = await postAction(payload);
+        if (result.ok) { flashCallback(result.flash); load(result.flash); }
+        else { btn.disabled = false; alert(result.message || 'Er ging iets mis.'); }
+      });
+    });
+
+    var fixtureForm = document.getElementById('addFixtureForm');
+    if (fixtureForm) fixtureForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var fd = new FormData(fixtureForm);
+      var result = await postAction({ action: 'add_fixture', opponent: fd.get('opponent'), date: fd.get('date'), time: fd.get('time'), thuis_of_uit: fd.get('thuis_of_uit') });
+      if (result.ok) load(result.flash); else alert(result.message || 'Er ging iets mis.');
+    });
+
+    var sponsorForm = document.getElementById('addSponsorForm');
+    if (sponsorForm) sponsorForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var fd = new FormData(sponsorForm);
+      var result = await postAction({ action: 'add_sponsor', name: fd.get('name') });
+      if (result.ok) load(result.flash); else alert(result.message || 'Er ging iets mis.');
+    });
+
+    var uploadForm = document.getElementById('uploadForm');
+    if (uploadForm) uploadForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var fileInput = document.getElementById('photoInput');
+      var cloudName = document.getElementById('cloudName').value;
+      var btn = document.getElementById('uploadBtn');
+      if (!fileInput.files.length) return;
+      btn.disabled = true; btn.textContent = 'Bezig...';
+      try {
+        var fd = new FormData();
+        fd.append('file', fileInput.files[0]);
+        fd.append('upload_preset', 'matchly_design');
+        var res = await fetch('https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload', { method: 'POST', body: fd });
+        var data = await res.json();
+        if (data.secure_url) {
+          var result = await postAction({ action: 'add_photo', image_url: data.secure_url });
+          if (result.ok) load(result.flash); else { alert(result.message || 'Er ging iets mis.'); btn.disabled = false; btn.textContent = 'Uploaden'; }
+        } else {
+          alert('Upload mislukt, probeer het nog eens.');
+          btn.disabled = false; btn.textContent = 'Uploaden';
+        }
+      } catch (err) {
+        alert('Upload mislukt, probeer het nog eens.');
+        btn.disabled = false; btn.textContent = 'Uploaden';
+      }
+    });
+  }
+
+  async function load(flash) {
+    tab = getTab();
+    try {
+      var res = await fetch(API_URL + '?token=' + encodeURIComponent(token) + '&tab=' + tab);
+      var result = await res.json();
+      if (!result.ok) { renderNotValid(result.message); return; }
+
+      var flashHtml = flash ? '<div class="flash">' + escapeHtml(flash) + '</div>' : '';
+      var bodyHtml = '';
+      if (tab === 'programma') bodyHtml = renderProgramma(result.data.fixtures);
+      else if (tab === 'sponsors') bodyHtml = renderSponsors(result.data.sponsors);
+      else if (tab === 'fotos') bodyHtml = renderFotos(result.data.photos, result.cloud_name);
+
+      renderShell(result.club, bodyHtml, flashHtml);
+      attachHandlers(function () {});
+    } catch (e) {
+      app.innerHTML = '<div class="not-valid"><div><h2>Er ging iets mis \u26a0\ufe0f</h2><p>Probeer de pagina te verversen.</p></div></div>';
+    }
+  }
+
+  if (!token) {
+    renderNotValid('Geen token gevonden in de link.');
+  } else {
+    load();
+  }
+})();
+</script>
+</body>
+</html>

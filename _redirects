@@ -1,14 +1,13 @@
-# NIEUW: brede rewrite voor /beheer/* -- vangt het token op als splat en geeft 'm door als
-# ?token=-queryparameter, precies zoals de 'beheer'-edge-function 'm uitleest (die kijkt
-# uitsluitend naar url.searchParams.get('token'), NIET naar het urlpad). Netlify voegt de
-# rest van de originele queryparameters (zoals ?tab=programma) automatisch samen met deze
-# ?token=-parameter, dus die komen gewoon mee door.
-# Dit blijft een REWRITE (200!, geen 301/302), dus matchlyapp.nl/beheer/<token>?tab=programma
-# blijft gewoon zo in de adresbalk staan -- de gebruiker ziet nooit de supabase.co-url.
-# Staat BEWUST boven de regel eronder: Netlify verwerkt _redirects van boven naar beneden en
-# stopt bij de eerste match.
-/beheer/*  https://qoemlqlhnrzvyujyehnc.supabase.co/functions/v1/beheer?token=:splat  200!
+# NIEUW (v2): /beheer/* serveert nu het STATISCHE beheer.html-bestand op Netlify zelf, i.p.v. een
+# proxy naar de Supabase-functie. Reden: Supabase Edge Functions kunnen GEEN text/html teruggeven
+# op GET-requests (het platform herschrijft dat altijd naar text/plain -- geen Netlify-probleem,
+# een harde Supabase-beperking, zie https://supabase.com/docs/guides/functions/http-methods).
+# beheer.html haalt zijn gegevens zelf op bij Supabase via fetch() (JSON-API, dat werkt wel prima).
+# Dit is een REWRITE (200, geen 301/302) naar een bestand BINNEN deze site, dus matchlyapp.nl
+# behoudt zelf de Content-Type correct als text/html -- geen cross-domain-proxy-probleem meer.
+/beheer/*  /beheer.html  200
 
-# Bestaande regel (ongewijzigd, laten staan) -- functioneel identiek aan de regel hierboven,
-# maar wordt door de bredere regel erboven nu niet meer bereikt.
+# Oude regels (bewust NIET verwijderd, niets overschrijven) -- deze wezen naar de Supabase-functie
+# rechtstreeks. Worden door de regel hierboven niet meer bereikt sinds de architectuurwijziging.
+/beheer/*  https://qoemlqlhnrzvyujyehnc.supabase.co/functions/v1/beheer?token=:splat  200!
 /beheer/:token  https://qoemlqlhnrzvyujyehnc.supabase.co/functions/v1/beheer?token=:token  200
