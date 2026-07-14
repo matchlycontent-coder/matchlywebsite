@@ -1,13 +1,14 @@
-# NIEUW: brede rewrite voor /beheer/* -- vangt het token EN eventuele queryparameters
-# (bv. ?tab=programma) op en geeft die door aan de Supabase Edge Function. Dit blijft een
-# REWRITE (200!, geen 301/302), dus matchlyapp.nl/beheer/<token>?tab=programma blijft
-# gewoon zo in de adresbalk staan -- de gebruiker ziet nooit de supabase.co-url.
-# Staat BEWUST boven de specifiekere regel eronder: Netlify verwerkt _redirects van boven
-# naar beneden en stopt bij de eerste match, dus deze regel wint voortaan voor alle
-# /beheer/*-paden. De oude regel is bewust NIET verwijderd (niets overschrijven/verwijderen),
-# maar wordt door deze nieuwe, bredere regel in de praktijk niet meer bereikt.
-/beheer/*  https://qoemlqlhnrzvyujyehnc.supabase.co/functions/v1/beheer/:splat  200!
+# NIEUW: brede rewrite voor /beheer/* -- vangt het token op als splat en geeft 'm door als
+# ?token=-queryparameter, precies zoals de 'beheer'-edge-function 'm uitleest (die kijkt
+# uitsluitend naar url.searchParams.get('token'), NIET naar het urlpad). Netlify voegt de
+# rest van de originele queryparameters (zoals ?tab=programma) automatisch samen met deze
+# ?token=-parameter, dus die komen gewoon mee door.
+# Dit blijft een REWRITE (200!, geen 301/302), dus matchlyapp.nl/beheer/<token>?tab=programma
+# blijft gewoon zo in de adresbalk staan -- de gebruiker ziet nooit de supabase.co-url.
+# Staat BEWUST boven de regel eronder: Netlify verwerkt _redirects van boven naar beneden en
+# stopt bij de eerste match.
+/beheer/*  https://qoemlqlhnrzvyujyehnc.supabase.co/functions/v1/beheer?token=:splat  200!
 
-# Bestaande regel (ongewijzigd, laten staan) -- ving voorheen /beheer/<token> op en zette
-# het token om naar een queryparameter i.p.v. het pad door te geven.
+# Bestaande regel (ongewijzigd, laten staan) -- functioneel identiek aan de regel hierboven,
+# maar wordt door de bredere regel erboven nu niet meer bereikt.
 /beheer/:token  https://qoemlqlhnrzvyujyehnc.supabase.co/functions/v1/beheer?token=:token  200
