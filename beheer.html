@@ -24,10 +24,20 @@
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); padding-bottom: 48px; }
   header { background: linear-gradient(135deg, #0d0d16 0%, #15101f 100%); border-bottom: 1px solid var(--card-border); color: #fff; padding: 20px 16px 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
-  header h1 { margin: 0; font-size: 19px; font-weight: 800; letter-spacing: -.2px; }
-  header p { margin: 4px 0 0; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-family: ui-monospace, 'SF Mono', Menlo, monospace; background: linear-gradient(90deg, var(--grad-a), var(--grad-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  header h1 { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-family: ui-monospace, 'SF Mono', Menlo, monospace; background: linear-gradient(90deg, var(--grad-a), var(--grad-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  header h2 { margin: 5px 0 0; font-size: 19px; font-weight: 800; letter-spacing: -.2px; color: #fff; }
+  header p { margin: 4px 0 0; font-size: 13px; color: var(--muted); line-height: 1.4; max-width: 320px; }
   .wa-back { flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: #fff; text-decoration: none; font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 999px; white-space: nowrap; }
   .wa-back:active { background: rgba(255,255,255,.16); }
+  .matt-card { display: flex; align-items: center; gap: 12px; background: rgba(61,90,254,.06); border: 1px solid rgba(239,26,120,.25); border-radius: 14px; padding: 12px 14px; margin-top: 6px; box-shadow: 0 0 24px rgba(239,26,120,.08); }
+  .matt-card img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 1.5px solid rgba(239,26,120,.4); }
+  .matt-card .matt-text { flex: 1; min-width: 0; }
+  .matt-card strong { display: block; font-size: 13.5px; color: var(--text); }
+  .matt-card p { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+  .matt-card a.matt-btn { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 700; padding: 7px 12px; border-radius: 999px; background: linear-gradient(135deg, var(--grad-a), var(--accent)); color: #fff; text-decoration: none; }
+  .teaser-card { border: 1px dashed var(--card-border); border-radius: 14px; padding: 12px 14px; margin-top: 10px; }
+  .teaser-card strong { display: block; font-size: 12px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); }
+  .teaser-card p { margin: 4px 0 0; font-size: 12.5px; color: var(--muted); line-height: 1.4; }
   nav.tabs { display: flex; position: sticky; top: 0; background: rgba(10,10,16,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--card-border); z-index: 10; }
   nav.tabs a.tab { flex: 1; text-align: center; padding: 13px 4px; text-decoration: none; color: var(--muted); font-size: 13px; font-weight: 600; border-bottom: 2px solid transparent; }
   nav.tabs a.tab-active { color: #fff; border-bottom-color: var(--accent); }
@@ -79,6 +89,10 @@
   // invoerveld -- de gebruiker hoeft alleen op verzenden te tikken om meteen het menu te zien,
   // i.p.v. zelf te moeten bedenken wat te typen na het verlaten van deze pagina.
   var WHATSAPP_MENU_LINK = 'https://wa.me/31620767042?text=menu';
+  // NIEUW: vaste Matt-avatar, centraal hier gedefinieerd (config-achtige constante bovenaan de
+  // beheerfunctie) zodat er maar op \u00e9\u00e9n plek iets aangepast hoeft te worden mocht de
+  // afbeelding ooit vervangen worden.
+  var MATT_AVATAR_URL = 'https://res.cloudinary.com/ds82thcrx/image/upload/v1784122125/a26jmyd5gxpkbkqesigt.jpg';
 
   function getTokenFromPath() {
     // Pad ziet er zo uit: /beheer/<token> -- pak het segment na 'beheer'.
@@ -107,13 +121,30 @@
     return '<a class="tab' + active + '" href="/beheer/' + encodeURIComponent(token) + '?tab=' + id + '">' + label + '</a>';
   }
 
+  function renderMattCard() {
+    return '<div class="matt-card">' +
+      '<img src="' + MATT_AVATAR_URL + '" alt="Matt">' +
+      '<div class="matt-text">' +
+      '<strong>Matt helpt je verder \u26bd</strong>' +
+      '<p>Kom je er niet uit? Stuur gewoon een appje naar Matt via WhatsApp.</p>' +
+      '<a class="matt-btn" href="' + WHATSAPP_MENU_LINK + '">Terug naar WhatsApp</a>' +
+      '</div></div>';
+  }
+
+  function renderTeaserCard() {
+    return '<div class="teaser-card">' +
+      '<strong>Binnenkort in de Clubassistent</strong>' +
+      '<p>Meer clubcontent vanuit \u00e9\u00e9n plek, zoals sponsors uitlichten, vrijwilliger van de maand en extra maandposts.</p>' +
+      '</div>';
+  }
+
   function renderShell(club, bodyHtml, flashHtml) {
-    document.title = club.name + ' -- Matchly beheer';
+    document.title = 'Matchly Clubassistent -- ' + club.name;
     app.innerHTML =
-      '<header><div><h1>' + escapeHtml(club.name) + '</h1><p>Matchly beheerpagina</p></div>' +
+      '<header><div><h1>Matchly Clubassistent</h1><h2>' + escapeHtml(club.name) + ' beheren</h2><p>Beheer programma, sponsors en foto\'s voor jullie Matchly-content.</p></div>' +
       '<a class="wa-back" href="' + WHATSAPP_MENU_LINK + '">\u2b05\ufe0f WhatsApp</a></header>' +
       '<nav class="tabs">' + tabLink('programma', '\u26bd Programma') + tabLink('sponsors', '\ud83d\udcbc Sponsors') + tabLink('fotos', '\ud83d\udcf8 Foto\'s') + '</nav>' +
-      '<main>' + (flashHtml || '') + bodyHtml + '</main>' +
+      '<main>' + (flashHtml || '') + bodyHtml + renderMattCard() + renderTeaserCard() + '</main>' +
       '<footer>Wijzigingen zijn direct zichtbaar. Vragen? Stuur gewoon een appje naar Matt op WhatsApp.</footer>';
   }
 
