@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Matchly beheer</title>
 <style>
   /* Matchly-huisstijl: donker, met felle roze/magenta accentkleur en blauw-paars verloop op
@@ -22,58 +22,58 @@
     --success: #22c98e;
   }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); padding-bottom: 48px; }
+  body { margin: 0; font-size: 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); padding-bottom: 48px; }
   header { background: linear-gradient(135deg, #0d0d16 0%, #15101f 100%); border-bottom: 1px solid var(--card-border); color: #fff; padding: 20px 16px 16px; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
-  header h1 { margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-family: ui-monospace, 'SF Mono', Menlo, monospace; background: linear-gradient(90deg, var(--grad-a), var(--grad-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  header h2 { margin: 5px 0 0; font-size: 19px; font-weight: 800; letter-spacing: -.2px; color: #fff; }
-  header p { margin: 4px 0 0; font-size: 13px; color: var(--muted); line-height: 1.4; max-width: 320px; }
-  .wa-back { flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: #fff; text-decoration: none; font-size: 12px; font-weight: 600; padding: 8px 12px; border-radius: 999px; white-space: nowrap; }
+  header h1 { margin: 0; font-size: 14px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-family: ui-monospace, 'SF Mono', Menlo, monospace; background: linear-gradient(90deg, var(--grad-a), var(--grad-b)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  header h2 { margin: 5px 0 0; font-size: 24px; font-weight: 800; letter-spacing: -.2px; color: #fff; }
+  header p { margin: 4px 0 0; font-size: 15px; color: var(--muted); line-height: 1.4; max-width: 320px; }
+  .wa-back { flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; padding: 8px 12px; border-radius: 999px; white-space: nowrap; }
   .wa-back:active { background: rgba(255,255,255,.16); }
   .matt-card { display: flex; align-items: center; gap: 12px; background: rgba(61,90,254,.06); border: 1px solid rgba(239,26,120,.25); border-radius: 14px; padding: 12px 14px; margin-top: 6px; box-shadow: 0 0 24px rgba(239,26,120,.08); }
   .matt-card img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 1.5px solid rgba(239,26,120,.4); }
   .matt-card .matt-text { flex: 1; min-width: 0; }
-  .matt-card strong { display: block; font-size: 13.5px; color: var(--text); }
-  .matt-card p { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); line-height: 1.35; }
-  .matt-card a.matt-btn { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 700; padding: 7px 12px; border-radius: 999px; background: linear-gradient(135deg, var(--grad-a), var(--accent)); color: #fff; text-decoration: none; }
+  .matt-card strong { display: block; font-size: 16px; color: var(--text); }
+  .matt-card p { margin: 2px 0 0; font-size: 14.5px; color: var(--muted); line-height: 1.35; }
+  .matt-card a.matt-btn { display: inline-block; margin-top: 8px; font-size: 14px; font-weight: 700; padding: 7px 12px; border-radius: 999px; background: linear-gradient(135deg, var(--grad-a), var(--accent)); color: #fff; text-decoration: none; }
   .teaser-card { border: 1px dashed var(--card-border); border-radius: 14px; padding: 12px 14px; margin-top: 10px; }
-  .teaser-card strong { display: block; font-size: 12px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); }
-  .teaser-card p { margin: 4px 0 0; font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+  .teaser-card strong { display: block; font-size: 13px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); }
+  .teaser-card p { margin: 4px 0 0; font-size: 14.5px; color: var(--muted); line-height: 1.4; }
   nav.tabs { display: flex; position: sticky; top: 0; background: rgba(10,10,16,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--card-border); z-index: 10; }
-  nav.tabs a.tab { flex: 1; text-align: center; padding: 13px 4px; text-decoration: none; color: var(--muted); font-size: 13px; font-weight: 600; border-bottom: 2px solid transparent; }
+  nav.tabs a.tab { flex: 1; text-align: center; padding: 14px 4px; text-decoration: none; color: var(--muted); font-size: 15px; font-weight: 600; border-bottom: 2px solid transparent; }
   nav.tabs a.tab-active { color: #fff; border-bottom-color: var(--accent); }
   main { padding: 14px; max-width: 520px; margin: 0 auto; }
   .card { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 15px; margin-bottom: 12px; box-shadow: 0 4px 16px rgba(0,0,0,.25); }
   .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .row + .row { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--card-border); }
-  .name { font-weight: 600; font-size: 15px; color: var(--text); }
-  .meta { font-size: 13px; color: var(--muted); margin-top: 2px; }
-  .badge { display: inline-block; font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: rgba(61,90,254,.16); color: #93a5ff; margin-left: 6px; }
+  .name { font-weight: 600; font-size: 17px; color: var(--text); }
+  .meta { font-size: 15px; color: var(--muted); margin-top: 2px; }
+  .badge { display: inline-block; font-size: 12.5px; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: rgba(61,90,254,.16); color: #93a5ff; margin-left: 6px; }
   .badge-hoofd { background: rgba(255,193,79,.16); color: #ffcf75; }
   .badge-type { background: rgba(148,148,163,.14); color: var(--muted); margin-left: 6px; }
   .badge-type-beker { background: rgba(255,193,79,.16); color: #ffcf75; }
   .badge-type-oefen { background: rgba(34,201,142,.16); color: #5fe0b5; }
   .badge-type-promotie { background: rgba(239,26,120,.16); color: var(--accent-2); }
-  button, .btn { font-size: 14px; font-weight: 700; padding: 10px 14px; border-radius: 10px; border: none; cursor: pointer; }
+  button, .btn { font-size: 16px; font-weight: 700; padding: 12px 16px; border-radius: 10px; border: none; cursor: pointer; }
   .btn-primary { background: linear-gradient(135deg, var(--grad-a), var(--accent)); color: #fff; }
   .btn-outline { background: transparent; color: var(--text); border: 1.5px solid var(--card-border); }
   .btn-danger { background: transparent; color: var(--danger); border: 1.5px solid rgba(255,84,112,.4); }
-  .btn-sm { padding: 6px 10px; font-size: 12px; }
-  input[type=text], input[type=date], input[type=time], input[type=file] { width: 100%; padding: 10px; border: 1.5px solid var(--card-border); border-radius: 10px; font-size: 15px; margin-top: 4px; background: #0d0d14; color: var(--text); }
+  .btn-sm { padding: 8px 12px; font-size: 14px; }
+  input[type=text], input[type=date], input[type=time], input[type=file] { width: 100%; padding: 12px; border: 1.5px solid var(--card-border); border-radius: 10px; font-size: 17px; margin-top: 4px; background: #0d0d14; color: var(--text); }
   input[type=text]::placeholder { color: #5a5a68; }
-  label { font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); display: block; margin-top: 12px; }
-  .add-form strong { color: var(--text); font-size: 15px; }
+  label { font-size: 13px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); display: block; margin-top: 12px; }
+  .add-form strong { color: var(--text); font-size: 17px; }
   .add-form button { margin-top: 14px; width: 100%; }
-  .flash { background: rgba(34,201,142,.12); color: var(--success); border: 1px solid rgba(34,201,142,.3); padding: 10px 12px; border-radius: 10px; font-size: 14px; margin-bottom: 12px; }
-  .error-box { background: rgba(255,84,112,.12); color: var(--danger); border: 1px solid rgba(255,84,112,.3); padding: 10px 12px; border-radius: 10px; font-size: 14px; margin-bottom: 12px; }
-  .empty { color: var(--muted); font-size: 14px; text-align: center; padding: 20px 0; }
+  .flash { background: rgba(34,201,142,.12); color: var(--success); border: 1px solid rgba(34,201,142,.3); padding: 12px 14px; border-radius: 10px; font-size: 16px; margin-bottom: 12px; }
+  .error-box { background: rgba(255,84,112,.12); color: var(--danger); border: 1px solid rgba(255,84,112,.3); padding: 12px 14px; border-radius: 10px; font-size: 16px; margin-bottom: 12px; }
+  .empty { color: var(--muted); font-size: 16px; text-align: center; padding: 20px 0; }
   .thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .thumb { position: relative; aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: #1c1c28; border: 1px solid var(--card-border); }
   .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .thumb .del { position: absolute; top: 4px; right: 4px; padding: 4px 8px; font-size: 11px; background: rgba(10,10,16,.7); border-color: rgba(255,84,112,.6); }
+  .thumb .del { position: absolute; top: 4px; right: 4px; padding: 5px 9px; font-size: 13px; background: rgba(10,10,16,.7); border-color: rgba(255,84,112,.6); }
   .radio-group { display: flex; gap: 10px; margin-top: 6px; }
-  .radio-group label { font-weight: 500; text-transform: none; letter-spacing: 0; font-size: 14px; color: var(--text); display: flex; align-items: center; gap: 4px; margin-top: 0; }
-  footer { text-align: center; color: var(--muted); font-size: 12px; padding: 20px 14px 0; }
-  .loading { text-align: center; color: var(--muted); padding: 60px 14px; font-size: 14px; }
+  .radio-group label { font-weight: 500; text-transform: none; letter-spacing: 0; font-size: 16px; color: var(--text); display: flex; align-items: center; gap: 4px; margin-top: 0; }
+  footer { text-align: center; color: var(--muted); font-size: 14px; padding: 20px 14px 0; }
+  .loading { text-align: center; color: var(--muted); padding: 60px 14px; font-size: 16px; }
   .not-valid { font-family: -apple-system, sans-serif; background: var(--bg); display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; text-align: center; color: var(--text); }
 </style>
 </head>
