@@ -45,6 +45,11 @@
   .card { background: var(--card); border: 1px solid var(--card-border); border-radius: 14px; padding: 15px; margin-bottom: 12px; box-shadow: 0 4px 16px rgba(0,0,0,.25); }
   .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
   .row + .row { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--card-border); }
+  .sponsor-row { flex-wrap: wrap; }
+  .sponsor-logo { width: 44px; height: 44px; object-fit: contain; border-radius: 8px; background: #fff; flex-shrink: 0; padding: 3px; }
+  .sponsor-logo-empty { display: flex; align-items: center; justify-content: center; color: var(--muted); font-weight: 700; background: #1c1c28; border: 1px dashed var(--card-border); }
+  .sponsor-info { flex: 1; min-width: 120px; }
+  .sponsor-actions { display: flex; gap: 6px; flex-wrap: wrap; width: 100%; margin-top: 8px; }
   .name { font-weight: 600; font-size: 17px; color: var(--text); }
   .meta { font-size: 15px; color: var(--muted); margin-top: 2px; }
   .badge { display: inline-block; font-size: 12.5px; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: rgba(61,90,254,.16); color: #93a5ff; margin-left: 6px; }
@@ -72,6 +77,8 @@
   .thumb .del { position: absolute; top: 4px; right: 4px; padding: 5px 9px; font-size: 13px; background: rgba(10,10,16,.7); border-color: rgba(255,84,112,.6); }
   .radio-group { display: flex; gap: 10px; margin-top: 6px; }
   .radio-group label { font-weight: 500; text-transform: none; letter-spacing: 0; font-size: 16px; color: var(--text); display: flex; align-items: center; gap: 4px; margin-top: 0; }
+  .opponent-choice-row { display: flex; align-items: center; gap: 8px; padding: 9px 0; font-size: 16px; color: var(--text); border-bottom: 1px solid var(--card-border); }
+  .opponent-choice-row:last-of-type { border-bottom: none; }
   footer { text-align: center; color: var(--muted); font-size: 14px; padding: 20px 14px 0; }
   .loading { text-align: center; color: var(--muted); padding: 60px 14px; font-size: 16px; }
   .not-valid { font-family: -apple-system, sans-serif; background: var(--bg); display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; text-align: center; color: var(--text); }
@@ -145,7 +152,7 @@
       '<a class="wa-back" href="' + WHATSAPP_MENU_LINK + '">\u2b05\ufe0f WhatsApp</a></header>' +
       '<nav class="tabs">' + tabLink('programma', '\u26bd Programma') + tabLink('sponsors', '\ud83d\udcbc Sponsors') + tabLink('fotos', '\ud83d\udcf8 Foto\'s') + '</nav>' +
       '<main>' + (flashHtml || '') + bodyHtml + renderMattCard() + renderTeaserCard() + '</main>' +
-      '<footer>Wijzigingen zijn direct zichtbaar. Vragen? Stuur gewoon een appje naar Matt op WhatsApp.</footer>';
+      '<footer>Wijzigingen zijn direct zichtbaar. Vragen? Stuur gewoon een appje naar Matt op WhatsApp.<br>Ideeën, verbeteringen of een bug gevonden? Mail ons op <a href="mailto:matchlycontent@gmail.com" style="color:var(--muted);text-decoration:underline;">matchlycontent@gmail.com</a>.</footer>';
   }
 
   function renderNotValid(message) {
@@ -198,15 +205,24 @@
       '</form></div>';
   }
 
-  function renderSponsors(sponsors) {
+  function renderSponsors(sponsors, cloudName) {
     var rows = (sponsors || []).map(function (s) {
-      return '<div class="row"><div>' +
+      var logoHtml = s.logo_url
+        ? '<img class="sponsor-logo" src="' + escapeHtml(s.logo_url) + '" alt="">'
+        : '<div class="sponsor-logo sponsor-logo-empty">?</div>';
+      return '<div class="row sponsor-row">' +
+        logoHtml +
+        '<div class="sponsor-info">' +
         '<div class="name">' + escapeHtml(s.name) + '</div>' +
         '<div class="meta"><span class="badge' + (s.tier === '1' ? ' badge-hoofd' : '') + '">' + (s.tier === '1' ? 'Hoofdsponsor' : 'Roulerend') + '</span></div>' +
-        '</div><div style="display:flex;gap:6px;">' +
+        '</div>' +
+        '<div class="sponsor-actions">' +
         '<button class="btn-outline btn-sm" data-action="toggle_tier" data-sponsor-id="' + s.id + '" data-current-tier="' + s.tier + '">' + (s.tier === '1' ? 'Maak roulerend' : 'Maak hoofdsponsor') + '</button>' +
+        '<button class="btn-outline btn-sm" data-action="trigger_logo_upload" data-sponsor-id="' + s.id + '">' + (s.logo_url ? 'Logo wijzigen' : 'Logo toevoegen') + '</button>' +
         '<button class="btn-danger btn-sm" data-action="delete_sponsor" data-sponsor-id="' + s.id + '">Verwijder</button>' +
-        '</div></div>';
+        '</div>' +
+        '<input type="file" class="sponsor-logo-input" data-sponsor-id="' + s.id + '" accept="image/*" style="display:none;">' +
+        '</div>';
     }).join('');
 
     return '<div class="card">' + (rows || '<div class="empty">Nog geen sponsors.</div>') + '</div>' +
@@ -215,7 +231,8 @@
       '<form id="addSponsorForm">' +
       '<label>Naam</label><input type="text" name="name" placeholder="bv. De Bakker" required>' +
       '<button type="submit" class="btn-primary">Toevoegen</button>' +
-      '</form></div>';
+      '</form></div>' +
+      '<input type="hidden" id="cloudNameSponsors" value="' + escapeHtml(cloudName || '') + '">';
   }
 
   function renderFotos(photos, cloudName) {
@@ -263,9 +280,55 @@
     if (fixtureForm) fixtureForm.addEventListener('submit', async function (e) {
       e.preventDefault();
       var fd = new FormData(fixtureForm);
-      var result = await postAction({ action: 'add_fixture', opponent: fd.get('opponent'), date: fd.get('date'), time: fd.get('time'), thuis_of_uit: fd.get('thuis_of_uit'), match_type: fd.get('match_type') });
-      if (result.ok) load(result.flash); else alert(result.message || 'Er ging iets mis.');
+      await submitFixtureForm({ opponent: fd.get('opponent'), date: fd.get('date'), time: fd.get('time'), thuis_of_uit: fd.get('thuis_of_uit'), match_type: fd.get('match_type') });
     });
+
+    // NIEUW: bij meerdere gelijkende clubs krijgen we van de API een keuzelijst terug i.p.v. een
+    // meteen-opgeslagen bevestiging (zie 'needs_opponent_choice' in beheer-api.ts). Toont die
+    // lijst inline onder het formulier -- kiest de gebruiker een club, dan sturen we het
+    // formulier opnieuw, nu met 'opponent_final' erbij zodat de API niet opnieuw hoeft te zoeken
+    // en gewoon opslaat. Precies dezelfde keuze die de club via WhatsApp ook krijgt voorgelegd.
+    async function submitFixtureForm(fields) {
+      var result = await postAction(Object.assign({ action: 'add_fixture' }, fields));
+      if (result.needs_opponent_choice) {
+        showOpponentChoice(result.typed, result.candidates, fields);
+        return;
+      }
+      if (result.ok) { removeOpponentChoice(); load(result.flash); }
+      else alert(result.message || 'Er ging iets mis.');
+    }
+
+    function removeOpponentChoice() {
+      var existing = document.getElementById('opponentChoiceBox');
+      if (existing) existing.remove();
+    }
+
+    function showOpponentChoice(typed, candidates, fields) {
+      removeOpponentChoice();
+      var box = document.createElement('div');
+      box.id = 'opponentChoiceBox';
+      box.className = 'card';
+      box.style.marginTop = '-4px';
+      var rows = candidates.map(function (c) {
+        return '<label class="opponent-choice-row"><input type="radio" name="opponentChoice" value="' + escapeHtml(c.club_naam) + '"> ' +
+          escapeHtml(c.club_naam) + (c.stad ? ' <span class="meta">(' + escapeHtml(c.stad) + ')</span>' : '') + '</label>';
+      }).join('');
+      box.innerHTML =
+        '<strong>Welke "' + escapeHtml(typed) + '" bedoel je?</strong>' +
+        '<p class="meta" style="margin-top:4px;">Er zijn meerdere gelijkende clubs gevonden -- kies de juiste, zodat bij een uitwedstrijd het adres op de post klopt.</p>' +
+        '<div style="margin-top:8px;">' + rows +
+        '<label class="opponent-choice-row"><input type="radio" name="opponentChoice" value="__keep__"> Geen van deze, gebruik gewoon "' + escapeHtml(typed) + '"</label>' +
+        '</div>' +
+        '<button type="button" class="btn-primary" id="confirmOpponentChoice" style="margin-top:14px;width:100%;">Bevestigen</button>';
+      var form = document.getElementById('addFixtureForm');
+      form.parentNode.insertBefore(box, form.nextSibling);
+      document.getElementById('confirmOpponentChoice').addEventListener('click', async function () {
+        var picked = box.querySelector('input[name="opponentChoice"]:checked');
+        if (!picked) { alert('Kies eerst een optie.'); return; }
+        var finalName = picked.value === '__keep__' ? typed : picked.value;
+        await submitFixtureForm(Object.assign({}, fields, { opponent_final: finalName }));
+      });
+    }
 
     // NIEUW: schema-upload -- bestand naar Cloudinary, dan laten uitlezen (parse_schedule), dan
     // de herkende wedstrijden tonen ter controle voordat ze echt worden toegevoegd.
@@ -339,6 +402,34 @@
       });
     }
 
+    // NIEUW: logo per sponsor uploaden -- klik op "Logo toevoegen/wijzigen" opent de verborgen
+    // file-input van díe specifieke sponsor, upload gaat naar Cloudinary en dan naar de API.
+    document.querySelectorAll('button[data-action="trigger_logo_upload"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var input = document.querySelector('.sponsor-logo-input[data-sponsor-id="' + btn.dataset.sponsorId + '"]');
+        if (input) input.click();
+      });
+    });
+    document.querySelectorAll('.sponsor-logo-input').forEach(function (input) {
+      input.addEventListener('change', async function () {
+        if (!input.files.length) return;
+        var sponsorId = input.dataset.sponsorId;
+        var cloudName = document.getElementById('cloudNameSponsors').value;
+        try {
+          var fd = new FormData();
+          fd.append('file', input.files[0]);
+          fd.append('upload_preset', 'matchly_design');
+          var res = await fetch('https://api.cloudinary.com/v1_1/' + cloudName + '/image/upload', { method: 'POST', body: fd });
+          var data = await res.json();
+          if (!data.secure_url) throw new Error('upload mislukt');
+          var result = await postAction({ action: 'update_sponsor_logo', sponsor_id: sponsorId, image_url: data.secure_url });
+          if (result.ok) load(result.flash); else alert(result.message || 'Er ging iets mis.');
+        } catch (err) {
+          alert('Logo uploaden mislukt, probeer het nog eens.');
+        }
+      });
+    });
+
     var sponsorForm = document.getElementById('addSponsorForm');
     if (sponsorForm) sponsorForm.addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -385,7 +476,7 @@
       var flashHtml = flash ? '<div class="flash">' + escapeHtml(flash) + '</div>' : '';
       var bodyHtml = '';
       if (tab === 'programma') bodyHtml = renderProgramma(result.data.fixtures, result.cloud_name);
-      else if (tab === 'sponsors') bodyHtml = renderSponsors(result.data.sponsors);
+      else if (tab === 'sponsors') bodyHtml = renderSponsors(result.data.sponsors, result.cloud_name);
       else if (tab === 'fotos') bodyHtml = renderFotos(result.data.photos, result.cloud_name);
 
       renderShell(result.club, bodyHtml, flashHtml);
