@@ -437,6 +437,29 @@
   .faq-item p { color: var(--muted); margin-top: 14px; font-size: 15px; max-width: 60ch; }
 
   /* ---------- FINAL CTA ---------- */
+  .guide-cta {
+    display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+    margin-top: 36px; padding: 22px 26px;
+    background: linear-gradient(135deg, rgba(3,83,235,0.10), rgba(226,29,130,0.10));
+    border: 1px solid rgba(116,33,187,0.32); border-radius: 18px;
+    text-decoration: none; color: var(--paper); transition: border-color 0.2s, transform 0.2s;
+  }
+  .guide-cta:hover { border-color: var(--magenta); transform: translateY(-2px); }
+  .guide-cta__icon {
+    flex-shrink: 0; width: 48px; height: 48px; border-radius: 12px;
+    background: linear-gradient(135deg, var(--violet), var(--purple-mid) 55%, var(--magenta));
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 18px -6px rgba(226,29,130,0.6);
+  }
+  .guide-cta__text { flex: 1; min-width: 220px; }
+  .guide-cta__text strong { display: block; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+  .guide-cta__text span { display: block; color: var(--muted); font-size: 14px; margin-top: 3px; }
+  .guide-cta__btn {
+    flex-shrink: 0; font-weight: 700; font-size: 14.5px; color: #fff;
+    background: var(--magenta); padding: 12px 22px; border-radius: 100px;
+    box-shadow: 0 4px 16px -4px rgba(226,29,130,0.5);
+  }
+
   .final-cta {
     text-align: center; padding: 100px 24px;
     background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(109,91,255,0.3), transparent 70%);
@@ -476,6 +499,7 @@
       <a href="#sponsors">Sponsors</a>
       <a href="#prijzen">Prijzen</a>
       <a href="#faq">Veelgesteld</a>
+      <a href="/onboarding-handleiding.pdf" target="_blank" rel="noopener">Handleiding</a>
     </div>
     <a class="btn btn-primary" href="https://wa.me/31620767042?text=Hoi%20Matt">Start met Matt</a>
   </nav>
@@ -488,7 +512,7 @@
       <h1>Matt is jullie<br>digitale <span class="accent shimmer-text">clubassistent.</span></h1>
       <p class="lead">Van sponsors beheren tot het programma bijhouden — en na de wedstrijd automatisch een professionele post, mét sponsors en clublogo. Allemaal gewoon via WhatsApp. Geen app, geen inloggen — en voor wie liever klikt dan appt, is er een simpele beheerpagina, direct vanuit WhatsApp te openen.</p>
       <div class="hero__ctas">
-        <a class="btn btn-primary" href="https://wa.me/31620767042">Meld je club aan via WhatsApp</a>
+        <a class="btn btn-primary" href="https://wa.me/31620767042?text=Hoi%20Matt">Meld je club aan via WhatsApp</a>
         <a class="btn btn-ghost" href="#hoe-het-werkt">Hoe werkt het?</a>
       </div>
       <div class="hero__proof">Snel aangemeld, in een paar stappen · maandelijks opzegbaar</div>
@@ -570,6 +594,18 @@
         <p>Terug in de chat: een post met de wedstrijdinfo, jullie sponsors en clublogo. Zelf delen op Instagram of Facebook.</p>
       </div>
     </div>
+
+    <!-- Downloadbare onboarding-handleiding — makkelijk vindbaar voor clubs die aanmelden -->
+    <a href="/onboarding-handleiding.pdf" target="_blank" rel="noopener" class="guide-cta">
+      <div class="guide-cta__icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 18 15 15"/></svg>
+      </div>
+      <div class="guide-cta__text">
+        <strong>Onboarding-handleiding (PDF)</strong>
+        <span>Stap voor stap: van aanmelden tot jullie eerste post. Handig om te delen binnen de club.</span>
+      </div>
+      <span class="guide-cta__btn">Download →</span>
+    </a>
   </div>
 </section>
 
@@ -687,7 +723,7 @@
           <li>2 hoofdsponsors + 12 roulerende sponsors</li>
           <li>Beheerpagina: wedstrijden, foto's en sponsors regelen zonder wachtwoord — direct vanuit WhatsApp</li>
         </ul>
-        <a class="btn btn-primary" style="justify-content:center" href="https://wa.me/31620767042">Kies Solo</a>
+        <a class="btn btn-primary" style="justify-content:center" href="https://wa.me/31620767042?text=Hoi%20Matt">Kies Solo</a>
       </div>
       <div class="plan soon">
         <h3>Plus</h3>
@@ -733,7 +769,7 @@
       </details>
       <details class="faq-item">
         <summary>Hoe lang duurt het aanmelden?</summary>
-        <p>Een paar simpele stappen, meer is het niet.</p>
+        <p>Een paar simpele stappen, meer is het niet. Alles rustig nalezen? <a href="/onboarding-handleiding.pdf" target="_blank" rel="noopener" style="color:var(--magenta);text-decoration:underline;">Download de onboarding-handleiding (PDF)</a>.</p>
       </details>
       <details class="faq-item">
         <summary>Hoe komen de sponsors erbij?</summary>
@@ -754,13 +790,15 @@
 <div class="final-cta">
   <h2>Klaar om Matt aan het werk te zetten?</h2>
   <p>Typ jullie clubnaam op WhatsApp, in een paar stappen staat alles klaar.</p>
-  <a class="btn btn-primary" href="https://wa.me/31620767042">Meld je club aan</a>
+  <a class="btn btn-primary" href="https://wa.me/31620767042?text=Hoi%20Matt">Meld je club aan</a>
+  <div style="margin-top:16px;"><a href="/onboarding-handleiding.pdf" target="_blank" rel="noopener" style="color:var(--muted);font-size:14px;text-decoration:underline;">of download eerst de onboarding-handleiding (PDF)</a></div>
 </div>
 
 <footer>
   <div class="wrap footer-grid">
     <div class="logo"><span class="logo-mark"></span> Matchly</div>
     <div class="footer-links">
+      <a href="/onboarding-handleiding.pdf" target="_blank" rel="noopener">Onboarding-handleiding</a>
       <a href="https://matchlyapp.nl/voorwaarden">Voorwaarden</a>
       <a href="https://matchlyapp.nl/sponsors">Over sponsors</a>
       <a href="#faq">Veelgesteld</a>
