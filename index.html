@@ -45,6 +45,9 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* Voorkomt dat lange woorden (bv. "clubassistent") buiten beeld vallen op smalle schermen */
+  h1, h2, h3, h4 { overflow-wrap: break-word; word-break: break-word; hyphens: auto; }
+
   html { scroll-behavior: smooth; }
 
   body {
@@ -182,9 +185,11 @@
   @media (max-width: 900px) { .hero__grid { grid-template-columns: 1fr; } }
 
   .hero h1 {
-    font-size: clamp(48px, 7.4vw, 92px);
+    font-size: clamp(34px, 7.4vw, 92px);
     margin: 18px 0 24px;
     text-shadow: 0 0 60px rgba(226,29,130,0.25);
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   .hero h1 .accent { color: var(--lime); text-shadow: 0 0 30px rgba(226,29,130,0.6); }
   .hero p.lead {
@@ -295,6 +300,13 @@
   .card h4 { font-size: 20px; margin: 12px 0 10px; text-transform: none; letter-spacing: normal; }
   .card p { color: var(--muted); font-size: 14.5px; }
   .card.wide { grid-column: span 2; }
+  /* Sponsor-kaart springt eruit: dit is dé reden dat clubs Matchly nemen */
+  .card--spotlight {
+    border-color: var(--magenta);
+    background: linear-gradient(180deg, rgba(226,29,130,0.12), var(--ink-soft));
+    box-shadow: 0 20px 50px -22px rgba(226,29,130,0.45);
+  }
+  .card--spotlight .tag { color: var(--magenta); font-weight: 700; }
   @media (max-width: 900px) { .card.wide { grid-column: span 2; } }
   @media (max-width: 600px) { .card.wide { grid-column: span 1; } }
 
@@ -516,7 +528,7 @@
     <div class="section-head">
       <span class="eyebrow">Hoe het werkt</span>
       <h2>Drie simpele stappen.</h2>
-      <p>Alles gebeurt in het WhatsApp-gesprek dat je toch al hebt. Geen account, geen app om te downloaden.</p>
+      <p>Alles gebeurt gewoon in WhatsApp — dat gebruik je al elke dag. Geen account, geen app om te downloaden.</p>
     </div>
     <div class="steps">
       <div class="step">
@@ -550,7 +562,7 @@
         <h4>Matchday- en eindstandposts</h4>
         <p>Matt weet zelf of een wedstrijd nog moet komen of net gespeeld is, en maakt daar het bijpassende ontwerp bij — zonder dat iemand dat hoeft aan te geven.</p>
       </div>
-      <div class="card">
+      <div class="card card--spotlight">
         <span class="tag">Sponsors</span>
         <h4>Automatisch in beeld — dus ook makkelijker te verkopen</h4>
         <p>Logo's worden opgehaald van de clubwebsite en volgens een eerlijke rotatie getoond op elke post. Een garantie die je gewoon aan een sponsor kunt beloven.</p>
@@ -563,7 +575,7 @@
       <div class="card wide">
         <span class="tag">Geen app nodig</span>
         <h4>Gewoon WhatsApp, niets anders</h4>
-        <p>Geen dashboard, geen inloggegevens, geen app om te installeren. Alles gaat via het WhatsApp-gesprek dat elke club al heeft — ook sponsors toevoegen of het programma bijwerken doe je gewoon door het te typen.</p>
+        <p>Geen dashboard, geen inloggegevens, geen app om te installeren. Iedereen heeft WhatsApp al op de telefoon, dus je hoeft niks nieuws te leren of te downloaden — sponsors toevoegen of het programma bijwerken doe je gewoon door het te typen.</p>
       </div>
     </div>
   </div>
@@ -658,10 +670,10 @@
         <h3>Plus</h3>
         <div class="price">€69<span> /mnd</span></div>
         <div class="price-seasonal">of €690/seizoen <span class="save">— 2 mnd gratis</span></div>
-        <div class="teams">Tot 4 teams</div>
+        <div class="teams">Max 4 teams</div>
         <ul>
           <li>Alles uit Solo</li>
-          <li>Tot 4 teams onder één club</li>
+          <li>Max 4 teams onder één club</li>
           <li>Mijlpaal-posts (kampioen, promotie, degradatie)</li>
         </ul>
         <span class="btn-disabled" style="justify-content:center">Binnenkort beschikbaar</span>
@@ -694,11 +706,11 @@
     <div class="faq">
       <details class="faq-item">
         <summary>Moet ik een app installeren?</summary>
-        <p>Nee. Matchly werkt volledig via WhatsApp — het gesprek dat jullie club toch al heeft. Voor wedstrijden, foto's en sponsors is er ook een simpele beheerpagina, die je rechtstreeks vanuit WhatsApp opent — zonder wachtwoord, account of app-installatie.</p>
+        <p>Nee. Matchly werkt volledig via WhatsApp, en dat heb je al op je telefoon — je hoeft dus niks nieuws te installeren. Voor wedstrijden, foto's en sponsors is er ook een simpele beheerpagina, die je rechtstreeks vanuit WhatsApp opent — zonder wachtwoord, account of app-installatie.</p>
       </details>
       <details class="faq-item">
         <summary>Hoe lang duurt het aanmelden?</summary>
-        <p>Een paar simpele stappen. Je typt jullie clubnaam, bevestigt de match, geeft aan voor welk team het is, gaat akkoord met het gebruik van logo en gegevens, en kiest een pakket.</p>
+        <p>Een paar simpele stappen, meer is het niet.</p>
       </details>
       <details class="faq-item">
         <summary>Hoe komen de sponsors erbij?</summary>
