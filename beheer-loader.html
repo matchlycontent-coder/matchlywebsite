@@ -17,7 +17,7 @@
         var response = await fetch('/beheer.html', { cache: 'no-store' });
         if (!response.ok) throw new Error('beheerpagina niet beschikbaar');
         var html = await response.text();
-        var script = '<script src="/beheer-wedstrijd-edit.js?v=20260804"><\\/script>';
+        var script = '<script src="/beheer-wedstrijd-edit.js?v=20260804"><\/script>';
         html = html.indexOf('</body>') >= 0 ? html.replace('</body>', script + '</body>') : html + script;
         document.open();
         document.write(html);
