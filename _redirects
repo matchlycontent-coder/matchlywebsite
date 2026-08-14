@@ -1,3 +1,6 @@
+# Matchly Club Contentdesk: statische read-only pilotpagina.
+/club-contentdesk  /club-contentdesk.html  200
+
 # Beheerpagina met de aanvullende module waarmee geplande wedstrijden kunnen worden gewijzigd.
 # De loader haalt het bestaande beheer.html op en voegt alleen de wijzigmodule toe; alle bestaande
 # programma-, sponsor- en fotofunctionaliteit blijft daardoor ongewijzigd.
